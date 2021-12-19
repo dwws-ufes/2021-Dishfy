@@ -2,17 +2,22 @@ package br.ufes.informatica.dishfy.core.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.swing.ImageIcon;
 @Entity
 public class Usuario {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(nullable = false)
     private String nome;
+    @Column(nullable = false)
     private String login;
-    @Column(length = 16)
+    @Column(length = 16 , nullable = false)      
     private String senha;
     private ImageIcon fotoPerfil;
+    @Column(nullable = false)
     private int tamanhoMax;
 
     public Usuario(int id, String nome, String login, String senha, ImageIcon fotoPerfil, int tamanhoMax) {
