@@ -1,4 +1,6 @@
 package br.ufes.informatica.dishfy.core.domain;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,14 +21,25 @@ public class Receita {
     private float calorias;
     private ImageIcon imagem;
     private boolean publico;
+    private List<Categoria> categoria;
     
-    public Receita(int id, String nome, String descricao, float calorias, ImageIcon imagem, boolean publico) {
+    public Receita(int id, String nome, String descricao, float calorias, ImageIcon imagem, boolean publico,
+            List<Categoria> categoria) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.calorias = calorias;
         this.imagem = imagem;
         this.publico = publico;
+        this.categoria = categoria;
+    }
+
+    public List<Categoria> getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(List<Categoria> categoria) {
+        this.categoria = categoria;
     }
 
     public int getId() {
