@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 public class Receita {
     
     
+    
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(nullable = false)
@@ -23,7 +24,7 @@ public class Receita {
     private float calorias;
     private ImageIcon imagem;
     private boolean publico;
-    @ManyToMany(fetch = EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Categoria> categoria;
     
     public Receita(int id, String nome, String descricao, float calorias, ImageIcon imagem, boolean publico,
