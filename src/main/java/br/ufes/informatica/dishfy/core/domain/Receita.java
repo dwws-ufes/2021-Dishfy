@@ -3,9 +3,11 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.swing.ImageIcon;
 @Entity
 public class Receita {
@@ -21,6 +23,7 @@ public class Receita {
     private float calorias;
     private ImageIcon imagem;
     private boolean publico;
+    @ManyToMany(fetch = EAGER)
     private List<Categoria> categoria;
     
     public Receita(int id, String nome, String descricao, float calorias, ImageIcon imagem, boolean publico,
