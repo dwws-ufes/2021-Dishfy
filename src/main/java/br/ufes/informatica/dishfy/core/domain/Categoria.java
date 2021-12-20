@@ -8,8 +8,8 @@ import javax.persistence.Id;
 
 @Entity
 public class Categoria {
-    private int id;
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;    
     @Column(nullable = false)
     private String nome;
 
