@@ -4,11 +4,10 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.swing.ImageIcon;
 
 @Entity
@@ -25,16 +24,18 @@ public class Usuario {
     private ImageIcon fotoPerfil;
     @Column(nullable = false)
     private int tamanhoMax;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user")
     private List<Consumo> consumo;
 
-    public Usuario(int id, String nome, String login, String senha, ImageIcon fotoPerfil, int tamanhoMax) {
+    public Usuario(int id, String nome, String login, String senha, ImageIcon fotoPerfil, int tamanhoMax,
+            List<Consumo> consumo) {
         this.id = id;
         this.nome = nome;
         this.login = login;
         this.senha = senha;
         this.fotoPerfil = fotoPerfil;
         this.tamanhoMax = tamanhoMax;
+        this.consumo = consumo;
     }
 
     public int getId() {
