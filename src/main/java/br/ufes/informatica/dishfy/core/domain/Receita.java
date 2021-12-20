@@ -1,4 +1,5 @@
 package br.ufes.informatica.dishfy.core.domain;
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,12 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.swing.ImageIcon;
+
 @Entity
 public class Receita {
-    
-    
-    
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(nullable = false)
     private String nome;
@@ -26,7 +27,7 @@ public class Receita {
     private boolean publico;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Categoria> categoria;
-    
+
     public Receita(int id, String nome, String descricao, float calorias, ImageIcon imagem, boolean publico,
             List<Categoria> categoria) {
         this.id = id;
@@ -93,6 +94,5 @@ public class Receita {
     public void setPublico(boolean publico) {
         this.publico = publico;
     }
-    
-    
+
 }

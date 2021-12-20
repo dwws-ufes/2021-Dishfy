@@ -1,24 +1,32 @@
 package br.ufes.informatica.dishfy.core.domain;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.swing.ImageIcon;
+
 @Entity
 public class Usuario {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(nullable = false)
     private String nome;
     @Column(nullable = false)
     private String login;
-    @Column(length = 16 , nullable = false)      
+    @Column(length = 16, nullable = false)
     private String senha;
     private ImageIcon fotoPerfil;
     @Column(nullable = false)
     private int tamanhoMax;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Consumo> consumo;
 
     public Usuario(int id, String nome, String login, String senha, ImageIcon fotoPerfil, int tamanhoMax) {
         this.id = id;

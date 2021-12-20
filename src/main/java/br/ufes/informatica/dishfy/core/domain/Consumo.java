@@ -17,11 +17,14 @@ public class Consumo {
     private int idReceita;
     @Column(nullable = false)
     private Date data;
+    
+ 
     public Consumo(int id, int idUsuario, int idReceita, Date data) {
         this.id = id;
         this.idUsuario = idUsuario;
         this.idReceita = idReceita;
         this.data = data;
+        
     }
     public int getId() {
         return id;
