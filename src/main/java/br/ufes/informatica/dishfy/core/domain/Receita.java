@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.swing.ImageIcon;
 
 @Entity
@@ -27,9 +28,11 @@ public class Receita {
     private boolean publico;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Categoria> categoria;
+    @OneToMany(mappedBy = "rec")
+    private List<Consumo> consumo;
 
     public Receita(int id, String nome, String descricao, float calorias, ImageIcon imagem, boolean publico,
-            List<Categoria> categoria) {
+            List<Categoria> categoria, List<Consumo> consumo) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -37,6 +40,7 @@ public class Receita {
         this.imagem = imagem;
         this.publico = publico;
         this.categoria = categoria;
+        this.consumo = consumo;
     }
 
     public List<Categoria> getCategoria() {

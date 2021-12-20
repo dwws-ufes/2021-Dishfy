@@ -24,13 +24,17 @@ public class Consumo {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private Usuario usuario;
+    @ManyToOne
+    @JoinColumn(name = "rec_id", nullable = false)
+    private Receita receita;
 
-    public Consumo(int id, int idUsuario, int idReceita, Date data, Usuario usuario) {
+    public Consumo(int id, int idUsuario, int idReceita, Date data, Usuario usuario, Receita receita) {
         this.id = id;
         this.idUsuario = idUsuario;
         this.idReceita = idReceita;
         this.data = data;
         this.usuario = usuario;
+        this.receita = receita;
 
     }
 
