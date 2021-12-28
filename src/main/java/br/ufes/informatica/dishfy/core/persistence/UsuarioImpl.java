@@ -57,7 +57,8 @@ public class UsuarioImpl {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Usuario> criteriaQuery = criteriaBuilder.createQuery(Usuario.class);
         criteriaQuery.select(criteriaQuery.from(Usuario.class));
-        return em.createQuery(criteriaQuery).getResultList();
+        List<Usuario> usuarios = em.createQuery(criteriaQuery).getResultList();
+        return usuarios;
 
     }
 
