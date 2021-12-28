@@ -4,8 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
-import org.eclipse.jgit.util.LongList;
+import javax.persistence.criteria.CriteriaBuilder;
 
 import br.ufes.informatica.dishfy.core.domain.Consumo;
 import br.ufes.informatica.dishfy.core.domain.Usuario;
@@ -54,11 +53,11 @@ public class UsuarioImpl {
     }
 
     public List<Usuario> getAllUsuario() {
-        // consulta jpql
-        String jpql = "select u from Usuario as u";
-        Query createQuery = em.createQuery(jpql);
-        List<Usuario> usuarios = createQuery.getResultList();
-        return usuarios;
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Usuario> criteriaQuery = criteriaBuilder.createQuery(Usuario.class);
+        criteriaQuery.select(criteriaQuery.from(Usuario.class));
+        return entityManager.createQuery(criteriaQuery).getResultList();
+
     }
 
 }
