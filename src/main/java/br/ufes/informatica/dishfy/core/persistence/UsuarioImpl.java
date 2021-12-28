@@ -10,7 +10,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import br.ufes.informatica.dishfy.core.domain.Consumo;
 import br.ufes.informatica.dishfy.core.domain.Usuario;
 
-public class UsuarioImpl {
+public class UsuarioImpl implements UsuarioDao {
     private final EntityManager em;
 
     public UsuarioImpl(EntityManager em, Consumo consumo) {
