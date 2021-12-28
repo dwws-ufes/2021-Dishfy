@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 
 import br.ufes.informatica.dishfy.core.domain.Consumo;
 import br.ufes.informatica.dishfy.core.domain.Usuario;
@@ -53,10 +54,10 @@ public class UsuarioImpl {
     }
 
     public List<Usuario> getAllUsuario() {
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Usuario> criteriaQuery = criteriaBuilder.createQuery(Usuario.class);
         criteriaQuery.select(criteriaQuery.from(Usuario.class));
-        return entityManager.createQuery(criteriaQuery).getResultList();
+        return em.createQuery(criteriaQuery).getResultList();
 
     }
 
