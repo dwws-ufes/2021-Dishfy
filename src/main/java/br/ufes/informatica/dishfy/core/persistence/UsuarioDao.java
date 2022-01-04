@@ -2,7 +2,7 @@ package br.ufes.informatica.dishfy.core.persistence;
 
 import br.ufes.informatica.dishfy.core.domain.Usuario;
 
-public class UsuarioDao {
+public interface UsuarioDao {
 
     Usuario saveUsuario(Usuario usuario);
 
