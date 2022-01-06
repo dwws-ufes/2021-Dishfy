@@ -1,7 +1,11 @@
 package br.ufes.informatica.dishfy.core.persistence;
 
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 
 import br.ufes.informatica.dishfy.core.domain.Receita;
 public class ReceitaImpl {
