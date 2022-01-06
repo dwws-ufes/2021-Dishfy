@@ -8,7 +8,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
 import br.ufes.informatica.dishfy.core.domain.Receita;
-public class ReceitaImpl {
+public class ReceitaImpl implements ReceitaDao {
     private final EntityManager em;
 
     public ReceitaImpl(EntityManager em) {

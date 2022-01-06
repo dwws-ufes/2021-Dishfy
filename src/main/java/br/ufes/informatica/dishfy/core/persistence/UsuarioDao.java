@@ -1,5 +1,10 @@
 package br.ufes.informatica.dishfy.core.persistence;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import br.ufes.informatica.dishfy.core.domain.Consumo;
 import br.ufes.informatica.dishfy.core.domain.Usuario;
 
 public interface UsuarioDao {
@@ -9,5 +14,15 @@ public interface UsuarioDao {
     Usuario updateUsuario(Usuario usuario);
 
     Usuario insertOrUpdate(Usuario usuario);
+
+    void UsuarioImpl(EntityManager em, Consumo consumo);
+
+    void deleteUsuario(Usuario usuario);
+
+    Usuario getUsuario(Usuario usuario);
+
+    List<Usuario> getAllUsuario();
+
+
 
 }
