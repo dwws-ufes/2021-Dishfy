@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" version="5.0">
-	<display-name>JavaHostel</display-name>
+	<display-name>Dishfy</display-name>
 	<welcome-file-list>
 		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>
@@ -17,7 +17,7 @@
 		<param-name>jakarta.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
 		<param-value>true</param-value>
 	</context-param>
-    <data-source>
+    <!-- <data-source>
         <name>java:app/datasources/javahostel</name>
         <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
         <server-name>localhost</server-name>
@@ -25,5 +25,5 @@
         <database-name>javahostel</database-name>
         <user>dwws</user>
         <password><![CDATA[dwws]]></password>
-    </data-source>
+    </data-source> -->
 </web-app>
