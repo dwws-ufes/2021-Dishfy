@@ -11,9 +11,11 @@ import br.ufes.informatica.dishfy.core.domain.Usuario;
 
 public class UsuarioImpl implements UsuarioDao {
     private final EntityManager em;
+    private Consumo consumo;
 
     public UsuarioImpl(EntityManager em, Consumo consumo) {
         this.em = em;
+        this.consumo = consumo;
     }
 
     public Usuario saveUsuario(Usuario usuario) {

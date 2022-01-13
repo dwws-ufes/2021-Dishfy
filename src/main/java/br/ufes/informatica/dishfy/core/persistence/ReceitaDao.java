@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import br.ufes.informatica.dishfy.core.domain.Receita;
 
 public interface ReceitaDao {
-    void ReceitaImpl(EntityManager em);
+    
     Receita saveReceita(Receita receita);
     Receita updateReceita(Receita receita);
     Receita insertOrUpdate(Receita receita);

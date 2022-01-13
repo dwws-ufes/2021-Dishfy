@@ -15,7 +15,7 @@ public interface UsuarioDao {
 
     Usuario insertOrUpdate(Usuario usuario);
 
-    void UsuarioImpl(EntityManager em, Consumo consumo);
+    
 
     void deleteUsuario(Usuario usuario);
 
