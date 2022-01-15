@@ -17,13 +17,13 @@
 		<param-name>jakarta.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
 		<param-value>true</param-value>
 	</context-param>
-    <!-- <data-source>
-        <name>java:jboss/datasources/dishfy</name>
+    <data-source>
+        <name>java:app/datasources/dishfy</name>
         <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
         <server-name>localhost</server-name>
         <port-number>3306</port-number>
         <database-name>dishfy</database-name>
         <user>dwws</user>
-        <password>Password.123456</password>
-    </data-source> -->
+        <password><![CDATA[Password.123456]]></password>
+    </data-source>
 </web-app>

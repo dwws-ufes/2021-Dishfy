@@ -2,6 +2,7 @@ package br.ufes.inf.dishfy.domain;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -9,6 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+
 import javax.swing.ImageIcon;
 
 @Entity
@@ -37,9 +40,12 @@ public class Receita {
     // @OneToMany
     // private List<Consumo> consumo;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "receita")
+    private List<Item> itens;
+
     public Receita(int id, String nome, String descricao, 
         float calorias, ImageIcon imagem, boolean publico,
-        List<Categoria> categoria){//, List<Consumo> consumo) {
+        List<Categoria> categoria, List<Item> itens){//, List<Consumo> consumo) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -47,6 +53,7 @@ public class Receita {
         this.imagem = imagem;
         this.publico = publico;
         this.categoria = categoria;
+        this.itens = itens;
         // this.consumo = consumo;
     }
 
@@ -105,5 +112,14 @@ public class Receita {
     public void setPublico(boolean publico) {
         this.publico = publico;
     }
+
+    public List<Item> getItens() {
+        return this.itens;
+    }
+
+    public void setItens(List<Item> itens) {
+        this.itens = itens;
+    }
+
 
 }
