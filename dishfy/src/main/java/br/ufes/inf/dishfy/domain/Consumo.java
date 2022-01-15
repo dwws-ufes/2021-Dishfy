@@ -1,14 +1,15 @@
 package br.ufes.inf.dishfy.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-// import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne; 
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType; 
 
 @Entity
 public class Consumo {
@@ -25,8 +26,10 @@ public class Consumo {
     // private int idReceita;
 
     @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date data;
 
+    // TODO: Consumo precisa msm saber o seu usuario? Se sim, usar mappedBy
     @ManyToOne
     private Usuario usuario;
 
