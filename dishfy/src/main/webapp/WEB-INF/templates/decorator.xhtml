@@ -6,26 +6,33 @@
   xmlns:h="http://java.sun.com/jsf/html"
 >
   <h:head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	  
     <title>
       <h:outputText value="Dishfy :: " /><ui:insert name="title" />
     </title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link
-      href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900"
-      rel="stylesheet"
-      type="text/css"
+    href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900"
+    rel="stylesheet"
+    type="text/css"
     />
-    <h:outputStylesheet library="css" name="skel-noscript.css" />
+    <!-- <h:outputStylesheet library="css" name="skel-noscript.css" /> -->
     <h:outputStylesheet library="css" name="style.css" />
-    <h:outputStylesheet library="css" name="style-desktop.css" />
+    <!-- <h:outputStylesheet library="css" name="style-login.css" /> -->
+    <h:outputStylesheet library="css" name="reset.css" />
+    <!-- <h:outputStylesheet library="css" name="style-desktop.css" /> -->
   </h:head>
   <h:body>
+    
     <!-- Header -->
-    <div id="header">
+    <header>
+      <h1>Dishfy</h1><h:graphicImage value="./resources/images/logo.svg" styleClass="logo"/>
+      <!-- <img src="../../images/logo.svg" class="logo"/> -->
+    </header>
+    <!-- <div id="header">
       <div id="nav-wrapper">
-        <!-- Nav -->
+        
         <nav id="nav">
           <ul>
             <li>
@@ -38,13 +45,13 @@
         </nav>
       </div>
       <div class="container">
-        <!-- Logo -->
+        
         <div id="logo">
           <h1><a href="#">Dishfy</a></h1>
           <span class="tag">Jakarta EE 9 Example WebApp</span>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- Header -->
 
     <!-- Main -->
@@ -110,3 +117,83 @@
     </div>
   </h:body>
 </html>
+
+<!-- 11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 -->
+<!-- 
+<!DOCTYPE html>
+<html>
+<h:head>
+	<title>We Are Cooking</title>
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+
+</h:head>
+<body>
+
+	<header>
+		<h1>We are Cooking</h1><img src="./images/logo.svg" class="logo">
+	</header>
+
+	<div id="content-container">
+		
+		<div class="content">
+			<div class="banner">
+				<img src="./images/salad_image.jpg">
+			</div>
+			<div class="heading">
+				<h2>Chicken, Pomegranate and Spinach Salad</h2>
+				<sup>Recipe by <a href="http://www.filmoreandunion.com/recipe-of-the-week-chicken-pomegranate-and-spinach-salad/">Filmore &amp; Union</a>, July 2015</sup>
+			</div>
+			<div class="intro">
+				<p>Treat yourself to this week's lavish salad, rich in colourful ingredients including calcium-packed spinach for strengthening your bones and lean, marinated chicken to pump up your protein intake. With a sweet kick of healthy honey and sharp hint of balsamic, the dressing alone is bursting with flavour and is the perfect accompaniment to smooth avocado, crisp spinach and crunchy red onion. Scattered with ruby pomegranate pearls, this dish is vibrant in colour and taste - perfect for a summer treat!</p> 
+				<hr>
+				<h3>Method</h3>
+				<ol>
+					<li>Combine the marinade ingredients and generously coat the chicken on both sides. Leave it in the fridge for a minimum of two hours, but longer if you can.</li>
+					<li>Place a ridged grill pan on medium-high heat and grill the chicken for about 5 minutes per side, turning once, until cooked through.</li>
+					<li>Whilst the chicken is cooking, combine the spinach, pomegranate arils, red onion and avocado in a big salad bowl.</li>
+					<li>Once the chicken is cooked, transfer to a chopping board, slice and mix in with the salad.</li>
+					<li>In a separate bowl, combine the balsamic vinegar, raw honey, extra virgin olive oil and salt and pepper and drizzle over the salad</li>
+					<li>Finally, serve and enjoy!</li>
+				</ol>
+				<hr class="last">
+			</div>
+			<div class="shop">
+				<h3>Ingredients</h3>
+
+				<strong>For the marinade:</strong>
+
+				<ul>
+					<li>2 tbsp freshly squeezed lemon juice</li>
+					<li>1 tsp fresh oregano, chopped</li>
+					<li>1 tsp garlic, crushed</li>
+					<li>Pinch of salt and pepper to taste</li>
+				</ul>
+
+				<strong>For the salad:</strong>
+				<ul>
+					<li>6oz baby spinach</li>
+					<li>4 chicken breasts</li>
+					<li>Handful of pomegranate arils</li>
+					<li>&frac12; red onion, thinly sliced</li>
+					<li>1 avocado, chopped</li>
+				</ul>
+
+				<strong>For the dressing:</strong>
+				<ul>
+					<li>1 tbsp balsamic vinegar</li>
+					<li>1 tsp raw honey</li>
+					<li>2 tbsp extra virgin olive oil</li>
+					<li>Salt and pepper, to taste</li>
+				</ul>
+							
+				
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		<div class="credits">Made for "The Iron Yard" | Images: Pexels.com | Recipe: filmoreandunion.com</div>
+	</footer>
+
+</body>
+</html> -->
