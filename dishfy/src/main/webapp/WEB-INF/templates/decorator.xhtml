@@ -27,8 +27,19 @@
     
     <!-- Header -->
     <header>
-      <h1>Dishfy</h1><h:graphicImage value="./resources/images/logo.svg" styleClass="logo"/>
-      <!-- <img src="../../images/logo.svg" class="logo"/> -->
+      <h1>Disfy</h1><a href="/index.html"><h:graphicImage value="./resources/images/logo.svg" styleClass="logo"/></a>
+      <nav>
+        <ul class="menu-header">
+          <li><h:link value="Home" styleClass="text-header" outcome="/index" /></li>
+          <li><h:link value="Receitas" styleClass="text-header" outcome="/index" /></li>
+          <li><h:link value="Pesquisa" styleClass="text-header" outcome="/index" /></li>
+          <li><h:link value="Consumo" styleClass="text-header" outcome="/index" /></li>
+        </ul>
+        <ul class="login-button">
+          <li><h:link value="Sign in" styleClass="text-header" outcome="/index" /></li>
+          <li><h:link value="Sign up" styleClass="button" outcome="/index" /></li>
+        </ul>
+      </nav>
     </header>
     <!-- <div id="header">
       <div id="nav-wrapper">
