@@ -10,7 +10,6 @@ body {
   font-family: 'Work Sans', Helvetica, Arial, Sans-Serif;
   font-weight: 300;
   background-image: url("#{request.contextPath}/resources/images/body_background.jpg");
-  /* background-color: black; */
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
@@ -133,8 +132,9 @@ nav{
 
 .content {
   background: white;
-  font-size: 0;
-  padding: 2rem 2rem 3rem;
+  font-size: 20px;
+  padding: 2rem 2rem;
+  border-radius: 24px;
 }
 .content .shop, .content .heading, .content .banner {
   font-size: 1rem;
@@ -163,11 +163,59 @@ nav{
   list-style-position: outside;
 }
 
-footer {
-  text-align: center;
-  padding: 3rem;
-  color: white;
+.footer {
+  padding: 1rem 3rem 0.5rem;
+  margin-top: 3rem;
+  background-color: rgb(255, 255, 255);
 }
+
+.footer-text h2{
+  font-size: 20px;
+}
+
+.contact{
+  display: flex;
+  padding: 1rem 0;
+}
+
+.contact li{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.github-contact{
+  margin-right: 2rem;
+}
+
+.github-contact a{
+  text-decoration: none;
+  color: black;
+}
+
+.github-contact a:hover{
+  color: #9e7c7c;
+  transition: 0.8s;
+}
+
+.git-image{
+  width: 1.2rem;
+  margin-right: 4px;
+}
+
+#copyright .container{
+  font-family: 'Crete Round', Georgia, "Times New Roman", Serif;
+  color: black;
+  padding-bottom: 1rem;
+}
+
+#copyright .container a{
+  margin-right: 5px;
+  text-decoration: none;
+  color:#606569;
+}
+
+
 
 @media (min-width: 768px) {
   .banner {
@@ -202,6 +250,7 @@ footer {
 }
 @media (min-width: 1280px) {
   .content {
+    justify-content: center;
     width: 1280px;
     margin: 0 auto;
     padding: 3rem 3rem 6rem;
@@ -214,3 +263,4 @@ footer {
     width: 30%;
   }
 }
+
