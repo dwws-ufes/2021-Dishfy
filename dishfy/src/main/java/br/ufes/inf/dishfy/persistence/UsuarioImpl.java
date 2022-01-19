@@ -1,11 +1,11 @@
 import java.util.List;
-
+package br.ufes.inf.dishfy.persistence;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
-import br.ufes.informatica.dishfy.core.domain.Consumo;
-import br.ufes.informatica.dishfy.core.domain.Usuario;
+import br.ufes.inf.dishfy.domain.Consumo;
+import br.ufes.inf.dishfy.domain.Usuario;
 
 public class UsuarioImpl implements UsuarioDao {
     private final EntityManager em;

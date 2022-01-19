@@ -1,5 +1,8 @@
 import java.util.List;
 import javax.persistence.EntityManager;
+package br.ufes.inf.dishfy.persistence;
+import br.ufes.inf.dishfy.domain.Usuario;
+
 
 
 public interface UsuarioDao {

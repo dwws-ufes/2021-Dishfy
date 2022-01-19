@@ -2,6 +2,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+package br.ufes.inf.dishfy.persistence;
+
+import br.ufes.inf.dishfy.domain.Receita;
+
 
 public class ReceitaImpl implements ReceitaDao {
     private final EntityManager em;
