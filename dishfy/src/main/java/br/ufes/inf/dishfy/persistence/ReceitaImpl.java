@@ -1,8 +1,9 @@
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
 package br.ufes.inf.dishfy.persistence;
+
+import java.util.List;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
 
 import br.ufes.inf.dishfy.domain.Receita;
 
