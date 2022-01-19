@@ -5,15 +5,19 @@
   xmlns:ui="http://java.sun.com/jsf/facelets"
   xmlns:f="http://java.sun.com/jsf/core"
   xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:p="http://primefaces.org/ui"
   template="/WEB-INF/templates/template-index.xhtml">
 
   <ui:define name="title">Login</ui:define>
   <ui:define name="contents">
     <div id="content-container">
         <div class="login-content">
-            <h3>Login</h3>
+            <h3>Cadastro</h3>
             <h:form method="post">
+                <div class="campo_txt">
+                    <h:inputText required="true"/>
+                    <span></span>
+                    <label>Nome de Usuário</label>
+                </div>
                 <div class="campo_txt">
                     <h:inputText required="true"/>
                     <span></span>
@@ -24,11 +28,7 @@
                     <span></span>
                     <label>Senha</label>
                 </div>
-                <div class="pass">Esqueceu a senha?</div>
-                <h:commandButton type="submit" value="Login"/>
-                <div class="login_link">
-                    Novo no Dishfy? <h:link value="Cadastre-se" outcome="#"/>
-                </div>
+                <h:commandButton type="submit" value="Enviar"/>
             </h:form>
         </div>
     </div>

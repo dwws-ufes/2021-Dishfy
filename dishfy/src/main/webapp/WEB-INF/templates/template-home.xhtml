@@ -4,6 +4,7 @@
   xmlns="http://www.w3.org/1999/xhtml"
   xmlns:ui="http://java.sun.com/jsf/facelets"
   xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:p="http://primefaces.org/ui"
 >
   <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	  
@@ -28,7 +29,7 @@
     <!-- Header -->
     <header>
       <!-- <h1>Disfy</h1><a href="/index"><h:graphicImage value="./resources/images/logo.svg" styleClass="logo"/></a> -->
-      <h1>Disfy</h1><h:link outcome="/index"><h:graphicImage value="./resources/images/logo.svg" styleClass="logo"/></h:link>
+      <h1>Dishfy</h1><h:link outcome="/index"><h:graphicImage value="./resources/images/logo1.svg" styleClass="logo"/></h:link>
       <nav>
         <ul class="menu-header">
           <li><h:link value="Home" styleClass="text-header" outcome="/index" /></li>
@@ -44,7 +45,7 @@
 
     <!-- Main -->
     <div id="main">
-      <div class="content">
+      <div class="content-main">
         <ui:insert name="contents">Pagina em branco.</ui:insert>
       </div>
     </div>

@@ -20,8 +20,8 @@ public class Usuario {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
-    private String login;
+    @Column(length = 20, nullable = false)
+    private String email;
 
     @Column(length = 16, nullable = false)
     private String senha;
@@ -45,17 +45,21 @@ public class Usuario {
         this.receitas = receitas;
     }
 
-    public Usuario(int id, String nome, String login, String senha, 
-        ImageIcon fotoPerfil, int tamanhoMax, List<Consumo> consumo,
-        List<Receita> receitas) {
-        this.id = id;
+    public Usuario(String nome, String email, String senha) {
         this.nome = nome;
-        this.login = login;
+        this.email = email;
         this.senha = senha;
-        this.fotoPerfil = fotoPerfil;
-        this.tamanhoMax = tamanhoMax;
-        this.consumo = consumo;
-        this.receitas = receitas;
+        this.fotoPerfil = null;
+        // TODO: Repensar esse valor tamanhoMax
+        this.tamanhoMax = 30;
+        this.consumo = null;
+        this.receitas = null;
+    }
+
+    public Usuario(String nome, String email, String senha,
+        ImageIcon fotoPerfil,int tamanhoMax) {
+            this(nome, email, senha);
+            this.fotoPerfil = fotoPerfil;
     }
 
     public int getId() {
@@ -74,12 +78,12 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getLogin() {
-        return login;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSenha() {
