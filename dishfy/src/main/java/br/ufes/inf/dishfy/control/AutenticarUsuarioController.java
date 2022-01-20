@@ -18,16 +18,20 @@ public class AutenticarUsuarioController implements Serializable {
     private String email;
     private String senha;
     private String erroLogin = "E-mail ou senha incorretos. Tente novamente.";
-    private String erroCadastro = "E-mail já cadastrado.";
+    private String erroCadastro = "E-mail já cadastrado: ";
 
     public String cadastrar(){
+
+        System.out.println(nome);
+        System.out.println(email);
+        System.out.println(senha);
         Usuario usuario = new Usuario(nome, email, senha);
 
         try {
             autenticacaoService.signUp(usuario);
         } catch (UserAlreadyExistsException e) {
-            System.out.println(e.getMessage());
-            return "/login/signinfail.xhtml";
+            erroCadastro = e.getMessage();
+            return "index.xhtml";
         }
         return "/login/login.xhtml";
     }

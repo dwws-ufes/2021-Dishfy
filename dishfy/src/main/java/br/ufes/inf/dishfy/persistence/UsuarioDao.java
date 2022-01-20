@@ -1,27 +1,27 @@
 package br.ufes.inf.dishfy.persistence;
 
 import java.util.List;
-import jakarta.persistence.EntityManager;
 import br.ufes.inf.dishfy.domain.Usuario;
+import jakarta.ejb.Local;
+import jakarta.persistence.EntityManager;
 
-
-
+@Local
 public interface UsuarioDao {
 
-    Usuario saveUsuario(Usuario usuario);
-
-    Usuario updateUsuario(Usuario usuario);
-
-    Usuario insertOrUpdate(Usuario usuario);
-
+    public Usuario saveUsuario(Usuario usuario);
     
+    public Usuario updateUsuario(Usuario usuario);
 
-    void deleteUsuario(Usuario usuario);
+    public Usuario insertOrUpdate(Usuario usuario);
 
-    Usuario getUsuario(Usuario usuario);
+    public void deleteUsuario(Usuario usuario);
 
-    List<Usuario> getAllUsuario();
+    public Usuario getUsuario(Usuario usuario);
 
+    public Usuario getUsuarioByEmail(String email);
 
+    public List<Usuario> getAllUsuario();
+
+    public void setEntityManager(EntityManager em);
 
 }

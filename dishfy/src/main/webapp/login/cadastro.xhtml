@@ -14,21 +14,21 @@
             <h3>Cadastro</h3>
             <h:form method="post">
                 <div class="campo_txt">
-                    <h:inputText required="true"/>
+                    <h:inputText required="true" value="#{autenticarUsuarioController.nome}"/>
                     <span></span>
                     <label>Nome de Usuário</label>
                 </div>
                 <div class="campo_txt">
-                    <h:inputText required="true"/>
+                    <h:inputText required="true" value="#{autenticarUsuarioController.email}"/>
                     <span></span>
                     <label>E-mail</label>
                 </div>
                 <div class="campo_txt">
-                    <h:inputSecret required="true"/>
+                    <h:inputSecret required="true" value="#{autenticarUsuarioController.senha}"/>
                     <span></span>
                     <label>Senha</label>
                 </div>
-                <h:commandButton type="submit" value="Enviar"/>
+                <h:commandButton type="submit" value="Enviar" action="#{autenticarUsuarioController.cadastrar}"/>
             </h:form>
         </div>
     </div>

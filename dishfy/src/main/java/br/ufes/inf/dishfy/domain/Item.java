@@ -14,6 +14,9 @@ public class Item {
 
     @Column(nullable = false)
     private float quantidade;
+
+    @Column(nullable = false)
+    private String grandeza;
     
     @ManyToOne
     private Ingrediente ingrediente;
