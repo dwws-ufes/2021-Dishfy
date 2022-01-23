@@ -31,7 +31,7 @@ public class AutenticarUsuarioController implements Serializable {
             autenticacaoService.signUp(usuario);
         } catch (UserAlreadyExistsException e) {
             erroCadastro = e.getMessage();
-            return "index.xhtml";
+            return "/index.xhtml";
         }
         return "/login/login.xhtml";
     }
