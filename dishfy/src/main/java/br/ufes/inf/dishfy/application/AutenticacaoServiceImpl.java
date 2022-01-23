@@ -14,7 +14,8 @@ public class AutenticacaoServiceImpl implements AutenticacaoService{
     private UsuarioDao usuarioDao;
 
     public void signUp(Usuario usuario) throws UserAlreadyExistsException {
-        if(!(usuarioDao.getUsuarioByEmail(usuario.getEmail()) == null)){
+        Usuario consultado = usuarioDao.getUsuarioByEmail(usuario.getEmail());
+        if(consultado != null){
             throw new UserAlreadyExistsException(usuario.getEmail());
         }
         
