@@ -17,13 +17,13 @@ public class Consumo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(nullable = false)
-    // @JoinColumn(name = "user_id", nullable = false)
-    private int idUsuario;
+    // @Column(nullable = false)
+    // // @JoinColumn(name = "user_id", nullable = false)
+    // private int idUsuario;
 
-    @Column(nullable = false)
-    // @JoinColumn(name = "rec_id", nullable = false)
-    private int idReceita;
+    // @Column(nullable = false)
+    // // @JoinColumn(name = "rec_id", nullable = false)
+    // private int idReceita;
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)

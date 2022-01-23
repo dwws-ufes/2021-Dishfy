@@ -37,8 +37,8 @@ public class Receita {
     private List<Categoria> categoria;
 
     /** A principio, nao ha necessidade da receita saber qual foi seu consumo */
-    @OneToMany
-    private List<Consumo> consumo;
+    // @OneToMany
+    // private List<Consumo> consumo;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "receita")
     private List<Item> itens;

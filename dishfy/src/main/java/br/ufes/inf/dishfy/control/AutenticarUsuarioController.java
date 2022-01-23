@@ -19,7 +19,7 @@ public class AutenticarUsuarioController implements Serializable {
     private String senha;
     private String erroLogin = "E-mail ou senha incorretos. Tente novamente.";
     private String erroCadastro = "E-mail já cadastrado: ";
-    Usuario usuario = new Usuario();
+    Usuario usuario;
 
     @PostConstruct
 	public void init() {
