@@ -67,7 +67,8 @@ public class UsuarioImpl implements UsuarioDao {
     public Usuario getUsuarioByEmail(String email) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Usuario> criteriaQuery = criteriaBuilder.createQuery(Usuario.class);
-        criteriaQuery.select(criteriaQuery.from(Usuario.class).get("email"));
+        Root<Usuario> root = criteriaQuery.from(Usuario.class);
+        criteriaQuery.where(criteriaBuilder.equal(root.get("email"), email));
         List<Usuario> usuarios = em.createQuery(criteriaQuery).getResultList();
         for(Usuario u : usuarios){
             if(u.getEmail().equals(email)){
