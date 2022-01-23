@@ -14,13 +14,12 @@ public class AutenticacaoServiceImpl implements AutenticacaoService{
     private UsuarioDao usuarioDao;
 
     public void signUp(Usuario usuario) throws UserAlreadyExistsException {
-        if(usuarioDao.getUsuarioByEmail(usuario.getEmail()) == null){
+        if(!(usuarioDao.getUsuarioByEmail(usuario.getEmail()) == null)){
             throw new UserAlreadyExistsException(usuario.getEmail());
         }
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Dishfy");
-        usuarioDao.setEntityManager(emf.createEntityManager());
+        
         usuarioDao.saveUsuario(usuario);
-        emf.close();
+        
     }
 
     public void login() throws UserNotFound{}
