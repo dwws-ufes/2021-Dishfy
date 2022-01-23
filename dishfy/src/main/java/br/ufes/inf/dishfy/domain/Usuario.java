@@ -45,22 +45,22 @@ public class Usuario {
         this.receitas = receitas;
     }
 
-    public Usuario(String nome, String email, String senha) {
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.fotoPerfil = null;
-        // TODO: Repensar esse valor tamanhoMax
-        this.tamanhoMax = 30;
-        this.consumo = null;
-        this.receitas = null;
-    }
+    //public Usuario(String nome, String email, String senha) {
+    //    this.nome = nome;
+    //    this.email = email;
+    //    this.senha = senha;
+    //    this.fotoPerfil = null;
+    //    // TODO: Repensar esse valor tamanhoMax
+    //    this.tamanhoMax = 30;
+    //    this.consumo = null;
+    //    this.receitas = null;
+    //}
 
-    public Usuario(String nome, String email, String senha,
-        ImageIcon fotoPerfil,int tamanhoMax) {
-            this(nome, email, senha);
-            this.fotoPerfil = fotoPerfil;
-    }
+    //public Usuario(String nome, String email, String senha,
+    //    ImageIcon fotoPerfil,int tamanhoMax) {
+    //        this(nome, email, senha);
+    //        this.fotoPerfil = fotoPerfil;
+    //}
 
     public int getId() {
         return id;

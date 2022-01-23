@@ -28,10 +28,10 @@ public class UsuarioImpl implements UsuarioDao {
     }
 
     public Usuario saveUsuario(Usuario usuario) {
-        em.getTransaction().begin();
+        // em.getTransaction().begin();
         em.persist(usuario);
-        em.getTransaction().commit();
-        em.close();
+        // em.getTransaction().commit();
+        // em.close();
         return usuario;
     }
 

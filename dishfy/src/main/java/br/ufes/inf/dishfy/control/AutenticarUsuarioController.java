@@ -5,7 +5,7 @@ import java.io.Serializable;
 import br.ufes.inf.dishfy.application.AutenticacaoService;
 import br.ufes.inf.dishfy.application.UserAlreadyExistsException;
 import br.ufes.inf.dishfy.domain.Usuario;
-
+import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.inject.Model;
 
@@ -19,13 +19,17 @@ public class AutenticarUsuarioController implements Serializable {
     private String senha;
     private String erroLogin = "E-mail ou senha incorretos. Tente novamente.";
     private String erroCadastro = "E-mail já cadastrado: ";
+    Usuario usuario = new Usuario();
 
+    @PostConstruct
+	public void init() {
+		usuario = new Usuario();		
+	}
+    
     public String cadastrar(){
-
-        System.out.println(nome);
-        System.out.println(email);
-        System.out.println(senha);
-        Usuario usuario = new Usuario(nome, email, senha);
+        usuario.setNome(nome);
+        usuario.setEmail(email);
+        usuario.setSenha(senha);
 
         try {
             autenticacaoService.signUp(usuario);
