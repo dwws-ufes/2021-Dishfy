@@ -36,15 +36,15 @@ public class Consumo {
     @ManyToOne
     private Receita receita;
 
-    public Consumo(int id, Date data, Usuario usuario, Receita receita) {
-        this.id = id;
-        // this.idUsuario = idUsuario;
-        // this.idReceita = idReceita;
-        this.data = data;
-        this.usuario = usuario;
-        this.receita = receita;
+    // public Consumo(int id, Date data, Usuario usuario, Receita receita) {
+    //     this.id = id;
+    //     // this.idUsuario = idUsuario;
+    //     // this.idReceita = idReceita;
+    //     this.data = data;
+    //     this.usuario = usuario;
+    //     this.receita = receita;
 
-    }
+    // }
 
     public int getId() {
         return id;

@@ -17,11 +17,12 @@ public class Ingrediente {
     @Column(nullable = false)
     private float calorias;
 
-    public Ingrediente(int id, String nome, float calorias) {
-        this.id = id;
-        this.nome = nome;
-        this.calorias = calorias;
-    }
+    // public Ingrediente(int id, String nome, float calorias) {
+    //     this.id = id;
+    //     this.nome = nome;
+    //     this.calorias = calorias;
+    // }
+    
     public int getId() {
         return id;
     }

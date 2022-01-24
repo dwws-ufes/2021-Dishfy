@@ -24,12 +24,12 @@ public class Item {
     @ManyToOne
     private Receita receita;
     
-    public Item(int id, Ingrediente ingrediente, Receita receita, float quantidade) {
-        this.id = id;
-        this.ingrediente = ingrediente;
-        this.receita = receita;
-        this.quantidade = quantidade;
-    }
+    // public Item(int id, Ingrediente ingrediente, Receita receita, float quantidade) {
+    //     this.id = id;
+    //     this.ingrediente = ingrediente;
+    //     this.receita = receita;
+    //     this.quantidade = quantidade;
+    // }
 
     public int getId() {
         return id;

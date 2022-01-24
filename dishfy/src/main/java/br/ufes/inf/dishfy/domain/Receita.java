@@ -43,19 +43,19 @@ public class Receita {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "receita")
     private List<Item> itens;
 
-    public Receita(int id, String nome, String descricao, 
-        float calorias, ImageIcon imagem, boolean publico,
-        List<Categoria> categoria, List<Item> itens){//, List<Consumo> consumo) {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.calorias = calorias;
-        this.imagem = imagem;
-        this.publico = publico;
-        this.categoria = categoria;
-        this.itens = itens;
-        // this.consumo = consumo;
-    }
+    // public Receita(int id, String nome, String descricao, 
+    //     float calorias, ImageIcon imagem, boolean publico,
+    //     List<Categoria> categoria, List<Item> itens){//, List<Consumo> consumo) {
+    //     this.id = id;
+    //     this.nome = nome;
+    //     this.descricao = descricao;
+    //     this.calorias = calorias;
+    //     this.imagem = imagem;
+    //     this.publico = publico;
+    //     this.categoria = categoria;
+    //     this.itens = itens;
+    //     // this.consumo = consumo;
+    // }
 
     public List<Categoria> getCategoria() {
         return categoria;
