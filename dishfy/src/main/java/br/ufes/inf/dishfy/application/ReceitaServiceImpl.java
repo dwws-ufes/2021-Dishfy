@@ -24,6 +24,8 @@ public class ReceitaServiceImpl implements ReceitaService {
     }
 
     public boolean deleteReceita(){
-        
+
+        return true;
+
     }
 }
