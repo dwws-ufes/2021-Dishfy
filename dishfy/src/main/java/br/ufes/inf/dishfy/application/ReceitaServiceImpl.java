@@ -1,5 +1,7 @@
 package br.ufes.inf.dishfy.application;
 
+import java.util.List;
+
 import br.ufes.inf.dishfy.domain.Receita;
 import br.ufes.inf.dishfy.persistence.ReceitaDao;
 import jakarta.ejb.EJB;
@@ -23,9 +25,14 @@ public class ReceitaServiceImpl implements ReceitaService {
         return receitaDao.getReceita(receita);
     }
 
-    public boolean deleteReceita(){
+    public void deleteReceita(Receita receita){
 
-        return true;
+        receitaDao.deleteReceita(receita);
 
+    }
+
+    public List<Receita> getAllReceita(){
+
+        return receitaDao.getAllReceita();
     }
 }
