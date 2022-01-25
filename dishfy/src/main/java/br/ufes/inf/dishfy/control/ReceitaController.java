@@ -32,7 +32,9 @@ public class ReceitaController implements Serializable {
       receita.setDescricao(desc);
       receita.setImagem(img);
 
-      return receitaService.createReceita(receita);
+      
+        return receitaService.createReceita(receita);
+      
   }
 
   public Receita AtualizarReceita(Receita receita){
