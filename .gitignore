@@ -1,3 +1,4 @@
 dishfy/target/
+dishfy/src/main/webapp/WEB-INF/web.xml
 dishfy/target/dishfy.war
 wildfly-preview-25.0.1.Final/
