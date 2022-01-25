@@ -1,7 +1,6 @@
 package br.ufes.inf.dishfy.persistence;
 
 import java.util.List;
-import jakarta.persistence.EntityManager;
 import br.ufes.inf.dishfy.domain.Receita;
 
 public interface ReceitaDao {
