@@ -2,8 +2,6 @@ package br.ufes.inf.dishfy.application;
 
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import br.ufes.inf.dishfy.domain.Usuario;
 import br.ufes.inf.dishfy.persistence.UsuarioDao;
 
