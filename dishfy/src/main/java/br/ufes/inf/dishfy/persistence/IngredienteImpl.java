@@ -11,7 +11,7 @@ import jakarta.persistence.criteria.CriteriaQuery;
 
 
 @Stateless
-public class IngradienteImpl implements IngredienteDao {
+public class IngredienteImpl implements IngredienteDao {
 
     @PersistenceContext
     private EntityManager em;
@@ -31,7 +31,7 @@ public class IngradienteImpl implements IngredienteDao {
 
     }
 
-    public IngradienteImpl() {
+    public IngredienteImpl() {
     }
 
 
