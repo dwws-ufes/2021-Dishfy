@@ -10,6 +10,7 @@ public interface ReceitaDao {
     Receita insertOrUpdate(Receita receita);
     Receita getReceita(Receita receita);
     List<Receita> getAllReceita();
+    public void deleteReceita(Receita receita);
 
 
     

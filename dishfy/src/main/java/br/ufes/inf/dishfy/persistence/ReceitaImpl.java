@@ -43,8 +43,14 @@ public class ReceitaImpl implements ReceitaDao {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Receita> criteriaQuery = criteriaBuilder.createQuery(Receita.class);
         criteriaQuery.select(criteriaQuery.from(Receita.class));
-        List<Receita> usuarios = em.createQuery(criteriaQuery).getResultList();
-        return usuarios;
+        List<Receita> receitas = em.createQuery(criteriaQuery).getResultList();
+        return receitas;
+
+    }
+
+    public void deleteReceita(Receita receita) {
+        em.merge(receita);
+        em.remove(receita);
 
     }
 
