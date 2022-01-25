@@ -3,6 +3,8 @@ package br.ufes.inf.dishfy.control;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.swing.ImageIcon;
+
 import br.ufes.inf.dishfy.application.ReceitaService;
 import br.ufes.inf.dishfy.domain.Receita;
 import jakarta.annotation.PostConstruct;
@@ -12,7 +14,9 @@ import jakarta.enterprise.inject.Model;
 public class ReceitaController implements Serializable {
   @EJB
   private ReceitaService receitaService;
-  private String Nome;
+  private String nome;
+  private String desc;
+  private ImageIcon img;
   private Receita receita;
   private List<Receita> receitas;
   
@@ -22,8 +26,13 @@ public class ReceitaController implements Serializable {
       receita = new Receita();
       		
   }
-  public Receita criaReceita(Receita receita){
-     return receitaService.createReceita(receita);
+  public Receita criaReceita(){
+      
+      receita.setNome(nome);
+      receita.setDescricao(desc);
+      receita.setImagem(img);
+
+      return receitaService.createReceita(receita);
   }
 
   public Receita AtualizarReceita(Receita receita){
