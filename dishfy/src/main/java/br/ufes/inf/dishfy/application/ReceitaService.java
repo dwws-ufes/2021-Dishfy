@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import br.ufes.inf.dishfy.domain.Receita;
-
+import jakarta.ejb.Local;
+@Local
 public interface ReceitaService extends Serializable {
     public Receita createReceita(Receita receita);
     public Receita updateReceita(Receita receita);
