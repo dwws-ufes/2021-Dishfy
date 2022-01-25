@@ -18,7 +18,7 @@ public class ReceitaController implements Serializable {
   private String desc;
   private ImageIcon img;
   private Receita receita;
-  private List<Receita> receitas;
+  private List<Receita> matchReceitas;
   
 
   @PostConstruct
