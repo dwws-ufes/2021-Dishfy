@@ -2,7 +2,9 @@ package br.ufes.inf.dishfy.persistence;
 
 import java.util.List;
 import br.ufes.inf.dishfy.domain.Receita;
+import jakarta.ejb.Local;
 
+@Local
 public interface ReceitaDao {
     
     Receita saveReceita(Receita receita);

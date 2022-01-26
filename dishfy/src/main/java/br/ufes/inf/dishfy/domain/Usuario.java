@@ -50,7 +50,7 @@ public class Usuario {
     //    this.email = email;
     //    this.senha = senha;
     //    this.fotoPerfil = null;
-    //    // TODO: Repensar esse valor tamanhoMax
+    //    TODO: Repensar esse valor tamanhoMax
     //    this.tamanhoMax = 30;
     //    this.consumo = null;
     //    this.receitas = null;

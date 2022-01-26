@@ -1,19 +1,33 @@
 package br.ufes.inf.dishfy.persistence;
 
 import java.util.List;
+
+import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 
 import br.ufes.inf.dishfy.domain.Receita;
 
-
+@Stateless
 public class ReceitaImpl implements ReceitaDao {
-    private final EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
+
+    public ReceitaImpl() {
+        
+    }
+     
+    
+
 
     public ReceitaImpl(EntityManager em) {
         this.em = em;
     }
+
+
+
 
     public Receita saveReceita(Receita receita){
         em.persist(receita);
@@ -53,6 +67,8 @@ public class ReceitaImpl implements ReceitaDao {
         em.remove(receita);
 
     }
+
+    
 
     
 
