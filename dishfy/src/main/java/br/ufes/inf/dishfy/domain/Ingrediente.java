@@ -17,6 +17,9 @@ public class Ingrediente {
     @Column(nullable = false)
     private float calorias;
 
+    @Column(nullable = false)
+    private String grandeza;
+
     // public Ingrediente(int id, String nome, float calorias) {
     //     this.id = id;
     //     this.nome = nome;
@@ -40,6 +43,12 @@ public class Ingrediente {
     }
     public void setCalorias(float calorias) {
         this.calorias = calorias;
+    }
+    public void setGrandeza(String grandeza){
+        this.grandeza = grandeza;
+    }
+    public String getGrandeza(){
+        return this.grandeza;
     }
     
 }

@@ -13,8 +13,9 @@ public class IngredienteController implements Serializable {
     private IngredienteService ingredienteService;
 
     private String nome;
+    private Ingrediente ingrediente;
 
-    public Ingrediente consultaIngrediente(){
-        return ingredienteService.getIngrediente(nome);
+    public void consultaIngrediente(){
+        ingrediente = ingredienteService.getIngrediente(nome);
     }
 }

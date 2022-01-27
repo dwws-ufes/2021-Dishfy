@@ -13,6 +13,4 @@ public class IngredienteServiceImpl implements IngredienteService{
     public Ingrediente getIngrediente(String nome) {
         return ingredienteDao.getIngredientesByName(nome);
     }
-
-
 }
