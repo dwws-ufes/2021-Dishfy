@@ -30,8 +30,7 @@ public class Consumo {
     private Date data;
 
     // TODO: Consumo precisa msm saber o seu usuario? Se sim, usar mappedBy
-    @ManyToOne
-    private Usuario usuario;
+    
 
     @ManyToOne
     private Receita receita;
@@ -62,14 +61,7 @@ public class Consumo {
         this.data = data;
     }
 
-    public Usuario getUsuario() {
-        return this.usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
+   
     public Receita getReceita() {
         return this.receita;
     }
