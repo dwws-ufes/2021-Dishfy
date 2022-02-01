@@ -1,96 +1,103 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html
-  xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:ui="http://java.sun.com/jsf/facelets"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:p="http://primefaces.org/ui"
->
-  <h:head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	  
-    <title>
-      <h:outputText value="Dishfy - " /><ui:insert name="title" />
-    </title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <link
-    href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900"
-    rel="stylesheet"
-    type="text/css"
-    />
-    <!-- <h:outputStylesheet library="css" name="skel-noscript.css" /> -->
-    <h:outputStylesheet library="css" name="style.css" />
-    <!-- <h:outputStylesheet library="css" name="style-login.css" /> -->
-    <h:outputStylesheet library="css" name="reset.css" />
-    <!-- <h:outputStylesheet library="css" name="style-desktop.css" /> -->
-  </h:head>
-  <h:body>
-    
-    <!-- Header -->
-    <header>
-      <!-- <h1>Disfy</h1><a href="/index"><h:graphicImage value="./resources/images/logo.svg" styleClass="logo"/></a> -->
-      <h1>Dishfy</h1><h:link outcome="/index"><h:graphicImage value="./resources/images/logo1.svg" styleClass="logo"/></h:link>
-      <nav>
-        <ul class="menu-header">
-          <li><h:link value="Home" styleClass="text-header" outcome="/index" /></li>
-          <li><h:link value="Receitas" styleClass="text-header" outcome="/index" /></li>
-          <li><h:link value="Pesquisa" styleClass="text-header" outcome="/index" /></li>
-          <li><h:link value="Consumo" styleClass="text-header" outcome="/index" /></li>
-        </ul>
-        <ul class="login-button">
-          <li><h:link value="Sair" styleClass="button" outcome="/index" /></li>
-        </ul>
-      </nav>
-    </header>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+<h:head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>
+    <h:outputText value="Dishfy - " />
+    <ui:insert name="title" />
+  </title>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900" rel="stylesheet" type="text/css" />
+  <!-- <h:outputStylesheet library="css" name="skel-noscript.css" /> -->
+  <h:outputStylesheet library="css" name="style.css" />
+  <!-- <h:outputStylesheet library="css" name="style-login.css" /> -->
+  <h:outputStylesheet library="css" name="reset.css" />
+  <!-- <h:outputStylesheet library="css" name="style-desktop.css" /> -->
+</h:head>
+<h:body>
 
-    <!-- Main -->
-    <div id="main">
-      <div class="content-main">
-        <ui:insert name="contents">Pagina em branco.</ui:insert>
-      </div>
+  <!-- Header -->
+  <header>
+    <!-- <h1>Disfy</h1><a href="/index"><h:graphicImage value="./resources/images/logo.svg" styleClass="logo"/></a> -->
+    <h1>Dishfy</h1>
+    <h:link outcome="/index">
+      <h:graphicImage value="./resources/images/logo1.svg" styleClass="logo" />
+    </h:link>
+    <nav>
+      <ul class="menu-header">
+        <li>
+          <h:link value="Home" styleClass="text-header" outcome="/index" />
+        </li>
+        <li>
+          <h:link value="Receitas" styleClass="text-header" outcome="/index" />
+        </li>
+        <li>
+          <h:link value="Pesquisa" styleClass="text-header" outcome="/index" />
+        </li>
+        <li>
+          <h:link value="Consumo" styleClass="text-header" outcome="/index" />
+        </li>
+      </ul>
+      <ul class="login-button">
+        <li>
+          <h:link value="Sair" styleClass="button" outcome="/index" />
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <div class="main" style="display:flex; justify-content:center;">
+    <div class="content-main">
+      <ui:insert name="contents">Pagina em branco.</ui:insert>
     </div>
-    <!-- Main -->
+  </div>
+  <!-- Main -->
 
-    <!-- Footer -->
-    <div class="footer">
-      <div class="container">
-        <section>
-          <div class="footer-text">
-            <h2>Desenvolvido por</h2>
-          </div>
-          <ul class="contact">
-            <li class="github-contact">
-              <h:graphicImage value="https://cdn-icons-png.flaticon.com/512/25/25231.png" styleClass="git-image"/>
-              <a href="https://github.com/wagnerpf" class=""><span>Wagner</span></a>
-            </li>
-            <li class="github-contact">
-              <h:graphicImage value="https://cdn-icons-png.flaticon.com/512/25/25231.png" styleClass="git-image"/>
-              <a href="https://github.com/gabkyo" class=""><span>Gabriel</span></a>
-            </li>
-            <li class="github-contact">
-              <h:graphicImage value="https://cdn-icons-png.flaticon.com/512/25/25231.png" styleClass="git-image"/>
-              <a href="https://github.com/IgorDummer" class=""><span>Igor</span></a>
-            </li>
-            <li class="github-contact">
-              <h:graphicImage value="https://cdn-icons-png.flaticon.com/512/25/25231.png" styleClass="git-image"/>
-              <a href="https://github.com/luisarios" class=""><span>Luisa</span></a>
-            </li>
-            <li class="github-contact">
-              <h:graphicImage value="https://cdn-icons-png.flaticon.com/512/25/25231.png" styleClass="git-image"/>
-              <a href="https://github.com/pedrovic7997" class=""><span>Pedro Victor</span></a>
-            </li>
-          </ul>
-        </section>
-      </div>
-
-      <!-- Copyright -->
-      <div id="copyright">
-        <div class="container">
-          Design: <a href="https://github.com/FranCarstens/weAreCooking--HTML">We Are Cooking - FranCarstens</a>
-          Images:
-          <a href="http://unsplash.com">Pexels</a><a href="http://unsplash.com/cc0">(CC0)</a>
+  <!-- Footer -->
+  <div class="footer">
+    <div class="container">
+      <section>
+        <div class="footer-text">
+          <h2>Desenvolvido por</h2>
         </div>
+        <ul class="contact">
+          <li class="github-contact">
+            <h:graphicImage value="https://cdn-icons-png.flaticon.com/512/25/25231.png" styleClass="git-image" />
+            <a href="https://github.com/wagnerpf" class=""><span>Wagner</span></a>
+          </li>
+          <li class="github-contact">
+            <h:graphicImage value="https://cdn-icons-png.flaticon.com/512/25/25231.png" styleClass="git-image" />
+            <a href="https://github.com/gabkyo" class=""><span>Gabriel</span></a>
+          </li>
+          <li class="github-contact">
+            <h:graphicImage value="https://cdn-icons-png.flaticon.com/512/25/25231.png" styleClass="git-image" />
+            <a href="https://github.com/IgorDummer" class=""><span>Igor</span></a>
+          </li>
+          <li class="github-contact">
+            <h:graphicImage value="https://cdn-icons-png.flaticon.com/512/25/25231.png" styleClass="git-image" />
+            <a href="https://github.com/luisarios" class=""><span>Luisa</span></a>
+          </li>
+          <li class="github-contact">
+            <h:graphicImage value="https://cdn-icons-png.flaticon.com/512/25/25231.png" styleClass="git-image" />
+            <a href="https://github.com/pedrovic7997" class=""><span>Pedro Victor</span></a>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Copyright -->
+    <div id="copyright">
+      <div class="container">
+        Design: <a href="https://github.com/FranCarstens/weAreCooking--HTML">We Are Cooking - FranCarstens</a>
+        Images:
+        <a href="http://unsplash.com">Pexels</a><a href="http://unsplash.com/cc0">(CC0)</a>
       </div>
     </div>
-  </h:body>
+  </div>
+</h:body>
+
 </html>

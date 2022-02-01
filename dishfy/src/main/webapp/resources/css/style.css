@@ -1,5 +1,5 @@
-@import url("reset.css");
-@import url("style-login.css");
+/*@import url("/reset.css");
+@import url("/style-login.css");*/
 @import url("https://fonts.googleapis.com/css?family=Work+Sans:300,500");
 @import url("https://fonts.googleapis.com/css?family=Crete+Round:400,400i");
 * {
@@ -129,6 +129,11 @@ nav{
   background-color: black;
   color: white;
   transition: 1s;
+}
+
+.main{
+  display: flex !important;
+  justify-content: center !important;
 }
 
 .content-main {
@@ -268,4 +273,3 @@ nav{
     width: 30%;
   }
 }
-
