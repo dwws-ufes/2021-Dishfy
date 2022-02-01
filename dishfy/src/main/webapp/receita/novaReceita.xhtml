@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+    template="/WEB-INF/templates/template-login.xhtml">
+
+    <ui:define name="title">Cadastro Produto</ui:define>
+    <ui:define name="contents">
+        <div id="content-container">
+
+            <div class="content-main">
+                <div class="header-produto">
+                    <h2 id="titulo">Cadastro de Receita</h2>
+                    <p id="subtitulo">Por favor preencha os campos abaixo.</p>
+                </div>
+
+                <form class="formulario-produto">
+                    <div>
+                        <div class="campo-produto">
+                            <h:outputLabel for="nome-produto"><strong>Nome da Receita</strong></h:outputLabel>
+                            <h:inputText name="nome-produto" id="nome-produto" required="true" />
+                        </div>
+                        <div class="conteiner-produto">
+                            <div class="image-container">
+                                <h:graphicImage value="/images/camera-fotografica.png" alt="Selecione uma imagem"
+                                    id="imgReceita" />
+                            </div>
+
+                            <!-- para salvar imagem https://stackoverflow.com/questions/27677397/how-to-upload-file-using-jsf-2-2-hinputfile-where-is-the-saved-file/ -->
+                            <h:inputFile value="" id="imagem-produto" name="imagem-produto" accept="image/*">
+                                <f:ajax listener="#{bean.upload}" />
+                            </h:inputFile>
+
+                            <div class="campo-produto categoria">
+                                <h:outputLabel for="categoria-produto"><strong>Categoria</strong></h:outputLabel>
+                                <h:selectOneMenu id="categoria-produto" value="" required="true">
+                                    <f:selectItems value="" />
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+                        <div class="campo-produto">
+                            <h:outputLabel><strong>Escolha os ingredientes da receita:</strong></h:outputLabel>
+                            <h:panelGroup class="formulario-item">
+                                <h:inputText id="number" required="true" />
+                                <h:inputText id="number" required="true" />
+                                <h:commandButton value="+">
+                                    <f:ajax execute="comments" render="comments" />
+                                </h:commandButton>
+                            </h:panelGroup>
+                        </div>
+                        <div class="campo-produto">
+                            <h:outputLabel><strong>Defina a privacidade da sua receita:</strong></h:outputLabel>
+                            <h:selectOneRadio value="#{userData.data}">
+                                <f:selectItem itemValue="publico" itemLabel="publico" styleClass="priv" />
+                                <f:selectItem itemValue="privado" itemLabel="privado" styleClass="priv" />
+                            </h:selectOneRadio>
+                        </div>
+                        <div class="campo-produto">
+                            <h:outputLabel for="descricao"><strong>Descreva os passos de preparo para a receita:
+                                </strong></h:outputLabel>
+                            <h:inputTextarea styleClass="resize: none" row="6" id="descricao" name="descricao" />
+                        </div>
+                        <div class="botao-submit">
+                            <input type="submit" value="Enviar" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
