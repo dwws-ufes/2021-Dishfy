@@ -17,14 +17,13 @@ public class UsuarioImpl implements UsuarioDao {
     private EntityManager em;
     // private final EntityManager em;
 
-    private Consumo consumo;
-
+    
     public UsuarioImpl(){}
     
-    public UsuarioImpl(EntityManager em, Consumo consumo) {
+    public UsuarioImpl(EntityManager em) {
         this();
         this.em = em;
-        this.consumo = consumo;
+        
     }
 
     public Usuario saveUsuario(Usuario usuario) {
@@ -56,9 +55,7 @@ public class UsuarioImpl implements UsuarioDao {
 
     }
 
-    public void saveConsumo(Consumo consumo) {
-        em.persist(consumo);
-    }
+    
 
     public Usuario getUsuario(Usuario usuario) {
         return em.find(Usuario.class, usuario);
