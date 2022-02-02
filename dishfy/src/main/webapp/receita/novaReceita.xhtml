@@ -33,18 +33,18 @@
 
                             <div class="campo-produto categoria">
                                 <h:outputLabel for="categoria-produto"><strong>Categoria</strong></h:outputLabel>
-                                <h:selectOneMenu id="categoria-produto" value="" required="true">
-                                    <f:selectItems value="" />
-                                </h:selectOneMenu>
+                                <!--<h:selectOneMenu id="categoria-produto" value="" required="true">
+                                    <f:selectItems value="" itemLabel="teste" />
+                                </h:selectOneMenu>-->
                             </div>
                         </div>
                         <div class="campo-produto">
                             <h:outputLabel><strong>Escolha os ingredientes da receita:</strong></h:outputLabel>
-                            <h:panelGroup class="formulario-item">
+                            <h:panelGroup id="item-form" class="formulario-item">
                                 <h:inputText id="number" required="true" />
                                 <h:inputText id="number" required="true" />
                                 <h:commandButton value="+">
-                                    <f:ajax execute="comments" render="comments" />
+                                    <f:ajax render="item-form" />
                                 </h:commandButton>
                             </h:panelGroup>
                         </div>

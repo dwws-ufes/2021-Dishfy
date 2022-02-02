@@ -260,7 +260,7 @@ nav{
 @media (min-width: 1280px) {
   .content-main{
     justify-content: center;
-    width: auto;
+    width: 70%;
     /* margin: 0 auto;*/
 
     padding: 3rem 3rem 6rem;
