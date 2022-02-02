@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
-    template="/WEB-INF/templates/template-login.xhtml">
+    template="/WEB-INF/templates/template-home.xhtml">
 
     <ui:define name="title">Cadastro Produto</ui:define>
     <ui:define name="contents">
@@ -22,8 +22,8 @@
                         </div>
                         <div class="conteiner-produto">
                             <div class="image-container">
-                                <h:graphicImage value="/images/camera-fotografica.png" alt="Selecione uma imagem"
-                                    id="imgReceita" />
+                                <h:graphicImage value="../resources/images/camera-fotografica.png"
+                                    alt="Selecione uma imagem" id="imgReceita" />
                             </div>
 
                             <!-- para salvar imagem https://stackoverflow.com/questions/27677397/how-to-upload-file-using-jsf-2-2-hinputfile-where-is-the-saved-file/ -->
@@ -33,6 +33,15 @@
 
                             <div class="campo-produto categoria">
                                 <h:outputLabel for="categoria-produto"><strong>Categoria</strong></h:outputLabel>
+                                <h:selectOneMenu id="categoria-produto" required="true">
+                                    <f:selectItem itemValue="Selecione" itemLabel="Selecione" selected="true" />
+                                    <f:selectItem itemValue="Doce" itemLabel="Doce" />
+                                    <f:selectItem itemValue="Carne" itemLabel="Carne" />
+                                    <f:selectItem itemValue="Ave" itemLabel="Ave" />
+                                    <f:selectItem itemValue="Bebida" itemLabel="Bebida" />
+                                    <f:selectItem itemValue="Vegano" itemLabel="Vegano" />
+                                    <f:selectItem itemValue="Lanche" itemLabel="Lanche" />
+                                </h:selectOneMenu>
                                 <!--<h:selectOneMenu id="categoria-produto" value="" required="true">
                                     <f:selectItems value="" itemLabel="teste" />
                                 </h:selectOneMenu>-->
@@ -41,9 +50,9 @@
                         <div class="campo-produto">
                             <h:outputLabel><strong>Escolha os ingredientes da receita:</strong></h:outputLabel>
                             <h:panelGroup id="item-form" class="formulario-item">
-                                <h:inputText id="number" required="true" />
-                                <h:inputText id="number" required="true" />
-                                <h:commandButton value="+">
+                                <h:inputText id="form-number" required="true" />
+                                <h:inputText id="form-ingredient" required="true" />
+                                <h:commandButton value="+" styleClass="add-button">
                                     <f:ajax render="item-form" />
                                 </h:commandButton>
                             </h:panelGroup>
@@ -51,7 +60,8 @@
                         <div class="campo-produto">
                             <h:outputLabel><strong>Defina a privacidade da sua receita:</strong></h:outputLabel>
                             <h:selectOneRadio value="#{userData.data}">
-                                <f:selectItem itemValue="publico" itemLabel="publico" styleClass="priv" />
+                                <f:selectItem selected="true" itemValue="publico" itemLabel="publico"
+                                    styleClass="priv" />
                                 <f:selectItem itemValue="privado" itemLabel="privado" styleClass="priv" />
                             </h:selectOneRadio>
                         </div>

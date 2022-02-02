@@ -13,7 +13,7 @@
   <link href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900" rel="stylesheet" type="text/css" />
   <!-- <h:outputStylesheet library="css" name="skel-noscript.css" /> -->
   <h:outputStylesheet library="css" name="style.css" />
-  <!-- <h:outputStylesheet library="css" name="style-login.css" /> -->
+  <h:outputStylesheet library="css" name="produto.css" />
   <h:outputStylesheet library="css" name="reset.css" />
   <!-- <h:outputStylesheet library="css" name="style-desktop.css" /> -->
 </h:head>
@@ -24,7 +24,7 @@
     <!-- <h1>Disfy</h1><a href="/index"><h:graphicImage value="./resources/images/logo.svg" styleClass="logo"/></a> -->
     <h1>Dishfy</h1>
     <h:link outcome="/index">
-      <h:graphicImage value="./resources/images/logo1.svg" styleClass="logo" />
+      <h:graphicImage value="../resources/images/logo1.svg" styleClass="logo" />
     </h:link>
     <nav>
       <ul class="menu-header">
@@ -51,9 +51,7 @@
 
   <!-- Main -->
   <div class="main" style="display:flex; justify-content:center;">
-    <div class="content-main">
-      <ui:insert name="contents">Pagina em branco.</ui:insert>
-    </div>
+    <ui:insert name="contents">Pagina em branco.</ui:insert>
   </div>
   <!-- Main -->
 
@@ -98,6 +96,8 @@
       </div>
     </div>
   </div>
+
+  <script type="text/javascript" src="../resources/js/fileImage.js"></script>
 </h:body>
 
 </html>

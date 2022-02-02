@@ -90,7 +90,7 @@ input[type="submit"]:hover{
 }
 
 .categoria{
-    margin-left: 150px;
+    margin-left: 80px;
 }
 
 .categoria select option{
@@ -118,4 +118,30 @@ input[type="submit"]:hover{
     width: 400px;
     height: 200px;
     padding: 0;
+}
+
+.formulario-item{
+    display: flex;
+    align-items: center;
+}
+
+#form-number{
+    width: 10% !important;
+}
+
+#form-ingredient{
+    width: 40% !important;
+    margin: 0 10px !important;
+}
+
+.add-button{
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 20px !important;
+}
+
+@media (min-width: 1280px) {
+    .content-main{
+      width: auto !important;
+    }
 }

@@ -130,6 +130,10 @@ input[type="submit"]:hover{
 
 
 @media (min-width: 1280px) {
+    .content-main{
+      width: auto !important;
+    }
+
     .login-content{
       justify-content: center;
   
