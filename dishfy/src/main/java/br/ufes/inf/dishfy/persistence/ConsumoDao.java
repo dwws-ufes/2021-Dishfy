@@ -7,8 +7,8 @@ import br.ufes.inf.dishfy.domain.Consumo;
 
 public interface ConsumoDao {
     public Consumo saveConsumo(Consumo consumo);
-    public Consumo getUsuarioById(Integer id);
+    public Consumo getConsumoById(Integer id);
     public List<Consumo> getConsumo(ArrayList<Integer> idConsumo);
-    public void deleteUsuario(Consumo consumo);
+    public void deleteConsumo(Consumo consumo);
     
 }

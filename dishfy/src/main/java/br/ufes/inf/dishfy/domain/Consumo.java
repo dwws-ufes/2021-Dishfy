@@ -17,33 +17,14 @@ public class Consumo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    // @Column(nullable = false)
-    // // @JoinColumn(name = "user_id", nullable = false)
-    // private int idUsuario;
-
-    // @Column(nullable = false)
-    // // @JoinColumn(name = "rec_id", nullable = false)
-    // private int idReceita;
-
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date data;
 
-    // TODO: Consumo precisa msm saber o seu usuario? Se sim, usar mappedBy
-    
-
     @ManyToOne
     private Receita receita;
 
-    // public Consumo(int id, Date data, Usuario usuario, Receita receita) {
-    //     this.id = id;
-    //     // this.idUsuario = idUsuario;
-    //     // this.idReceita = idReceita;
-    //     this.data = data;
-    //     this.usuario = usuario;
-    //     this.receita = receita;
-
-    // }
+    
 
     public int getId() {
         return id;

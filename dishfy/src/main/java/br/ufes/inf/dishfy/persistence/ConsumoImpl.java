@@ -27,7 +27,7 @@ public class ConsumoImpl implements ConsumoDao {
         return consumo;
 
     }
-    public Consumo getUsuarioById(Integer id) {
+    public Consumo getConsumoById(Integer id) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Consumo> criteriaQuery = criteriaBuilder.createQuery(Consumo.class);
         Root<Consumo> root = criteriaQuery.from(Consumo.class);
@@ -53,7 +53,7 @@ public class ConsumoImpl implements ConsumoDao {
         Consumo aux;
         for(Integer u : idConsumo){
 
-            aux = getUsuarioById(u); 
+            aux = getConsumoById(u); 
 
             if (aux!=null){
                 consumo.add(aux);
@@ -64,7 +64,7 @@ public class ConsumoImpl implements ConsumoDao {
 
     }
 
-    public void deleteUsuario(Consumo consumo) {
+    public void deleteConsumo(Consumo consumo) {
         em.merge(consumo);
         em.remove(consumo);
 

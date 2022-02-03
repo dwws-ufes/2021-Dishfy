@@ -18,12 +18,13 @@ public class ReceitaController implements Serializable {
   private String desc;
   private ImageIcon img;
   private Receita receita;
-  private List<Receita> matchReceitas;
+  private List<Receita> matchReceitas; 
   
 
   @PostConstruct
   public void init() {
       receita = new Receita();
+      matchReceitas = receitaService.getAllReceita();
       		
   }
   public Receita criaReceita(){
