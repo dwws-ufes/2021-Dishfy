@@ -2,6 +2,7 @@ package br.ufes.inf.dishfy.control;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import br.ufes.inf.dishfy.application.ConsumoService;
 import br.ufes.inf.dishfy.application.ReceitaService;
@@ -10,6 +11,7 @@ import br.ufes.inf.dishfy.domain.Receita;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.inject.Model;
+import java.util.ArrayList;
 @Model
 public class ConsumoController implements Serializable {
   @EJB
@@ -36,5 +38,14 @@ public class ConsumoController implements Serializable {
     
 
 
+  }
+
+  public Consumo getOneConsumo(Integer idUsuario){
+
+    return consumoService.getById(idUsuario);
+  }
+  
+  public List<Consumo> getAllConsumoUsuario(ArrayList<Integer> usuario){
+    return consumoService.getConsumo(usuario);
   }
 }
