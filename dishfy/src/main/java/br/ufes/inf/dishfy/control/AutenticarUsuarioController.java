@@ -4,12 +4,18 @@ import java.io.Serializable;
 
 import br.ufes.inf.dishfy.application.AutenticacaoService;
 import br.ufes.inf.dishfy.application.UserAlreadyExistsException;
+import br.ufes.inf.dishfy.application.UserNotFoundException;
 import br.ufes.inf.dishfy.domain.Usuario;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.enterprise.inject.Model;
+import jakarta.faces.context.FacesContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Model
+@SessionScoped
 public class AutenticarUsuarioController implements Serializable {
     @EJB
     private AutenticacaoService autenticacaoService;
@@ -19,6 +25,8 @@ public class AutenticarUsuarioController implements Serializable {
     private String senha;
     private String erroLogin = "E-mail ou senha incorretos. Tente novamente.";
     private String erroCadastro = "E-mail já cadastrado: ";
+    private Usuario usuarioAtual;
+
     Usuario usuario;
 
     @PostConstruct
@@ -35,16 +43,43 @@ public class AutenticarUsuarioController implements Serializable {
             autenticacaoService.signUp(usuario);
         } catch (UserAlreadyExistsException e) {
             erroCadastro = e.getMessage();
+            // TODO: trocar a pagina
             return "/index.xhtml";
-        }
+        } finally {
+            // usuario = new Usuario();
+            nome = null;
+            email = null;
+            senha = null;
+        }        
         return "/login/login.xhtml";
-    }
-    
-    
+    }    
 
-    // public String solicitaLogin(){}
+    public String solicitaLogin(){
+        try {
+            autenticacaoService.login(email, senha);
+            HttpServletRequest request = (HttpServletRequest) FacesContext
+                .getCurrentInstance().getExternalContext().getRequest();
+            request.logout();
+            request.login(email, senha);
+        } catch (UserNotFoundException e) {
+            erroLogin = e.getMessage();
+            return "/index.xhtml";
+        } catch (ServletException e) {
+            
+        } finally {
+            email = null;
+            senha = null;
+        }
+        usuarioAtual = autenticacaoService.getLoggedUser();
+        System.out.println("Usuario Logado: " + usuarioAtual.getNome());
+        return "/core/home.xhtml";
+    }
 
     // public String solicitaLogout(){}
+
+    public boolean usuarioLogado() {
+        return usuarioAtual != null;
+    }
 
     public String getNome() {
         return this.nome;

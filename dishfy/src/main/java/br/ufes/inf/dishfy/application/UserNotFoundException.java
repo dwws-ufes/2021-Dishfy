@@ -1,7 +1,7 @@
 package br.ufes.inf.dishfy.application;
 
-public class UserNotFound extends Exception {
-    public UserNotFound(String email){
+public class UserNotFoundException extends Exception {
+    public UserNotFoundException(String email){
         super("Usuario com email " + email + " nao encontrado.");
     }
 }
