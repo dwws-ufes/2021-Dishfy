@@ -97,6 +97,20 @@ nav{
   display: flex;
 }
 
+.menu-header li a{
+  margin: 0 1rem;
+  color: white;
+  text-decoration: none;
+
+  font-size: 18px;
+  transition: 0.5s;
+}
+
+.menu-header li a:hover{
+  color:#f5bebe;
+  transition: 0.5s;
+}
+
 .text-header{
   margin: 0 1rem;
   color: white;

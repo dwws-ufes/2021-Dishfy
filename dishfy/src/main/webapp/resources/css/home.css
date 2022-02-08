@@ -1,0 +1,235 @@
+@import url("https://fonts.googleapis.com/css?family=Work+Sans:300,500");
+
+/* Implementado de acordo com o material disponivel em FreeCodeCamp 
+ * https://www.youtube.com/watch?v=-8LTPIJBGwQ&ab_channel=freeCodeCamp.org */
+
+
+a{
+    text-decoration: none;
+}
+
+.img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.home-image{
+    background: url('#{request.contextPath}/resources/images/main.jpg') center/cover no-repeat; /* https://unsplash.com/photos/4J059aGa5s4 */
+}
+
+.history-image{
+    background: url('#{request.contextPath}/resources/images/history.jpg') center/cover no-repeat; /* https://unsplash.com/photos/W_GSHCi0cR8 */
+}
+
+.recipes-image{
+    background: url('#{request.contextPath}/resources/images/recipes.jpg') center/cover no-repeat; /* https://unsplash.com/photos/KiIBo_KmQqw */
+}
+
+.category-image{
+    background: url('#{request.contextPath}/resources/images/category.jpg') center/cover no-repeat; /* https://unsplash.com/photos/YXjr5gdbGnI */
+}
+
+.hero {
+    height: 250px;
+    position: relative;
+    margin-bottom: 2rem;
+    /* background: url('../images/main.jpg') center/cover no-repeat; */
+    border-radius: 8px;
+    margin: 0;
+    margin-bottom: 2rem;
+}
+
+header {
+    max-height: 600px;
+}
+
+.hero-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.541);
+    border-radius: 8px;
+}
+.hero-text {
+    color: white;
+    text-align: center;
+}
+
+.hero-text h3 {
+    color: #f8fafc;
+}
+  
+@media only screen and (min-width: 768px) {
+    .hero-text h3 {
+      font-size: 4rem;
+      margin-bottom: 0;
+    }
+}
+
+/* Receitas */
+
+.recipes-container {
+    display: grid;
+    gap: 2rem 1rem;
+}
+.recipes-list {
+    display: grid;
+    gap: 2rem 2rem;
+    padding-bottom: 1rem;
+}
+.tags-container {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 3rem;
+}
+.tags-container h4 {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+.tags-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.tags-list a {
+    text-transform: capitalize;
+    display: block;
+    color: #727c8a;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: 0.3s ease-in-out all;
+}
+.tags-list a:hover {
+    color: #d4a9a9;
+}
+.recipes-list a{
+    text-decoration: none;
+}
+
+.recipe {
+    display: block;
+}
+.recipe-img {
+    height: 15rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.recipe-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-recipe{
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    font-weight: 600;
+    color: black;
+    background-color: #f5bebe;
+    border: 1px #f5bebe;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.5s
+}
+
+.button-recipe:hover{
+    color: #f5bebe;
+    background-color: black;
+    transition: 0.5s
+}
+
+.recipe h5 {
+    margin-bottom: 0;
+    text-decoration: none;
+    margin-top: 0.25rem;
+    line-height: 1;
+    color: #475569;
+}
+.recipe p {
+    margin-bottom: 0;
+    line-height: 1;
+    text-decoration: none;
+    color: #cbd5e1;
+    margin-top: 0.5rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.recipe p span{
+    color: brown;
+}
+
+@media screen and (min-width: 576px) {
+    .recipes-list {
+      grid-template-columns: 1fr 1fr;
+    }
+    .recipe-img {
+      height: 10rem;
+    }
+}
+  
+@media screen and (min-width: 992px) {
+    .recipes-container {
+      grid-template-columns: 150px 1fr;
+      gap: 1rem;
+    }
+    .recipes-list {
+      grid-template-columns: 1fr 1fr;
+    }
+  
+    .recipe p {
+      font-size: 0.85rem;
+    }
+    .tags-list {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+}
+  
+@media screen and (min-width: 1200px) {
+    .recipe h5 {
+      font-size: 1.15rem;
+      text-decoration: none;
+    }
+    .recipes-list {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+/* Grid diferente */
+.grid {
+    grid-template-columns: none !important;
+}
+
+/** Minhas receitas */
+.history p{
+    width: 12rem;
+    text-align: center;
+    background-color: #f5bebe;
+    color: black;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 4px;
+    border-radius: 9px;
+    transition: 0.8s;
+}
+
+.history p:hover{
+    background-color: black;
+    color: #f5bebe;
+    transition: 0.8s;
+}
+
+/** Historico de receitas */
+.recipes-container p{
+    font-family: 'Work Sans', Helvetica, Arial, Sans-Serif;
+    font-weight: 400;
+    margin-bottom: 0;
+    color: #464a4e;
+}

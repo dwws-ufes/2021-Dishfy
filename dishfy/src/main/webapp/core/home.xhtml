@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+    template="/WEB-INF/templates/template-home.xhtml">
+
+    <ui:define name="title">Home</ui:define>
+    <ui:define name="css">
+        <h:outputStylesheet library="css" name="home.css" />
+    </ui:define>
+    <ui:define name="contents">
+        <div id="content-container">
+            <div class="content-main">
+                <header class="hero home-image">
+                    <div class="hero-container">
+                        <div class="hero-text">
+                            <h3>Receitas</h3>
+                        </div>
+                    </div>
+                </header>
+                <section class="recipes-container">
+                    <div class="tags-container">
+                        <h4>Bem vindo ao Dishfy</h4>
+                        <div class="tags-list">
+                            <a href="../receita/categoria.xhtml">Doce</a>
+                            <a href="../receita/categoria.xhtml">Carne</a>
+                            <a href="../receita/categoria.xhtml">Bebida</a>
+                            <a href="../receita/categoria.xhtml">Lanche</a>
+                        </div>
+                    </div>
+                    <div class="recipes-list">
+                        <!-- ui repeat -->
+                        <div class="recipe">
+                            <a class="recipe" href="receita.xhtml">
+                                <h:graphicImage
+                                    value="http://conteudo.imguol.com.br/c/entretenimento/da/2018/03/23/carne-grelhada-churrasco-1521829328590_v2_1254x836.jpg"
+                                    class="img recipe-img" alt="" /> <!-- #{receita.getImagem} -->
+                            </a>
+                            <div class="recipe-content">
+                                <h5>Carne Assada</h5>
+                                <h:commandButton value="Salvar" type="submit" class="button-recipe" />
+                                <!-- action="#{receita}" -->
+                            </div>
+                            <p>Calorias: <span></span></p>
+                        </div>
+                        <!-- 
+                        <div class="recipe">
+                            <a href="single-recipe.html" class="recipe">
+                                <img src="https://img.itdg.com.br/tdg/images/recipes/000/000/961/327806/327806_original.jpg"
+                                    class="img recipe-img" alt="" />
+                            </a>
+                            <div class="recipe-content">
+                                <h5>Feijão Tropeiro</h5>
+                                <button>Salvar</button>
+                            </div>
+                            <p>Calorias: <span>250</span></p>
+                        </div> -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

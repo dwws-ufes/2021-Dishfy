@@ -29,16 +29,19 @@
     <nav>
       <ul class="menu-header">
         <li>
-          <h:link value="Home" styleClass="text-header" outcome="/index" />
+          <a styleClass="text-header" href="../core/home.xhtml">Home</a>
         </li>
         <li>
-          <h:link value="Receitas" styleClass="text-header" outcome="/index" />
+          <a styleClass="text-header" href="../receita/minhasReceitas.xhtml">Receitas</a>
         </li>
         <li>
-          <h:link value="Pesquisa" styleClass="text-header" outcome="/index" />
+          <a styleClass="text-header" href="../core/pesquisa.xhtml">Pesquisa</a>
         </li>
         <li>
-          <h:link value="Consumo" styleClass="text-header" outcome="/index" />
+          <a styleClass="text-header" href="../receita/historico.xhtml">Consumo</a>
+        </li>
+        <li>
+          <a styleClass="text-header" href="../user/perfil.xhtml">Perfil</a>
         </li>
       </ul>
       <ul class="login-button">
@@ -50,9 +53,7 @@
   </header>
 
   <!-- Main -->
-  <div class="main" style="display:flex; justify-content:center;">
-    <ui:insert name="contents">Pagina em branco.</ui:insert>
-  </div>
+  <ui:insert name="contents">Pagina em branco.</ui:insert>
   <!-- Main -->
 
   <!-- Footer -->
@@ -97,7 +98,8 @@
     </div>
   </div>
 
-  <script type="text/javascript" src="../resources/js/fileImage.js"></script>
+
+  <ui:insert name="js" />
 </h:body>
 
 </html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+    template="/WEB-INF/templates/template-home.xhtml">
+
+    <ui:define name="title">Receitas</ui:define>
+    <ui:define name="css">
+        <h:outputStylesheet library="css" name="profile.css" />
+    </ui:define>
+    <ui:define name="contents">
+        <div id="content-container">
+            <div class="content-main">
+                <div class="image-container">
+                    <!-- fazer essa imagem só aparecer se nao tiver salvado nenhuma -->
+                    <h:graphicImage value="../resources/images/user.png" alt="Selecione uma imagem" id="img-profile" />
+                </div>
+
+                <h:inputFile value="" id="file-profile" name="file-profile" accept="image/*">
+                    <f:ajax listener="#{bean.upload}" />
+                </h:inputFile>
+                <h3 class="name">Nome do Usuário</h3>
+                <hr class="last" />
+                <p class="profile-text">Receitas armazenadas: <span style="color: #ff0000;font-weight: 400;">14</span>
+                </p>
+            </div>
+        </div>
+    </ui:define>
+    <ui:define name="js">
+        <h:outputScript library="js" name="userImage.js" />
+    </ui:define>
+</ui:composition>
