@@ -75,6 +75,7 @@ public class AutenticacaoServiceImpl implements AutenticacaoService{
 
     public Usuario getLoggedUser() throws MultipleUserObjectException {
         try{
+            System.out.println("SESSION CONTEXT: " + sessionContext.getCallerPrincipal().getName());
             return usuarioDao.getUsuarioByEmail(sessionContext.getCallerPrincipal().getName());
         } catch (IllegalStateException e) {
             e.printStackTrace();
