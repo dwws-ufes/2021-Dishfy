@@ -18,7 +18,7 @@
                 </div>
 
                 <form class="formulario-produto">
-                    <div>
+                    <h:panelGroup id="form-recipe">
                         <div class="campo-produto">
                             <h:outputLabel for="nome-produto"><strong>Nome da Receita</strong></h:outputLabel>
                             <h:inputText name="nome-produto" id="nome-produto" required="true" />
@@ -55,8 +55,8 @@
                             <h:panelGroup id="item-form" class="formulario-item">
                                 <h:inputText id="form-number" required="true" />
                                 <h:inputText id="form-ingredient" required="true" />
-                                <h:commandButton value="+" styleClass="add-button">
-                                    <f:ajax render="item-form" />
+                                <h:commandButton value="+" styleClass="add-button" ajax="true">
+                                    <f:ajax render="item-form" execute="item-form" />
                                 </h:commandButton>
                             </h:panelGroup>
                         </div>
@@ -73,12 +73,11 @@
                                 </strong></h:outputLabel>
                             <h:inputTextarea styleClass="resize: none" row="6" id="descricao" name="descricao" />
                         </div>
-                        <div class="botao-submit">
-                            <input type="submit" value="Enviar" />
-                        </div>
-                    </div>
+                        <h:commandButton value="Enviar" styleClass="botao-submit">
+                            <f:ajax render="form-recipe" />
+                        </h:commandButton>
+                    </h:panelGroup>
                 </form>
-
             </div>
         </div>
     </ui:define>
