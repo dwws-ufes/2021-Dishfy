@@ -12,8 +12,8 @@ import jakarta.security.enterprise.identitystore.DatabaseIdentityStoreDefinition
     errorPage = ""))
 @DatabaseIdentityStoreDefinition(
   dataSourceLookup = "java:app/datasources/dishfy",
-  callerQuery = "select senha from Usuario where email = ?"/*,
-  groupsQuery = "select r.name from Role r inner join Academic_Role ar on r.id = ar.roles_id inner join Academic a on ar.Academic_id = a.id where email = ?"*/
+  callerQuery = "select senha from Usuario where email = ?",
+  groupsQuery = "SELECT 'DefaultRole' as Role FROM Usuario where email = ?"
 )
 @FacesConfig
 @ApplicationScoped

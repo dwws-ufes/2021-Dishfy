@@ -94,10 +94,6 @@ public class AutenticarUsuarioController implements Serializable {
             if(AuthenticationStatus.SEND_CONTINUE.equals(status)){
                 facesContext.responseComplete();
             }
-
-            request.logout();
-            request.login(email, senha);
-
         } catch (UserNotFoundException e) {
             erroLogin = e.getMessage();
             return "/index.xhtml";
