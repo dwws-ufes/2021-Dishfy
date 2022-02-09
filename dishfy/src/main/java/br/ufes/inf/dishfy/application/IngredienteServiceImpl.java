@@ -1,5 +1,7 @@
 package br.ufes.inf.dishfy.application;
 
+import java.util.List;
+
 import br.ufes.inf.dishfy.domain.Ingrediente;
 import br.ufes.inf.dishfy.persistence.IngredienteDao;
 import jakarta.ejb.EJB;
@@ -12,5 +14,9 @@ public class IngredienteServiceImpl implements IngredienteService{
 
     public Ingrediente getIngrediente(String nome) {
         return ingredienteDao.getIngredientesByName(nome);
+    }
+
+    public List<Ingrediente> getIngredientes() {
+        return ingredienteDao.getIngredientes();
     }
 }

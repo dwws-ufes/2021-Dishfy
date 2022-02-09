@@ -17,7 +17,7 @@
                     <p id="subtitulo">Por favor preencha os campos abaixo.</p>
                 </div>
 
-                <form class="formulario-produto">
+                <h:form class="formulario-produto">
                     <h:panelGroup id="form-recipe">
                         <div class="campo-produto">
                             <h:outputLabel for="nome-produto"><strong>Nome da Receita</strong></h:outputLabel>
@@ -54,9 +54,10 @@
                             <h:outputLabel><strong>Escolha os ingredientes da receita:</strong></h:outputLabel>
                             <h:panelGroup id="item-form" class="formulario-item">
                                 <h:inputText id="form-number" required="true" />
-                                <h:inputText id="form-ingredient" required="true" />
+                                <p:autoComplete id="form-ingredient" value="#{autoCompleteView.consulta}"
+                                completeMethod="#{autoCompleteView.completeText}" scrollHeight="250"/>
                                 <h:commandButton value="+" styleClass="add-button" ajax="true">
-                                    <f:ajax render="item-form" execute="item-form" />
+                                    <f:ajax render="item-form" execute="form-number form-ingredient" />
                                 </h:commandButton>
                             </h:panelGroup>
                         </div>
@@ -77,7 +78,7 @@
                             <f:ajax render="form-recipe" />
                         </h:commandButton>
                     </h:panelGroup>
-                </form>
+                </h:form>
             </div>
         </div>
     </ui:define>
