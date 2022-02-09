@@ -9,6 +9,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import br.ufes.inf.dishfy.domain.Usuario;
+import br.ufes.inf.dishfy.exceptions.MultipleUserObjectException;
 
 @Stateless
 public class UsuarioImpl implements UsuarioDao {
@@ -60,18 +61,16 @@ public class UsuarioImpl implements UsuarioDao {
         return em.find(Usuario.class, usuario);
     }
 
-    public Usuario getUsuarioByEmail(String email) {
+    public Usuario getUsuarioByEmail(String email) throws MultipleUserObjectException {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Usuario> criteriaQuery = criteriaBuilder.createQuery(Usuario.class);
         Root<Usuario> root = criteriaQuery.from(Usuario.class);
         criteriaQuery.where(criteriaBuilder.equal(root.get("email"), email));
         List<Usuario> usuarios = em.createQuery(criteriaQuery).getResultList();
-        for (Usuario u : usuarios) {
-            if (u.getEmail().equals(email)) {
-                return u;
-            }
-        }
-        return null;
+
+        if(usuarios.isEmpty()) return null;
+        else if(usuarios.size() != 1) throw new MultipleUserObjectException(email);
+        else return usuarios.get(0);
     }
 
     public List<Usuario> getAllUsuario() {

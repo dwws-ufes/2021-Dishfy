@@ -3,16 +3,26 @@ package br.ufes.inf.dishfy.control;
 import java.io.Serializable;
 
 import br.ufes.inf.dishfy.application.AutenticacaoService;
-import br.ufes.inf.dishfy.application.UserAlreadyExistsException;
-import br.ufes.inf.dishfy.application.UserNotFoundException;
 import br.ufes.inf.dishfy.domain.Usuario;
+import br.ufes.inf.dishfy.exceptions.MultipleUserObjectException;
+import br.ufes.inf.dishfy.exceptions.UserAlreadyExistsException;
+import br.ufes.inf.dishfy.exceptions.UserNotFoundException;
+import br.ufes.inf.dishfy.exceptions.WrongPasswordException;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.enterprise.inject.Model;
 import jakarta.faces.context.FacesContext;
+import jakarta.inject.Inject;
+import jakarta.security.enterprise.AuthenticationStatus;
+import jakarta.security.enterprise.SecurityContext;
+import jakarta.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
+import jakarta.security.enterprise.credential.Credential;
+import jakarta.security.enterprise.credential.Password;
+import jakarta.security.enterprise.credential.UsernamePasswordCredential;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Model
 @SessionScoped
@@ -26,6 +36,13 @@ public class AutenticarUsuarioController implements Serializable {
     private String erroLogin = "E-mail ou senha incorretos. Tente novamente.";
     private String erroCadastro = "E-mail já cadastrado: ";
     private Usuario usuarioAtual;
+
+    @Inject
+    private FacesContext facesContext;
+
+
+    @Inject
+    private SecurityContext securityContext;
 
     Usuario usuario;
 
@@ -45,6 +62,10 @@ public class AutenticarUsuarioController implements Serializable {
             erroCadastro = e.getMessage();
             // TODO: trocar a pagina
             return "/index.xhtml";
+        } catch (MultipleUserObjectException e) {
+            erroCadastro = e.getMessage();
+            // TODO: trocar a pagina
+            return "/index.xhtml";
         } finally {
             // usuario = new Usuario();
             nome = null;
@@ -54,14 +75,33 @@ public class AutenticarUsuarioController implements Serializable {
         return "/login/login.xhtml";
     }    
 
-    public String solicitaLogin(){
+    public String solicitaLogin() throws Exception{
         try {
             autenticacaoService.login(email, senha);
-            HttpServletRequest request = (HttpServletRequest) FacesContext
-                .getCurrentInstance().getExternalContext().getRequest();
+
+            HttpServletRequest request = (HttpServletRequest) facesContext
+                .getExternalContext().getRequest();
+            HttpServletResponse response = (HttpServletResponse) facesContext
+                .getExternalContext().getResponse();
+            
+            Credential credential = new UsernamePasswordCredential(email, new Password(senha));
+            AuthenticationStatus status = securityContext.authenticate(request, response,
+                AuthenticationParameters.withParams().credential(credential));
+
+            if(status == null || AuthenticationStatus.SEND_FAILURE.equals(status)) {
+                throw new Exception("Container Rejected");
+            }
+            if(AuthenticationStatus.SEND_CONTINUE.equals(status)){
+                facesContext.responseComplete();
+            }
+
             request.logout();
             request.login(email, senha);
+
         } catch (UserNotFoundException e) {
+            erroLogin = e.getMessage();
+            return "/index.xhtml";
+        } catch (WrongPasswordException e) {
             erroLogin = e.getMessage();
             return "/index.xhtml";
         } catch (ServletException e) {

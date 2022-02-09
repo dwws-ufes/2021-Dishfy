@@ -23,7 +23,7 @@ public class Usuario {
     @Column(length = 20, nullable = false)
     private String email;
 
-    @Column(length = 16, nullable = false)
+    @Column(length = 255, nullable = false)
     private String senha;
 
     private ImageIcon fotoPerfil;
