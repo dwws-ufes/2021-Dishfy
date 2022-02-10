@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import br.ufes.inf.dishfy.application.AutenticacaoService;
 import br.ufes.inf.dishfy.domain.Usuario;
-import br.ufes.inf.dishfy.exceptions.MultipleUserObjectException;
+import br.ufes.inf.dishfy.exceptions.MultipleObjectException;
 import br.ufes.inf.dishfy.exceptions.UserAlreadyExistsException;
 import br.ufes.inf.dishfy.exceptions.UserNotFoundException;
 import br.ufes.inf.dishfy.exceptions.WrongPasswordException;
@@ -62,7 +62,7 @@ public class AutenticarUsuarioController implements Serializable {
             erroCadastro = e.getMessage();
             // TODO: trocar a pagina
             return "/index.xhtml";
-        } catch (MultipleUserObjectException e) {
+        } catch (MultipleObjectException e) {
             erroCadastro = e.getMessage();
             // TODO: trocar a pagina
             return "/index.xhtml";

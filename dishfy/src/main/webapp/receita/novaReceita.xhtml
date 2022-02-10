@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:p="http://primefaces.org/ui"
     template="/WEB-INF/templates/template-home.xhtml">
 
     <ui:define name="title">Cadastro Produto</ui:define>
@@ -18,10 +21,9 @@
                 </div>
 
                 <h:form class="formulario-produto">
-                    <h:panelGroup id="form-recipe">
                         <div class="campo-produto">
                             <h:outputLabel for="nome-produto"><strong>Nome da Receita</strong></h:outputLabel>
-                            <h:inputText name="nome-produto" id="nome-produto" required="true" />
+                            <h:inputText name="nome-produto" id="nome-produto" required="true" value="#{receitaController.nome}"/>
                         </div>
                         <div class="conteiner-produto">
                             <div class="image-container">
@@ -36,34 +38,47 @@
 
                             <div class="campo-produto categoria">
                                 <h:outputLabel for="categoria-produto"><strong>Categoria</strong></h:outputLabel>
-                                <h:selectOneMenu id="categoria-produto" required="true">
-                                    <f:selectItem itemValue="Selecione" itemLabel="Selecione" selected="true" />
-                                    <f:selectItem itemValue="Doce" itemLabel="Doce" />
-                                    <f:selectItem itemValue="Carne" itemLabel="Carne" />
-                                    <f:selectItem itemValue="Ave" itemLabel="Ave" />
-                                    <f:selectItem itemValue="Bebida" itemLabel="Bebida" />
-                                    <f:selectItem itemValue="Vegano" itemLabel="Vegano" />
-                                    <f:selectItem itemValue="Lanche" itemLabel="Lanche" />
-                                </h:selectOneMenu>
-                                <!--<h:selectOneMenu id="categoria-produto" value="" required="true">
-                                    <f:selectItems value="" itemLabel="teste" />
-                                </h:selectOneMenu>-->
+                                <p:selectOneMenu id="categoria-produto" value="#{receitaController.categoria}" dynamic="true">
+                                    <f:selectItems value="#{selectOneMenuView.options}"/>
+                                </p:selectOneMenu>
                             </div>
                         </div>
                         <div class="campo-produto">
                             <h:outputLabel><strong>Escolha os ingredientes da receita:</strong></h:outputLabel>
                             <h:panelGroup id="item-form" class="formulario-item">
-                                <h:inputText id="form-number" required="true" />
-                                <p:autoComplete id="form-ingredient" value="#{autoCompleteView.consulta}"
+                                <h:inputText id="form-number" required="true" value="#{receitaController.qtd}"/>
+                                <h:selectOneMenu id="categoria-produto" required="true" value="#{receitaController.grand}">
+                                    <f:selectItem itemValue="Gramas" itemLabel="Gramas" selected="true" />
+                                    <f:selectItem itemValue="Kg" itemLabel="Kg" />
+                                    <f:selectItem itemValue="Colher" itemLabel="Colher" />
+                                    <f:selectItem itemValue="Xicara" itemLabel="Xicara" />
+                                </h:selectOneMenu>
+                                <p:autoComplete id="form-ingredient" value="#{receitaController.ingrediente}"
                                 completeMethod="#{autoCompleteView.completeText}" scrollHeight="250"/>
-                                <h:commandButton value="+" styleClass="add-button" ajax="true">
+                                <h:commandButton value="+" styleClass="add-button" ajax="true" value="#{receitaController.salvarItem}">
                                     <f:ajax render="item-form" execute="form-number form-ingredient" />
                                 </h:commandButton>
+                                <p>
+                                    <h:dataTable value="#{receitaController.items}" var="item">
+                                        <h:column>
+                                            <f:facet name="header">Quantidade</f:facet>
+                                            #{item.quantidade}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Grandeza</f:facet>
+                                            #{item.grandeza}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Ingrediente</f:facet>
+                                            #{item.ingrediente.getNome()}
+                                        </h:column>
+                                    </h:dataTable>
+                                </p>
                             </h:panelGroup>
                         </div>
                         <div class="campo-produto">
                             <h:outputLabel><strong>Defina a privacidade da sua receita:</strong></h:outputLabel>
-                            <h:selectOneRadio value="#{userData.data}">
+                            <h:selectOneRadio value="#{receitaController.publico}">
                                 <f:selectItem selected="true" itemValue="publico" itemLabel="publico"
                                     styleClass="priv" />
                                 <f:selectItem itemValue="privado" itemLabel="privado" styleClass="priv" />
@@ -72,12 +87,9 @@
                         <div class="campo-produto">
                             <h:outputLabel for="descricao"><strong>Descreva os passos de preparo para a receita:
                                 </strong></h:outputLabel>
-                            <h:inputTextarea styleClass="resize: none" row="6" id="descricao" name="descricao" />
+                            <h:inputTextarea styleClass="resize: none" row="6" id="descricao" name="descricao" value="#{receitaController.desc}" />
                         </div>
-                        <h:commandButton value="Enviar" styleClass="botao-submit">
-                            <f:ajax render="form-recipe" />
-                        </h:commandButton>
-                    </h:panelGroup>
+                        <h:commandButton value="Enviar" styleClass="botao-submit" action="#{receitaController.criaReceita}"/>
                 </h:form>
             </div>
         </div>

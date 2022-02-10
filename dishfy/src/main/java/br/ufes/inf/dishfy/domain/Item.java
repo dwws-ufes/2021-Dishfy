@@ -13,7 +13,7 @@ public class Item {
     private int id;
 
     @Column(nullable = false)
-    private float quantidade;
+    private double quantidade;
 
     @Column(nullable = false)
     private String grandeza;
@@ -56,11 +56,19 @@ public class Item {
         this.receita = receita;
     }    
     
-    public float getQuantidade() {
+    public double getQuantidade() {
         return this.quantidade;
     }
 
-    public void setQuantidade(float quantidade) {
+    public void setQuantidade(double quantidade) {
         this.quantidade = quantidade;
-    }    
+    }
+
+    public String getGrandeza() {
+        return this.grandeza;
+    }
+
+    public void setGrandeza(String grandeza) {
+        this.grandeza = grandeza;
+    }
 }

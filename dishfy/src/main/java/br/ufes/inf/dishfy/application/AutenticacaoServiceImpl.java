@@ -15,7 +15,7 @@ import org.hibernate.WrongClassException;
 
 import br.ufes.inf.dishfy.Utils;
 import br.ufes.inf.dishfy.domain.Usuario;
-import br.ufes.inf.dishfy.exceptions.MultipleUserObjectException;
+import br.ufes.inf.dishfy.exceptions.MultipleObjectException;
 import br.ufes.inf.dishfy.exceptions.UserAlreadyExistsException;
 import br.ufes.inf.dishfy.exceptions.UserNotFoundException;
 import br.ufes.inf.dishfy.exceptions.WrongPasswordException;
@@ -36,7 +36,7 @@ public class AutenticacaoServiceImpl implements AutenticacaoService{
 	@Resource
 	private SessionContext sessionContext;
 
-    public void signUp(Usuario usuario) throws UserAlreadyExistsException, MultipleUserObjectException {
+    public void signUp(Usuario usuario) throws UserAlreadyExistsException, MultipleObjectException {
         Usuario consultado = usuarioDao.getUsuarioByEmail(usuario.getEmail());
         if(consultado != null){
             throw new UserAlreadyExistsException(usuario.getEmail());
@@ -73,7 +73,7 @@ public class AutenticacaoServiceImpl implements AutenticacaoService{
         }
     }
 
-    public Usuario getLoggedUser() throws MultipleUserObjectException {
+    public Usuario getLoggedUser() throws MultipleObjectException {
         try{
             System.out.println("SESSION CONTEXT: " + sessionContext.getCallerPrincipal().getName());
             return usuarioDao.getUsuarioByEmail(sessionContext.getCallerPrincipal().getName());

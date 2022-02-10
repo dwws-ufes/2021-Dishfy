@@ -34,7 +34,7 @@ public class Receita {
     private boolean publico;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Categoria> categoria;
+    private Categoria categoria;
 
     /** A principio, nao ha necessidade da receita saber qual foi seu consumo */
     // @OneToMany
@@ -57,11 +57,11 @@ public class Receita {
     //     // this.consumo = consumo;
     // }
 
-    public List<Categoria> getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(List<Categoria> categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
