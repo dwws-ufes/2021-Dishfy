@@ -6,7 +6,7 @@ import jakarta.ejb.Local;
 @Local
 public interface ImageDishfyDao {
     
-    public void updateImage(ImageDishfy image);
-    public void saveImage(ImageDishfy image);
+    public ImageDishfy updateImage(ImageDishfy image);
+    public ImageDishfy saveImage(ImageDishfy image);
 
 }

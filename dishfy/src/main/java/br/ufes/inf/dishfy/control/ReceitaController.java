@@ -11,9 +11,12 @@ import java.util.stream.Collectors;
 
 import br.ufes.inf.dishfy.application.AutenticacaoService;
 import br.ufes.inf.dishfy.application.CategoriaService;
+import br.ufes.inf.dishfy.application.ImagemPersitService;
+import br.ufes.inf.dishfy.application.ImagemService;
 import br.ufes.inf.dishfy.application.IngredienteService;
 import br.ufes.inf.dishfy.application.ReceitaService;
 import br.ufes.inf.dishfy.domain.Categoria;
+import br.ufes.inf.dishfy.domain.ImageDishfy;
 import br.ufes.inf.dishfy.domain.Ingrediente;
 import br.ufes.inf.dishfy.domain.Item;
 import br.ufes.inf.dishfy.domain.Receita;
@@ -40,6 +43,11 @@ public class ReceitaController implements Serializable {
 
   @EJB
   private AutenticacaoService autenticacaoService;
+  
+  @EJB
+  private ImagemPersitService imagemPersitService;
+
+  private ImagemService imagemService;
 
   private String nome;
   private String desc;
@@ -49,12 +57,11 @@ public class ReceitaController implements Serializable {
   
   private Part uploadedFile;
   private String imageName;
-  private byte[] imageContents;
+  
 
   private String qtd;
   private String grand;
   private String ingrediente;
-
   private Receita receita;
   private List<Receita> matchReceitas;
   private List<Item> items;
@@ -83,7 +90,11 @@ public class ReceitaController implements Serializable {
     receita.setDescricao(desc);
     receita.setCategoria(categoriaConsultada);    
     receita.setPublico(publico.equals("privado") ? false : true);
-    //receita.setImagem(imageContents);
+    ImageDishfy image = new ImageDishfy();
+    image.setImage(imagemService.getImageContents());
+    image.setNome(imageName);
+    imagemPersitService.saveImage(image);
+    receita.setImagem(image);
     receita.setItens(items);
 
     Receita receitaCriada = receitaService.createReceita(receita);
@@ -93,7 +104,6 @@ public class ReceitaController implements Serializable {
     desc = null;
     categoria = null;
     publico = null;
-    imageContents = null;
     usuarioLogado = null;
 
     return receitaCriada;
@@ -127,14 +137,11 @@ public class ReceitaController implements Serializable {
   }
 
   public void uploadImage() {
-    imageName = Paths.get(uploadedFile.getSubmittedFileName()).getFileName().toString();
 
-    try (InputStream input = uploadedFile.getInputStream()) {
-        imageContents = input.readAllBytes();
-    }
-    catch (IOException e) {
-        e.printStackTrace();
-    }
+    imageName = Paths.get(uploadedFile.getSubmittedFileName()).getFileName().toString();
+    imagemService.setImageName(imageName);
+    imagemService.setUploadedFile(uploadedFile);
+    imagemService.uploadImage();
   }
 
   public List<String> completeText(String query) {

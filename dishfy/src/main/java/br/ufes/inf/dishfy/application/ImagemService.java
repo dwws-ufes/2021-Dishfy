@@ -14,4 +14,5 @@ public interface ImagemService extends Serializable {
     public void setImageName(String imageName);
     public Part getUploadedFile();
     public void setUploadedFile(Part uploadedFile);
+    public byte[] getImageContents();
 }

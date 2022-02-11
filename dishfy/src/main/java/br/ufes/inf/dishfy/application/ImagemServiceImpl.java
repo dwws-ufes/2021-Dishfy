@@ -4,11 +4,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.Paths;
 import java.io.File;
 import br.ufes.inf.dishfy.domain.ImageDishfy;
+import jakarta.ejb.Stateless;
 import jakarta.servlet.http.Part;
-
+@Stateless
 public class ImagemServiceImpl implements ImagemService {
 
     private byte[] imageContents;
@@ -17,7 +17,7 @@ public class ImagemServiceImpl implements ImagemService {
 
 
     public void uploadImage() {
-        imageName = Paths.get(uploadedFile.getSubmittedFileName()).getFileName().toString();    
+            
         try (InputStream input = uploadedFile.getInputStream()) {
             imageContents = input.readAllBytes();
             
@@ -66,6 +66,14 @@ public class ImagemServiceImpl implements ImagemService {
 
         public void setUploadedFile(Part uploadedFile) {
             this.uploadedFile = uploadedFile;
+        }
+
+        public byte[] getImageContents() {
+            return imageContents;
+        }
+
+        public void setImageContents(byte[] imageContents) {
+            this.imageContents = imageContents;
         }
 
 
