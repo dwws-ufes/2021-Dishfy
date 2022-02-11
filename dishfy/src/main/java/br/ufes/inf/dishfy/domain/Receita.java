@@ -10,9 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-
-import javax.swing.ImageIcon;
 
 @Entity
 public class Receita {
@@ -30,10 +29,10 @@ public class Receita {
     @Column(nullable = false)
     private float calorias;
 
-    private ImageIcon imagem;
+    private byte[] imagem;
     private boolean publico;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Categoria categoria;
 
     /** A principio, nao ha necessidade da receita saber qual foi seu consumo */
@@ -97,11 +96,11 @@ public class Receita {
         this.calorias = calorias;
     }
 
-    public ImageIcon getImagem() {
+    public byte[] getImagem() {
         return imagem;
     }
 
-    public void setImagem(ImageIcon imagem) {
+    public void setImagem(byte[] imagem) {
         this.imagem = imagem;
     }
 

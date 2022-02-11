@@ -32,19 +32,19 @@
                     </div>
                     <div class="recipes-list">
                         <!-- ui repeat -->
-                        <ui:repeat>
+                        <ui:repeat var="receita" value="#{receitaController.}">
                             <div class="recipe">
                                 <a class="recipe" href="receita.xhtml">
                                     <h:graphicImage
-                                        value="http://conteudo.imguol.com.br/c/entretenimento/da/2018/03/23/carne-grelhada-churrasco-1521829328590_v2_1254x836.jpg"
+                                        value="receita.getImagem()"
                                         class="img recipe-img" alt="" /> <!-- #{receita.getImagem} -->
                                 </a>
                                 <div class="recipe-content">
-                                    <h5>Carne Assada</h5>
+                                    <h5>#{receita.getNome()}</h5>
                                     <h:commandButton value="Salvar" type="submit" class="button-recipe" />
                                     <!-- action="#{receita}" -->
                                 </div>
-                                <p>Calorias: <span></span></p>
+                                <p>Calorias: <span>#{receita.getCalorias()}</span></p>
                             </div>
                         </ui:repeat>
                     </div>

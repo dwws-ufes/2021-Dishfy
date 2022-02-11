@@ -6,8 +6,10 @@ import br.ufes.inf.dishfy.domain.Categoria;
 import br.ufes.inf.dishfy.exceptions.MultipleObjectException;
 import br.ufes.inf.dishfy.persistence.CategoriaDao;
 import jakarta.ejb.EJB;
+import jakarta.ejb.Stateless;
 
-public class CategoriaServiceImpl {
+@Stateless
+public class CategoriaServiceImpl implements CategoriaService {
 
     @EJB
     private CategoriaDao categoriaDao;

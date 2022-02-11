@@ -6,8 +6,11 @@ import java.util.stream.Collectors;
 
 import br.ufes.inf.dishfy.application.IngredienteService;
 import br.ufes.inf.dishfy.domain.Ingrediente;
+import jakarta.annotation.ManagedBean;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 @Named
@@ -15,16 +18,39 @@ import jakarta.inject.Named;
 public class AutoCompleteView {
     private String consulta;
 
-    @EJB
+    @Inject
     private IngredienteService ingredienteService;
 
     public List<String> completeText(String query) {
+        System.out.println("------ AUTO COMPLETE " + query);
         String queryLowerCase = query.toLowerCase();
         List<String> ingredientList = new ArrayList<>();
         List<Ingrediente> ingredientes = ingredienteService.getIngredientes();
+
         for (Ingrediente ingrediente : ingredientes) {
             ingredientList.add(ingrediente.getNome());
         }
+
         return ingredientList.stream().filter(c -> c.toLowerCase().startsWith(queryLowerCase)).collect(Collectors.toList());
     }
+
+    
+    public List<String> getFoo() {
+        System.out.println("------ AUTO COMPLETE ");
+        List<String> results = new ArrayList<>();
+        for(int i = 0; i < 10; i++) {
+            results.add(""+i);
+        }
+         
+        return results;
+    }
+
+    public String getConsulta() {
+        return this.consulta;
+    }
+
+    public void setConsulta(String consulta) {
+        this.consulta = consulta;
+    }
+
 }

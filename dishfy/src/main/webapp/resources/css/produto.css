@@ -9,8 +9,9 @@
 }
 
 .formulario-produto{
-    display: flex;
+    display: flex; 
     justify-content: center;
+    flex-direction: column;
 }
 
 .campo-produto{
@@ -123,10 +124,11 @@ input[type="submit"]:hover{
 .formulario-item{
     display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
 #form-number{
-    width: 10% !important;
+    width: 100px !important;
 }
 
 #form-ingredient{
