@@ -33,13 +33,12 @@ public class AutenticarUsuarioController implements Serializable {
     private String nome;
     private String email;
     private String senha;
-    private String erroLogin = "E-mail ou senha incorretos. Tente novamente.";
-    private String erroCadastro = "E-mail já cadastrado: ";
+    private String erroLogin;
+    private String erroCadastro;
     private Usuario usuarioAtual;
 
     @Inject
     private FacesContext facesContext;
-
 
     @Inject
     private SecurityContext securityContext;
@@ -48,7 +47,7 @@ public class AutenticarUsuarioController implements Serializable {
 
     @PostConstruct
 	public void init() {
-		usuario = new Usuario();		
+		usuario = new Usuario();
 	}
     
     public String cadastrar(){

@@ -7,8 +7,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
-
+import jakarta.persistence.criteria.Root;
 import br.ufes.inf.dishfy.domain.Receita;
+import br.ufes.inf.dishfy.exceptions.MultipleObjectException;
 
 @Stateless
 public class ReceitaImpl implements ReceitaDao {
@@ -68,9 +69,15 @@ public class ReceitaImpl implements ReceitaDao {
 
     }
 
-    
+    public Receita getReceitaById(int receitaId) {
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Receita> criteriaQuery = criteriaBuilder.createQuery(Receita.class);
+        Root<Receita> root = criteriaQuery.from(Receita.class);
+        criteriaQuery.where(criteriaBuilder.equal(root.get("id"), receitaId));
+        List<Receita> receitas = em.createQuery(criteriaQuery).getResultList();
 
-    
-
+        if(receitas.isEmpty()) return null;
+        else return receitas.get(0);
+    }
     
 }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.ufes.inf.dishfy.application.AutenticacaoService;
 import br.ufes.inf.dishfy.application.CategoriaService;
 import br.ufes.inf.dishfy.application.IngredienteService;
 import br.ufes.inf.dishfy.application.ReceitaService;
@@ -16,9 +17,12 @@ import br.ufes.inf.dishfy.domain.Categoria;
 import br.ufes.inf.dishfy.domain.Ingrediente;
 import br.ufes.inf.dishfy.domain.Item;
 import br.ufes.inf.dishfy.domain.Receita;
-
+import br.ufes.inf.dishfy.domain.Usuario;
+import br.ufes.inf.dishfy.exceptions.MultipleObjectException;
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
+import jakarta.ejb.SessionContext;
 import jakarta.enterprise.inject.Model;
 import jakarta.servlet.http.Part;
 
@@ -33,6 +37,9 @@ public class ReceitaController implements Serializable {
 
   @EJB
   private IngredienteService ingredienteService;
+
+  @EJB
+  private AutenticacaoService autenticacaoService;
 
   private String nome;
   private String desc;
@@ -63,6 +70,14 @@ public class ReceitaController implements Serializable {
   public Receita criaReceita(){
 
     Categoria categoriaConsultada = categoriaService.getCategoriaByName(categoria);
+    Usuario usuarioLogado;
+
+    try {
+      usuarioLogado = autenticacaoService.getLoggedUser();
+      receita.setAutor(usuarioLogado);
+    } catch (MultipleObjectException e) {
+      e.printStackTrace();
+    }
 
     receita.setNome(nome);
     receita.setDescricao(desc);
@@ -79,6 +94,7 @@ public class ReceitaController implements Serializable {
     categoria = null;
     publico = null;
     imageContents = null;
+    usuarioLogado = null;
 
     return receitaCriada;
   }

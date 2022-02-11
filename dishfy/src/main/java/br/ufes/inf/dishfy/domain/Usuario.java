@@ -34,7 +34,7 @@ public class Usuario {
     @OneToMany //(mappedBy = "user")
     private List<Consumo> consumo;
 
-    @ManyToMany
+    @OneToMany
     private List<Receita> receitas;
 
     public List<Receita> getReceitas() {

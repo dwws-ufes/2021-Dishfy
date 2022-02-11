@@ -42,6 +42,9 @@ public class Receita {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "receita")
     private List<Item> itens;
 
+    @ManyToOne
+    private Usuario autor;
+
     // public Receita(int id, String nome, String descricao, 
     //     float calorias, ImageIcon imagem, boolean publico,
     //     List<Categoria> categoria, List<Item> itens){//, List<Consumo> consumo) {
@@ -118,6 +121,14 @@ public class Receita {
 
     public void setItens(List<Item> itens) {
         this.itens = itens;
+    }
+
+    public Usuario getAutor() {
+        return this.autor;
+    }
+
+    public void setAutor(Usuario autor) {
+        this.autor = autor;
     }
 
 

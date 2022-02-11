@@ -10,8 +10,7 @@ public interface ReceitaService extends Serializable {
     public Receita createReceita(Receita receita);
     public Receita updateReceita(Receita receita);
     public Receita getReceita(Receita receita);
+    public Receita getReceitaById(int receitaId);
     public void deleteReceita(Receita receita);
-    public List<Receita> getAllReceita();
-
-    
+    public List<Receita> getAllReceita();    
 }

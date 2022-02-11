@@ -13,10 +13,9 @@ public class ReceitaServiceImpl implements ReceitaService {
     private ReceitaDao receitaDao;
 
     public Receita createReceita(Receita receita){
-
-       return receitaDao.saveReceita(receita);    
-        
+       return receitaDao.saveReceita(receita);        
     }
+
     public Receita updateReceita(Receita receita){
        return  receitaDao.saveReceita(receita);
     }
@@ -26,13 +25,14 @@ public class ReceitaServiceImpl implements ReceitaService {
     }
 
     public void deleteReceita(Receita receita){
-
         receitaDao.deleteReceita(receita);
-
     }
 
     public List<Receita> getAllReceita(){
-
         return receitaDao.getAllReceita();
+    }
+
+    public Receita getReceitaById(int receitaId){
+        return receitaDao.getReceitaById(receitaId);            
     }
 }

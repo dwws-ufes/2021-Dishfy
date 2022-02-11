@@ -21,7 +21,7 @@
 
                 <h:form class="formulario-produto">
                     <p:growl id="msgs" showDetail="true" />
-                    <p:autoComplete id="acSimple" value="#{autoCompleteView.consulta}"
+                    <p:autoComplete value="#{autoCompleteView.consulta}"
                         completeMethod="#{autoCompleteView.completeText}">
                         <p:ajax event="query"/>
                     </p:autoComplete>
