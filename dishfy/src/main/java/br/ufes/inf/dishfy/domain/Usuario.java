@@ -7,9 +7,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
-import javax.swing.ImageIcon;
+import jakarta.persistence.OneToOne;
+
+
 
 @Entity
 public class Usuario {
@@ -26,7 +27,8 @@ public class Usuario {
     @Column(length = 255, nullable = false)
     private String senha;
 
-    private ImageIcon fotoPerfil;
+    @OneToOne
+    private ImageDishfy imagem;
 
     @Column(nullable = false)
     private int tamanhoMax;
@@ -94,13 +96,7 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public ImageIcon getFotoPerfil() {
-        return fotoPerfil;
-    }
-
-    public void setFotoPerfil(ImageIcon fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
-    }
+    
 
     public int getTamanhoMax() {
         return tamanhoMax;
@@ -108,6 +104,14 @@ public class Usuario {
 
     public void setTamanhoMax(int tamanhoMax) {
         this.tamanhoMax = tamanhoMax;
+    }
+
+    public ImageDishfy getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(ImageDishfy imagem) {
+        this.imagem = imagem;
     }
 
 }

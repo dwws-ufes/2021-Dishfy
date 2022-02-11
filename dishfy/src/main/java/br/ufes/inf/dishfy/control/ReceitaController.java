@@ -83,7 +83,7 @@ public class ReceitaController implements Serializable {
     receita.setDescricao(desc);
     receita.setCategoria(categoriaConsultada);    
     receita.setPublico(publico.equals("privado") ? false : true);
-    receita.setImagem(imageContents);
+    //receita.setImagem(imageContents);
     receita.setItens(items);
 
     Receita receitaCriada = receitaService.createReceita(receita);

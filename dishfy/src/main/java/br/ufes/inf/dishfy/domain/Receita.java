@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Receita {
@@ -29,7 +30,9 @@ public class Receita {
     @Column(nullable = false)
     private float calorias;
 
-    private byte[] imagem;
+    @OneToOne
+    private ImageDishfy imagem;
+    
     private boolean publico;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -99,13 +102,7 @@ public class Receita {
         this.calorias = calorias;
     }
 
-    public byte[] getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(byte[] imagem) {
-        this.imagem = imagem;
-    }
+    
 
     public boolean getPublico() {
         return publico;
@@ -129,6 +126,14 @@ public class Receita {
 
     public void setAutor(Usuario autor) {
         this.autor = autor;
+    }
+
+    public ImageDishfy getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(ImageDishfy imagem) {
+        this.imagem = imagem;
     }
 
 
