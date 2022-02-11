@@ -47,6 +47,7 @@ public class ReceitaController implements Serializable {
   @EJB
   private ImagemPersitService imagemPersitService;
 
+  @EJB
   private ImagemService imagemService;
 
   private String nome;
@@ -115,8 +116,6 @@ public class ReceitaController implements Serializable {
   public void salvarItem(){
     Item item = new Item();
 
-    System.out.println(ingrediente);
-
     if(grand != null && qtd != null && ingrediente != null){
       System.out.println("-------- item adicionado " + qtd +" "+ grand +" "+ ingredienteService.getIngrediente(ingrediente).getNome() );
       item.setGrandeza(grand);
@@ -143,7 +142,7 @@ public class ReceitaController implements Serializable {
     receitaService.deleteReceita(receita);
   }
 
-  public void uploadImage() {
+  public void upload() {
 
     imageName = Paths.get(uploadedFile.getSubmittedFileName()).getFileName().toString();
     imagemService.setImageName(imageName);
