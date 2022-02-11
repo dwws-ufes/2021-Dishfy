@@ -5,7 +5,7 @@ O Dishfy visa trazer para o usuário uma facilidade de manipulação em relaçã
 ## 📋 Sumário
 
 
-## 🚀 Pré-requisitos <a name = "pre-requisitos"></a>:
+## 🚀 Pré-requisitos <a name = "pre-requisitos"></a>
 
 Abaixo estão alguns requisitos para que possa rodar a aplicação em sua máquina.
 
