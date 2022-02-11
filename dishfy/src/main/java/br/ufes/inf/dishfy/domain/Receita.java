@@ -33,6 +33,7 @@ public class Receita {
     @OneToOne
     private ImageDishfy imagem;
     
+    @Column(nullable = false)
     private boolean publico;
 
     @ManyToOne(fetch = FetchType.EAGER)
