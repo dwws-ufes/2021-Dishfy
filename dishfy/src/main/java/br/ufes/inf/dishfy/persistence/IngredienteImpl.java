@@ -51,5 +51,16 @@ public class IngredienteImpl implements IngredienteDao {
     public IngredienteImpl() {
     }
 
+    public Ingrediente getIngredientesById(int ingredienteId){
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Ingrediente> criteriaQuery = criteriaBuilder.createQuery(Ingrediente.class);
+        Root<Ingrediente> root = criteriaQuery.from(Ingrediente.class);
+        criteriaQuery.where(criteriaBuilder.equal(root.get("id"), ingredienteId));
+        List<Ingrediente> ingredientes = em.createQuery(criteriaQuery).getResultList();
+
+        if(ingredientes.isEmpty()) return null;
+        else return ingredientes.get(0);
+    }
+
 
 }

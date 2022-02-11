@@ -212,8 +212,8 @@ header {
     width: 12rem;
     background-color: #f5bebe;
     cursor: pointer;
-    padding: 4px;
     border-radius: 9px;
+    display: block;
 }
 
 .history:hover{

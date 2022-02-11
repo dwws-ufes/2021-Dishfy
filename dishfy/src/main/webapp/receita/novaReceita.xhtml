@@ -19,12 +19,8 @@
                     <p id="subtitulo">Por favor preencha os campos abaixo.</p>
                 </div>
 
-                <h:form class="formulario-produto">
+                <h:form class="formulario-produto" enctype="multipart/form-data">
                     <p:growl id="msgs" showDetail="true" />
-                    <p:autoComplete value="#{autoCompleteView.consulta}"
-                        completeMethod="#{autoCompleteView.completeText}">
-                        <p:ajax event="query"/>
-                    </p:autoComplete>
                     <div class="campo-produto">
                         <h:outputLabel for="nome-produto"><strong>Nome da Receita</strong></h:outputLabel>
                         <h:inputText name="nome-produto" id="nome-produto" required="true" value="#{receitaController.nome}"/>
@@ -52,19 +48,15 @@
                         <h:outputLabel><strong>Escolha os ingredientes da receita:</strong></h:outputLabel>
                         <h:panelGroup id="item-form" class="formulario-item">
                             <div style="display:flex;justify-content: center;">
-                                <h:inputText id="form-number" required="true" value="#{receitaController.qtd}"/>
+                                <h:inputText id="form-number" value="#{receitaController.qtd}"/>
                                 <!-- TODO: Decidir as grandezes -->
-                                <h:selectOneMenu id="grandeza-produto" required="true" value="#{receitaController.grand}">
+                                <h:selectOneMenu id="grandeza-produto" value="#{receitaController.grand}">
                                     <f:selectItem itemValue="Gramas" itemLabel="Gramas" selected="true" />
                                     <f:selectItem itemValue="Kg" itemLabel="Kg" />
                                     <f:selectItem itemValue="Colher" itemLabel="Colher" />
                                     <f:selectItem itemValue="Xicara" itemLabel="Xicara" />
                                 </h:selectOneMenu>
-                                <p:outputLabel value="Quantidade/Grandeza/Ingrediente" for="@next"/>
-                                <p:autoComplete id="acSimple" value="#{autoCompleteView.consulta}"
-                                    completeMethod="#{autoCompleteView.completeText}">
-                                    <p:ajax event="query"/>
-                                </p:autoComplete>
+                                <h:inputText id="form-ingredient" value="#{receitaController.ingrediente}"/>
                                 <h:commandButton value="+" styleClass="add-button" ajax="true" action="#{receitaController.salvarItem}">
                                     <f:ajax render="item-form" execute="form-number grandeza-produto form-ingredient" />
                                 </h:commandButton>
@@ -75,7 +67,7 @@
                                         <f:facet name="header">Quantidade</f:facet>
                                         #{item.quantidade}
                                     </h:column>
-                                    <h:column>
+                                    <h:column style="padding: 10px 30px">
                                         <f:facet name="header">Grandeza</f:facet>
                                         #{item.grandeza}
                                     </h:column>
@@ -89,7 +81,7 @@
                     </div>
                     <div class="campo-produto">
                         <h:outputLabel><strong>Defina a privacidade da sua receita:</strong></h:outputLabel>
-                        <h:selectOneRadio value="#{receitaController.publico}">
+                        <h:selectOneRadio value="#{receitaController.publico}" required="true">
                             <f:selectItem selected="true" itemValue="publico" itemLabel="publico"
                                 styleClass="priv" />
                             <f:selectItem itemValue="privado" itemLabel="privado" styleClass="priv" />

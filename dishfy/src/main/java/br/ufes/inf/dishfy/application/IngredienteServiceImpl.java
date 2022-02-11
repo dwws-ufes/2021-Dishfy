@@ -16,6 +16,10 @@ public class IngredienteServiceImpl implements IngredienteService{
         return ingredienteDao.getIngredientesByName(nome);
     }
 
+    public Ingrediente getIngredienteById(int ingredienteId){
+        return ingredienteDao.getIngredientesById(ingredienteId);
+    }
+
     public List<Ingrediente> getIngredientes() {
         return ingredienteDao.getIngredientes();
     }

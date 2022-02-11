@@ -1,6 +1,7 @@
 package br.ufes.inf.dishfy.control;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.ufes.inf.dishfy.application.AutenticacaoService;
@@ -22,28 +23,39 @@ public class UsuarioController implements Serializable {
     @EJB
     private ReceitaService receitaService;
 
-    Usuario usuario;
+    Usuario usuarioLogado;
 
     String receita;
+
+    List<Receita> usuarioReceitas;
 
     @PostConstruct
 	public void init() {
         try {
-            usuario = autenticacaoService.getLoggedUser();            
+            usuarioLogado = autenticacaoService.getLoggedUser();            
         } catch (Exception e) {
             e.printStackTrace();
         }
+        usuarioReceitas = usuarioLogado.getReceitas();
 	}
 
     public void adicionarReceita(int receitaId){
         Receita receita = receitaService.getReceitaById(receitaId);
-        List<Receita> listaReceita = usuario.getReceitas();
+        List<Receita> listaReceita = usuarioLogado.getReceitas();
         listaReceita.add(receita);
-        usuario.setReceitas(listaReceita);
+        usuarioLogado.setReceitas(listaReceita);
     }
 
     public void consumirReceita(int receitaId){
         
+    }
+
+    public List<Receita> getUsuarioReceitas() {
+        return this.usuarioReceitas;
+    }
+
+    public void setUsuarioReceitas(List<Receita> usuarioReceitas) {
+        this.usuarioReceitas = usuarioReceitas;
     }
 
 }

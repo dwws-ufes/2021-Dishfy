@@ -71,4 +71,8 @@ public class Item {
     public void setGrandeza(String grandeza) {
         this.grandeza = grandeza;
     }
+
+    public String getQuantidadeString(){
+        return this.grandeza.toString();
+    }
 }

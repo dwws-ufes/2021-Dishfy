@@ -64,6 +64,7 @@ public class ReceitaController implements Serializable {
   public void init() {
     receita = new Receita();
     matchReceitas = receitaService.getAllReceita();
+    publico = "publico";
     items = new ArrayList<>();
   }
 
@@ -71,6 +72,8 @@ public class ReceitaController implements Serializable {
 
     Categoria categoriaConsultada = categoriaService.getCategoriaByName(categoria);
     Usuario usuarioLogado;
+
+    System.out.println("------- criando receita: " + nome + " " + desc + " " + categoriaConsultada.getNome() + " " + publico + " " + items.toString());
 
     try {
       usuarioLogado = autenticacaoService.getLoggedUser();
@@ -102,13 +105,17 @@ public class ReceitaController implements Serializable {
   public void salvarItem(){
     Item item = new Item();
 
+    System.out.println(ingrediente);
+
     if(grand != null && qtd != null && ingrediente != null){
+      System.out.println("-------- item adicionado " + qtd +" "+ grand +" "+ ingredienteService.getIngrediente(ingrediente).getNome() );
       item.setGrandeza(grand);
       item.setQuantidade(Double.parseDouble(qtd));
       item.setIngrediente(ingredienteService.getIngrediente(ingrediente));
       items.add(item);
     }
 
+    item = null;
     qtd = null;
     grand = null;
     ingrediente = null;
@@ -237,5 +244,4 @@ public class ReceitaController implements Serializable {
   public void setConsulta(double calorias) {
     this.calorias = calorias;
   }
-
 }

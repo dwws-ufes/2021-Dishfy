@@ -43,7 +43,6 @@ public class AutenticacaoServiceImpl implements AutenticacaoService{
         }
 
         usuario.setSenha(passwordHash.generate(usuario.getSenha().toCharArray()));
-        System.out.println(usuario.getSenha());
         usuarioDao.saveUsuario(usuario);        
     }
 

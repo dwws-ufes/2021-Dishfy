@@ -9,29 +9,32 @@
         <h:outputStylesheet library="css" name="home.css" />
     </ui:define>
     <ui:define name="contents">
-        <div id="content-container">
-            <h:form>
-                <p:dataTable var="receita" value="#{dtFilterView.customers2}" widgetVar="customersTable2"
-                                emptyMessage="No customers found with given criteria"
-                                filteredValue="#{dtFilterView.filteredCustomers2}" filterBy="#{dtFilterView.filterBy}">
+        <div id="content-container" style="display:flex;justify-content:center;">
+            <div style="width: 70%">
+                <h:form>
+                    <p:dataTable var="receita" value="#{filterView.receitas}" widgetVar="recipeTable"
+                        emptyMessage="Não foram encontradas receitas com o termo pesquisado."
+                        filteredValue="#{filterView.receitasFiltradas}" >
 
-                    <p:column headerText="Receita" sortBy="#{receita.name}" filterBy="#{receita.name}">
-                        <div class="recipe">
-                            <a href="receita.xhtml" class="recipe">
-                                <h:graphicImage
-                                    value="#{receita.getImagem()}"
-                                    class="img recipe-img" alt="" />
-                            </a>
-                            <div class="recipe-content">
-                                <h5>#{receita.getNome()}</h5>
-                                
+                        <p:column headerText="Receita" sortBy="#{receita.nome}" filterBy="#{receita.nome}">
+                            <div class="recipe">
+                                <a href="receita.xhtml" class="recipe">
+                                    <h:graphicImage
+                                        value="#{receita.getImagem()}"
+                                        class="img recipe-img" alt="" />
+                                </a>
+                                <div class="recipe-content">
+                                    <h5>#{receita.nome}</h5>
+                                    
 
-                                <h:commandButton value="Salvar" type="submit" class="button-recipe" />
-                                <!-- action="#{receita}" -->
+                                    <h:commandButton value="Salvar" type="submit" class="button-recipe" />
+                                    <!-- action="#{receita}" -->
+                                </div>
                             </div>
-                        </div>
-                    </p:column>
-                </p:dataTable>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </div>
         </div>
     </ui:define>
 </ui:composition>

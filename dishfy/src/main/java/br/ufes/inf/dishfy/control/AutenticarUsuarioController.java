@@ -1,6 +1,7 @@
 package br.ufes.inf.dishfy.control;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import br.ufes.inf.dishfy.application.AutenticacaoService;
 import br.ufes.inf.dishfy.domain.Usuario;
@@ -54,6 +55,8 @@ public class AutenticarUsuarioController implements Serializable {
         usuario.setNome(nome);
         usuario.setEmail(email);
         usuario.setSenha(senha);
+        usuario.setReceitas(new ArrayList<>());
+        usuario.setConsumo(new ArrayList<>());
 
         try {
             autenticacaoService.signUp(usuario);

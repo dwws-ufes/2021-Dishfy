@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,7 +35,7 @@ public class Usuario {
     @OneToMany //(mappedBy = "user")
     private List<Consumo> consumo;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Receita> receitas;
 
     public List<Receita> getReceitas() {
@@ -108,6 +109,14 @@ public class Usuario {
 
     public void setTamanhoMax(int tamanhoMax) {
         this.tamanhoMax = tamanhoMax;
+    }
+
+    public List<Consumo> getConsumo() {
+        return this.consumo;
+    }
+
+    public void setConsumo(List<Consumo> consumo) {
+        this.consumo = consumo;
     }
 
 }

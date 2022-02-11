@@ -10,6 +10,8 @@ import jakarta.ejb.Local;
 public interface IngredienteService extends Serializable {
 
     public Ingrediente getIngrediente(String nome);
+
+    public Ingrediente getIngredienteById(int ingredienteId);
     
     public List<Ingrediente> getIngredientes();
 }

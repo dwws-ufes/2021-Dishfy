@@ -16,7 +16,9 @@ import jakarta.inject.Named;
 @Named
 @RequestScoped
 public class AutoCompleteView {
+
     private String consulta;
+    private Ingrediente ingrediente;
 
     @Inject
     private IngredienteService ingredienteService;
@@ -32,6 +34,13 @@ public class AutoCompleteView {
         }
 
         return ingredientList.stream().filter(c -> c.toLowerCase().startsWith(queryLowerCase)).collect(Collectors.toList());
+    }
+
+    public List<Ingrediente> completeIngrediente(String query){
+        System.out.println("------ AUTO COMPLETE ");
+        String queryLowerCase = query.toLowerCase();
+        List<Ingrediente> ingredientes = ingredienteService.getIngredientes();
+        return ingredientes.stream().filter(t -> t.getNome().toLowerCase().contains(queryLowerCase)).collect(Collectors.toList());
     }
 
     
@@ -51,6 +60,14 @@ public class AutoCompleteView {
 
     public void setConsulta(String consulta) {
         this.consulta = consulta;
+    }
+
+    public Ingrediente getIngrediente() {
+        return this.ingrediente;
+    }
+
+    public void setIngrediente(Ingrediente ingrediente) {
+        this.ingrediente = ingrediente;
     }
 
 }
