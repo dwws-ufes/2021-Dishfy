@@ -2,10 +2,14 @@ package br.ufes.inf.dishfy.control;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import br.ufes.inf.dishfy.application.AutenticacaoService;
+import br.ufes.inf.dishfy.application.ConsumoService;
 import br.ufes.inf.dishfy.application.ReceitaService;
+import br.ufes.inf.dishfy.domain.Consumo;
 import br.ufes.inf.dishfy.domain.Receita;
 import br.ufes.inf.dishfy.domain.Usuario;
 import jakarta.annotation.PostConstruct;
@@ -23,7 +27,12 @@ public class UsuarioController implements Serializable {
     @EJB
     private ReceitaService receitaService;
 
+    @EJB
+    private ConsumoService consumoService;
+
     Usuario usuarioLogado;
+
+    Usuario usuario;
 
     String receita;
 
@@ -47,7 +56,16 @@ public class UsuarioController implements Serializable {
     }
 
     public void consumirReceita(int receitaId){
-        
+
+        Receita receitaF = receitaService.getReceitaById(receitaId);
+        Consumo consumo = new Consumo();
+        consumo.setReceita(receitaF);
+        consumo.setData(new Timestamp(new Date().getTime()));
+        consumo.setCalorias();
+        consumoService.saveConsumo(consumo);
+        usuario.setCaloriasTotal(receitaF.getCalorias());
+        usuario.getReceitas().add(receitaF);
+        usuario.getConsumo().add(consumo);
     }
 
     public List<Receita> getUsuarioReceitas() {

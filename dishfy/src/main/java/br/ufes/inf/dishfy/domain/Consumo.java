@@ -21,9 +21,15 @@ public class Consumo {
     @Temporal(TemporalType.TIMESTAMP)
     private Date data;
 
+    @Column(nullable = false)
+    float calorias; 
+
     @ManyToOne
     private Receita receita;
-
+    
+    public void setCalorias(){
+        this.calorias = this.receita.getCalorias();
+    }
     
 
     public int getId() {

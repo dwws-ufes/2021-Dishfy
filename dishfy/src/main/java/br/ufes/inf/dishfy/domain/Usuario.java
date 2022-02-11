@@ -8,9 +8,10 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
-import javax.swing.ImageIcon;
+import jakarta.persistence.OneToOne;
+
+
 
 @Entity
 public class Usuario {
@@ -24,10 +25,14 @@ public class Usuario {
     @Column(length = 20, nullable = false)
     private String email;
 
+    @Column(nullable = false)
+    private float consumoTotal = 0;
+
     @Column(length = 255, nullable = false)
     private String senha;
 
-    private ImageIcon fotoPerfil;
+    @OneToOne
+    private ImageDishfy imagem;
 
     @Column(nullable = false)
     private int tamanhoMax;
@@ -38,12 +43,27 @@ public class Usuario {
     @OneToMany(fetch = FetchType.EAGER)
     private List<Receita> receitas;
 
+   
+
+    public List<Consumo> getConsumo() {
+        return consumo;
+    }
+
+    public void setConsumo(List<Consumo> consumo) {
+        this.consumo = consumo;
+    }
+
     public List<Receita> getReceitas() {
         return this.receitas;
     }
 
     public void setReceitas(List<Receita> receitas) {
         this.receitas = receitas;
+    }
+
+    public void setCaloriasTotal(float calorias){
+
+        this.consumoTotal+=calorias;
     }
 
     //public Usuario(String nome, String email, String senha) {
@@ -95,13 +115,7 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public ImageIcon getFotoPerfil() {
-        return fotoPerfil;
-    }
-
-    public void setFotoPerfil(ImageIcon fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
-    }
+    
 
     public int getTamanhoMax() {
         return tamanhoMax;
@@ -111,12 +125,12 @@ public class Usuario {
         this.tamanhoMax = tamanhoMax;
     }
 
-    public List<Consumo> getConsumo() {
-        return this.consumo;
+    public ImageDishfy getImagem() {
+        return imagem;
     }
 
-    public void setConsumo(List<Consumo> consumo) {
-        this.consumo = consumo;
+    public void setImagem(ImageDishfy imagem) {
+        this.imagem = imagem;
     }
 
 }

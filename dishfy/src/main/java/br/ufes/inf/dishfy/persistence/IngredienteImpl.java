@@ -37,7 +37,7 @@ public class IngredienteImpl implements IngredienteDao {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Ingrediente> criteriaQuery = criteriaBuilder.createQuery(Ingrediente.class);
         Root<Ingrediente> root = criteriaQuery.from(Ingrediente.class);
-        criteriaQuery.where(criteriaBuilder.equal(root.get("nome"), nome));
+        criteriaQuery.where(criteriaBuilder.equal(root.get("nome".toLowerCase()), nome.toLowerCase()));
         List<Ingrediente> ingredientes = em.createQuery(criteriaQuery).getResultList();
         for (Ingrediente u : ingredientes) {
             if (u.getNome().equals(nome)) {
