@@ -24,6 +24,9 @@ public class Usuario {
     @Column(length = 20, nullable = false)
     private String email;
 
+    @Column(nullable = false)
+    private float consumoTotal = 0;
+
     @Column(length = 255, nullable = false)
     private String senha;
 
@@ -39,12 +42,27 @@ public class Usuario {
     @OneToMany
     private List<Receita> receitas;
 
+   
+
+    public List<Consumo> getConsumo() {
+        return consumo;
+    }
+
+    public void setConsumo(List<Consumo> consumo) {
+        this.consumo = consumo;
+    }
+
     public List<Receita> getReceitas() {
         return this.receitas;
     }
 
     public void setReceitas(List<Receita> receitas) {
         this.receitas = receitas;
+    }
+
+    public void setCaloriasTotal(float calorias){
+
+        this.consumoTotal+=calorias;
     }
 
     //public Usuario(String nome, String email, String senha) {
