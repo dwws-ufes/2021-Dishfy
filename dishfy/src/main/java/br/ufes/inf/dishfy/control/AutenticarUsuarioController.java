@@ -112,7 +112,7 @@ public class AutenticarUsuarioController implements Serializable {
         }
         usuarioAtual = autenticacaoService.getLoggedUser();
         System.out.println("Usuario Logado: " + usuarioAtual.getNome());
-        return "/core/home.xhtml";
+        return "/core/home-estatica.xhtml";
     }
 
     // public String solicitaLogout(){}

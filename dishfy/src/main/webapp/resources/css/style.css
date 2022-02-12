@@ -297,3 +297,13 @@ nav{
     width: 30%;
   }
 }
+
+.hero2 {
+  height: 250px;
+  position: relative;
+  margin-bottom: 2rem;
+  background: url('#{request.contextPath}/resources/images/main.jpg') center/cover no-repeat; /* https://unsplash.com/photos/4J059aGa5s4 */
+  border-radius: 8px;
+  margin: 0;
+  margin-bottom: 2rem;
+}
