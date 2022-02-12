@@ -21,18 +21,18 @@ Para a aplicação utilizamos as seguintes ferramentas:
 
 ## 🚀 Instalação <a name = "gettin-started"></a>
 
-1 - Clone o projeto em seu computador.
+1. Clone o projeto em seu computador.
 ```
 git clone https://github.com/dwws-ufes/2021-Dishfy.git
 ```
-2 - Faça a configuração do WildFly juntamente com o MySQL, seguindo o [tutorial do JButler](https://github.com/dwws-ufes/javahostel/tree/main/jakartaee9). E então configure as dependências do Maven, como feito [aqui](https://github.com/dwws-ufes/javahostel/tree/main/jakartaee9).
+2. Faça a configuração do WildFly juntamente com o MySQL, seguindo o [tutorial do JButler](https://github.com/dwws-ufes/javahostel/tree/main/jakartaee9). E então configure as dependências do Maven, como feito [aqui](https://github.com/dwws-ufes/javahostel/tree/main/jakartaee9).
 
-3 - Com o WildFly e o MySQL iniciados, acesso o diretório do `dishfy` e dê o seguinte comando:
+3. Com o WildFly e o MySQL iniciados, acesso o diretório do `dishfy` e dê o seguinte comando:
 ```
 mvn clean install
 ```
 
-4 - Com o deploy realizado, acesse `localhost:8080/dishfy` para visualizar a aplicação.
+4. Com o deploy realizado, acesse `localhost:8080/dishfy` para visualizar a aplicação.
 
 
 ## ✒️ Autores <a name = "authors"></a>
