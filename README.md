@@ -27,12 +27,14 @@ git clone https://github.com/dwws-ufes/2021-Dishfy.git
 ```
 2. Faça a configuração do WildFly juntamente com o MySQL, seguindo o [tutorial do JButler](https://github.com/dwws-ufes/javahostel/tree/main/jakartaee9). E então configure as dependências do Maven, como feito [aqui](https://github.com/dwws-ufes/javahostel/tree/main/jakartaee9).
   
-  2.1. Troque as menções a 'javahostel' e 'oldenburg' por 'dishfy'.
+2.1. Troque as menções a 'javahostel' e 'oldenburg' por 'dishfy'.
   
-  2.2. Nessa versão do sistema, para testar, os dados de ingredientes e categorias precisam ser inseridos manualmente. Os comando estão nesse [arquivo](https://github.com/dwws-ufes/2021-Dishfy/blob/main/dados.sql).
+2.2. Nessa versão do sistema, para testar, os dados de ingredientes e categorias precisam ser inseridos manualmente. Os comando estão nesse [arquivo](https://github.com/dwws-ufes/2021-Dishfy/blob/main/dados.sql).
+  
     ```sh
     mysql -u <usuario> -p
     ```
+    
     ```mysql
     use dishfy;
     <cole aqui os comandos e aperte 'enter' no ultimo>
