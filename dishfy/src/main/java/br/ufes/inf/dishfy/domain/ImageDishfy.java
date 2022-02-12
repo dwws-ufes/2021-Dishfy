@@ -15,11 +15,8 @@ public class ImageDishfy {
     @Column(nullable = false)
     private String nome;
      
-    @Column(nullable = false)
+    @Column(nullable = false, length=65535)
     private byte[] image;
-    
-    
-
 
     public ImageDishfy() {
     }

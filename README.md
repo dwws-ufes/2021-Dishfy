@@ -4,50 +4,39 @@ O Dishfy visa trazer para o usuário uma facilidade de manipulação em relaçã
 
 ## 📋 Sumário
 
+- [Pré-requisitos](#pre-req)
+- [Instalação](#gettin-started)
+- [Autores](#authors)
+- [Licença](#license)
 
-## 🚀 Pré-requisitos
+## ⛏️ Pré-requisitos <a name = "pre-req"></a>
 
-Abaixo estão alguns requisitos para que possa rodar a aplicação em sua máquina.
+Para a aplicação utilizamos as seguintes ferramentas:
 
+- [Jakarta EE 9](https://jakarta.ee/release/9/)
+- [MySQL 8.0.27](https://dev.mysql.com/doc/relnotes/mysql/8.0/en/news-8-0-27.html)
+- [WildFly 25.0.1](https://www.wildfly.org/news/2021/11/04/WildFly2501-Released/)
+- [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+- [PrimeFaces 11](https://www.primefaces.org/primefaces-11-0-0-rc1-released/)
+
+## 🚀 Instalação <a name = "gettin-started"></a>
+
+1 - Clone o projeto em seu computador.
 ```
-WildFly 25.01
-MySQL 8.0.27
-Java 17
-Maven 3.8.3
+git clone https://github.com/dwws-ufes/2021-Dishfy.git
 ```
+2 - Faça a configuração do WildFly juntamente com o MySQL, seguindo o [tutorial do JButler](https://github.com/dwws-ufes/javahostel/tree/main/jakartaee9). E então configure as dependências do Maven, como feito [aqui](https://github.com/dwws-ufes/javahostel/tree/main/jakartaee9).
+
+3 - Com o WildFly e o MySQL iniciados, acesse a página do projeto em `localhost:8080/dishfy`.
 
 
-# Foobar
+## ✒️ Autores <a name = "authors"></a>
 
-Foobar is a Python library for dealing with word pluralization.
+- [Wagner Porto](https://github.com/wagnerpf)
+- [Pedro Vitor](https://github.com/pedrovic7997)
+- [Igor Dummer](https://github.com/IgorDummer)
+- [Gabriel Ferrari](https://github.com/gabkyo)
 
-## Installation
+## 🔐 Licença <a name = "license"></a>
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-
-```bash
-pip install foobar
-```
-
-## Usage
-
-```python
-import foobar
-
-# returns 'words'
-foobar.pluralize('word')
-
-# returns 'geese'
-foobar.pluralize('goose')
-
-# returns 'phenomenon'
-foobar.singularize('phenomena')
-```
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+Distribuído na Licença GNU (General Public License). Veja `License.txt` para mais informações.

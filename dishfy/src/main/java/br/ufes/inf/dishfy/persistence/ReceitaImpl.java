@@ -40,7 +40,7 @@ public class ReceitaImpl implements ReceitaDao {
 
     public Receita updateReceita(Receita receita) {
         em.merge(receita);
-        em.persist(receita);
+        // em.persist(receita);
         return receita;
 
     }

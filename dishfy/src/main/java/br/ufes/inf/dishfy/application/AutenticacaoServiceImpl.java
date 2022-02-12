@@ -36,14 +36,14 @@ public class AutenticacaoServiceImpl implements AutenticacaoService{
 	@Resource
 	private SessionContext sessionContext;
 
-    public void signUp(Usuario usuario) throws UserAlreadyExistsException, MultipleObjectException {
+    public Usuario signUp(Usuario usuario) throws UserAlreadyExistsException, MultipleObjectException {
         Usuario consultado = usuarioDao.getUsuarioByEmail(usuario.getEmail());
         if(consultado != null){
             throw new UserAlreadyExistsException(usuario.getEmail());
         }
 
         usuario.setSenha(passwordHash.generate(usuario.getSenha().toCharArray()));
-        usuarioDao.saveUsuario(usuario);        
+        return usuarioDao.saveUsuario(usuario);        
     }
 
     public void login(String email, String senha) throws UserNotFoundException, WrongPasswordException {

@@ -6,6 +6,7 @@ import br.ufes.inf.dishfy.domain.ImageDishfy;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.websocket.Session;
 
 
 @Stateless
@@ -27,13 +28,4 @@ public class ImageDishfyImpl implements ImageDishfyDao{
         return image;
     }
 
-    
-    
-
-    
-
-   
-
-
-    
 }

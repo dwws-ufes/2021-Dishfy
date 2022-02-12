@@ -9,12 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.ufes.inf.dishfy.Utils;
 import br.ufes.inf.dishfy.application.AutenticacaoService;
 import br.ufes.inf.dishfy.application.CategoriaService;
 import br.ufes.inf.dishfy.application.ImagemPersitService;
 import br.ufes.inf.dishfy.application.ImagemService;
 import br.ufes.inf.dishfy.application.IngredienteService;
 import br.ufes.inf.dishfy.application.ReceitaService;
+import br.ufes.inf.dishfy.application.UsuarioService;
 import br.ufes.inf.dishfy.domain.Categoria;
 import br.ufes.inf.dishfy.domain.ImageDishfy;
 import br.ufes.inf.dishfy.domain.Ingrediente;
@@ -50,6 +52,9 @@ public class ReceitaController implements Serializable {
   @EJB
   private ImagemService imagemService;
 
+  @EJB
+  private UsuarioService usuarioService;
+
   private String nome;
   private String desc;
   private String categoria;
@@ -58,7 +63,7 @@ public class ReceitaController implements Serializable {
   
   private Part uploadedFile;
   private String imageName;
-  
+  private ImageDishfy imagem;
 
   private String qtd;
   private String grand;
@@ -83,25 +88,38 @@ public class ReceitaController implements Serializable {
 
     System.out.println("------- criando receita: " + nome + " " + desc + " " + categoriaConsultada.getNome() + " " + publico + " " + items.toString());
 
-    try {
-      usuarioLogado = autenticacaoService.getLoggedUser();
-      receita.setAutor(usuarioLogado);
-    } catch (MultipleObjectException e) {
-      e.printStackTrace();
-    }
-
     receita.setNome(nome);
     receita.setDescricao(desc);
     receita.setCategoria(categoriaConsultada);    
     receita.setPublico(publico.equals("privado") ? false : true);
-    ImageDishfy image = new ImageDishfy();
-    image.setImage(imagemService.getImageContents());
-    image.setNome(imageName);
-    imagemPersitService.saveImage(image);
-    receita.setImagem(image);
     receita.setItens(items);
+    receita.setImagem(imagem);
+
+    try {
+      usuarioLogado = autenticacaoService.getLoggedUser();
+      receita.setAutor(usuarioLogado);
+
+      receita = receitaService.updateReceita(receita);
+
+      List<Receita> receitas = usuarioLogado.getReceitas();
+      receitas.add(receita);
+      usuarioLogado.setReceitas(receitas);
+      
+      System.out.println("------------- USUARIO LOGADO "+usuarioLogado.getId());
+      usuarioLogado = usuarioService.updateUsuario(usuarioLogado);
+
+      System.out.println("---- Receitas");
+      for (Receita receita : usuarioLogado.getReceitas()) {
+        System.out.println("---- "+receita.getNome());
+      }
+    } catch (MultipleObjectException e) {
+      e.printStackTrace();
+    }
+
+    // Utils.setTimeout((imagem) -> receita.setImagem(imagem), 5000);
 
     Receita receitaCriada = receitaService.createReceita(receita);
+
 
     receita = new Receita();
     nome = null;
@@ -143,11 +161,10 @@ public class ReceitaController implements Serializable {
   }
 
   public void upload() {
-
     imageName = Paths.get(uploadedFile.getSubmittedFileName()).getFileName().toString();
-    imagemService.setImageName(imageName);
-    imagemService.setUploadedFile(uploadedFile);
-    imagemService.uploadImage();
+    // imagemService.setImageName(imageName);
+    // imagemService.setUploadedFile(uploadedFile);
+    imagem = imagemService.uploadImage(imageName, uploadedFile);
   }
 
   public List<String> completeText(String query) {

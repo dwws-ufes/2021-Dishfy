@@ -58,8 +58,10 @@ public class AutenticarUsuarioController implements Serializable {
         usuario.setReceitas(new ArrayList<>());
         usuario.setConsumo(new ArrayList<>());
 
+        
+
         try {
-            autenticacaoService.signUp(usuario);
+            usuario = autenticacaoService.signUp(usuario);
         } catch (UserAlreadyExistsException e) {
             erroCadastro = e.getMessage();
             // TODO: trocar a pagina

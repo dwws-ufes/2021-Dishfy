@@ -13,7 +13,7 @@ import br.ufes.inf.dishfy.exceptions.WrongPasswordException;
 @Local
 public interface AutenticacaoService extends Serializable {
     
-    public void signUp(Usuario usuario) throws UserAlreadyExistsException, MultipleObjectException;
+    public Usuario signUp(Usuario usuario) throws UserAlreadyExistsException, MultipleObjectException;
 
     public void login(String email, String password) throws UserNotFoundException, WrongPasswordException;
 

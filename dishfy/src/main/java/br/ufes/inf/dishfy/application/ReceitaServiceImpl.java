@@ -17,7 +17,7 @@ public class ReceitaServiceImpl implements ReceitaService {
     }
 
     public Receita updateReceita(Receita receita){
-       return  receitaDao.saveReceita(receita);
+       return  receitaDao.updateReceita(receita);
     }
 
     public Receita getReceita(Receita receita){

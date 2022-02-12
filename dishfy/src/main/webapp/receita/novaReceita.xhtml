@@ -19,18 +19,18 @@
                     <p id="subtitulo">Por favor preencha os campos abaixo.</p>
                 </div>
 
-                <h:form class="formulario-produto" enctype="multipart/form-data">
+                <h:form class="formulario-produto" enctype="multipart/form-data" style="align:center">
                     <p:growl id="msgs" showDetail="true" />
                     <div class="campo-produto">
                         <h:outputLabel for="nome-produto"><strong>Nome da Receita</strong></h:outputLabel>
                         <h:inputText name="nome-produto" id="nome-produto" required="true" value="#{receitaController.nome}"/>
                     </div>
                     <div class="conteiner-produto">
+                        <!-- 
                         <div class="image-container">
-                            <!-- TODO: Mudar isso para acesso do controlador -->
                             <h:graphicImage value="../resources/images/camera-fotografica.png"
                                 alt="Selecione uma imagem" id="imgReceita" />
-                        </div>
+                        </div> -->
 
                         <!-- para salvar imagem https://stackoverflow.com/questions/27677397/how-to-upload-file-using-jsf-2-2-hinputfile-where-is-the-saved-file/ -->
                         <h:inputFile value="#{receitaController.uploadedFile}" id="imagem-produto" name="imagem-produto" accept="image/*">
@@ -47,10 +47,10 @@
                     <div class="campo-produto">
                         <h:outputLabel><strong>Escolha os ingredientes da receita:</strong></h:outputLabel>
                         <h:panelGroup id="item-form" class="formulario-item">
-                            <div style="display:flex;justify-content: center;">
+                            <div style="display:flex;">
                                 <h:inputText id="form-number" value="#{receitaController.qtd}"/>
                                 <!-- TODO: Decidir as grandezes -->
-                                <h:selectOneMenu id="grandeza-produto" value="#{receitaController.grand}">
+                                <h:selectOneMenu id="grandeza-produto" value="#{receitaController.grand}" style="margin:5px 20px;">
                                     <f:selectItem itemValue="Gramas" itemLabel="Gramas" selected="true" />
                                     <f:selectItem itemValue="Kg" itemLabel="Kg" />
                                     <f:selectItem itemValue="Colher" itemLabel="Colher" />
@@ -67,7 +67,7 @@
                                         <f:facet name="header">Quantidade</f:facet>
                                         #{item.quantidade}
                                     </h:column>
-                                    <h:column style="padding: 10px 30px">
+                                    <h:column style="margin: 10px 30px">
                                         <f:facet name="header">Grandeza</f:facet>
                                         #{item.grandeza}
                                     </h:column>
@@ -88,7 +88,7 @@
                         </h:selectOneRadio>
                     </div>
                     <div class="campo-produto">
-                        <h:outputLabel for="descricao"><strong>Descreva os passos de preparo para a receita:
+                        <h:outputLabel for="descricao" style="width:100%;"><strong>Descreva os passos de preparo para a receita:
                             </strong></h:outputLabel>
                         <h:inputTextarea styleClass="resize: none" row="6" id="descricao" name="descricao" value="#{receitaController.desc}" />
                     </div>
@@ -97,7 +97,8 @@
             </div>
         </div>
     </ui:define>
-    <ui:define name="js">
+    
+    <!-- <ui:define name="js">
         <h:outputScript library="js" name="fileImage.js" />
-    </ui:define>
+    </ui:define> -->
 </ui:composition>

@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.File;
 import br.ufes.inf.dishfy.domain.ImageDishfy;
+import br.ufes.inf.dishfy.persistence.ImageDishfyDao;
+import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import jakarta.servlet.http.Part;
 
@@ -13,70 +15,50 @@ import jakarta.servlet.http.Part;
 public class ImagemServiceImpl implements ImagemService {
 
     private byte[] imageContents;
-    private String imageName;
-    private Part uploadedFile;
 
+    private ImageDishfy image;
 
-    public void uploadImage() {
+    @EJB
+    private ImageDishfyDao imageDishfyDao;
+
+    public ImageDishfy uploadImage(String name, Part file) {
             
-        try (InputStream input = uploadedFile.getInputStream()) {
+        image = new ImageDishfy();
+        image.setNome(name);
+        try {
+            InputStream input = file.getInputStream();
             imageContents = input.readAllBytes();
-            
         }
         catch (IOException e) {
             e.printStackTrace();
-
         }
-        
-      }
+        image.setImage(imageContents);
 
-        public String writeImage(String caminho,ImageDishfy image){
+        return imageDishfyDao.saveImage(image);
+    }
 
-            try{
+    public String writeImage(String caminho,ImageDishfy image){
 
-                OutputStream os = new FileOutputStream(
-                    new File(caminho+image.getNome()));
-                os.write(image.getImage());
-                return caminho+image.getNome();
+        try{
 
-            }catch(Exception exception)
-            {
-                return null;
-            }
+            OutputStream os = new FileOutputStream(
+                new File(caminho+image.getNome()));
+            os.write(image.getImage());
+            return caminho+image.getNome();
 
-            
+        }catch(Exception exception)
+        {
+            return null;
+        }       
 
-        }
+    }
 
+    public byte[] getImageContents() {
+        return imageContents;
+    }
 
-      
-        public String getImageName() {
-            return imageName;
-        }
-
-
-        public void setImageName(String imageName) {
-            this.imageName = imageName;
-        }
-
-
-        public Part getUploadedFile() {
-            return uploadedFile;
-        }
-
-
-        public void setUploadedFile(Part uploadedFile) {
-            this.uploadedFile = uploadedFile;
-        }
-
-        public byte[] getImageContents() {
-            return imageContents;
-        }
-
-        public void setImageContents(byte[] imageContents) {
-            this.imageContents = imageContents;
-        }
-
-
+    public void setImageContents(byte[] imageContents) {
+        this.imageContents = imageContents;
+    }
     
 }

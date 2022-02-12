@@ -35,9 +35,9 @@ public class UsuarioImpl implements UsuarioDao {
     }
 
     public Usuario updateUsuario(Usuario usuario) {
-        em.merge(usuario);
-        em.persist(usuario);
-        return usuario;
+        //em.merge(usuario);
+        //em.persist(usuario);
+        return em.merge(usuario);
 
     }
 

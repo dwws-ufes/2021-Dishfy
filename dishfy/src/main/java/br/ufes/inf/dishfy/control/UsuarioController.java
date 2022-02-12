@@ -45,7 +45,6 @@ public class UsuarioController implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        usuarioReceitas = usuarioLogado.getReceitas();
 	}
 
     public void adicionarReceita(int receitaId){
@@ -74,6 +73,14 @@ public class UsuarioController implements Serializable {
 
     public void setUsuarioReceitas(List<Receita> usuarioReceitas) {
         this.usuarioReceitas = usuarioReceitas;
+    }
+
+    public Usuario getUsuarioLogado() {
+        return this.usuarioLogado;
+    }
+
+    public void setUsuarioLogado(Usuario usuarioLogado) {
+        this.usuarioLogado = usuarioLogado;
     }
 
 }

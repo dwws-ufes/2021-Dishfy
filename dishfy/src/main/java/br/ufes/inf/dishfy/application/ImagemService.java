@@ -8,11 +8,8 @@ import jakarta.servlet.http.Part;
 @Local
 public interface ImagemService extends Serializable {
     
-    public void uploadImage();
+    public ImageDishfy uploadImage(String name, Part file);
     public String writeImage(String caminho,ImageDishfy image);
-    public String getImageName();
-    public void setImageName(String imageName);
-    public Part getUploadedFile();
-    public void setUploadedFile(Part uploadedFile);
     public byte[] getImageContents();
+    public void setImageContents(byte[] imageContents);
 }
