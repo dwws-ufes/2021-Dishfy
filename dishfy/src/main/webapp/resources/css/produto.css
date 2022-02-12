@@ -1,0 +1,150 @@
+#titulo{
+    font-size: 2rem;
+    text-align: center;
+}
+#subtitulo{
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 0;
+}
+
+.formulario-produto{
+    display: flex; 
+    justify-content: center;
+    flex-direction: column;
+}
+
+.campo-produto{
+    margin: 15px 0;
+}
+.campo-produto label{
+    font-size: 1.3rem;
+}
+
+.campo-produto label strong{
+    margin: 0;
+}
+
+input[type='file']{
+    /*
+    display: none;*/
+}
+
+input[type='text']{
+    width: 100%;
+    color: #8a8a8a;
+    border-radius: 3px;
+    font-size: 18px;
+    padding: 6px 4px 4px 4px;
+}
+
+input[type='number']{
+    border-radius: 3px;
+    width: 10%;
+}
+
+.botao-submit{
+    display: flex;
+    justify-content: center;
+}
+
+#descricao{
+    border-radius: 3px;
+}
+
+input[type="submit"]{
+    margin: 0;
+    width: 30%;
+    justify-content: center;
+    text-align: center;
+    height: 50px;
+    border: 1px solid;
+    background: #f5bebe;
+    border-radius: 25px;
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+}
+
+input[type="submit"]:hover{
+    border-color: #f5bebe;
+    transition: .8s;
+    color: black;
+}
+  
+.priv{
+    cursor: pointer;
+}
+
+#descricao{
+    width: 100%;
+    color: #8a8a8a;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 6px 4px 4px 4px;
+}
+
+.conteiner-produto{
+    display: flex;
+    align-items: center;
+}
+
+.categoria{
+    margin-left: 80px;
+}
+
+.categoria select option{
+    font-size: 16px;
+}
+
+.image-container{
+    background-color: #eee;
+    border: 3px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: .8s;
+    padding: 0;
+    width: 402px;
+    height: 206px;
+}
+
+.image-container:hover{
+    background-color: rgb(172, 174, 180);
+    border-color: black;
+    transition: .8s
+}
+
+.image-container img{
+    width: 400px;
+    height: 200px;
+    padding: 0;
+}
+
+.formulario-item{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#form-number{
+    width: 100px !important;
+}
+
+#form-ingredient{
+    width: 40% !important;
+    margin: 0 10px !important;
+}
+
+.add-button{
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 20px !important;
+}
+
+@media (min-width: 1280px) {
+    .content-main{
+      width: auto !important;
+    }
+}

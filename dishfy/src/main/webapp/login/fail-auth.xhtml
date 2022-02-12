@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+    template="/WEB-INF/templates/template-index.xhtml">
+
+    <ui:define name="title">Login</ui:define>
+    <ui:define name="css">
+        <h:outputStylesheet library="css" name="style-login.css" />
+    </ui:define>
+    <ui:define name="contents">
+        <div id="content-container">
+            <div class="login-content">
+                <h3>Login</h3>
+                <p>Falha ao autenticar. Tente novamente.</p>
+                <h:form method="post">
+                    <div class="campo_txt">
+                        <h:inputText required="true" />
+                        <span>
+                            <label< /span>E-mail</label>
+                    </div>
+                    <div class="campo_txt">
+                        <h:inputSecret required="true" />
+                        <span></span>
+                        <label>Senha</label>
+                    </div>
+                    <div class="pass">Esqueceu a senha?</div>
+                    <h:commandButton type="submit" value="Login" />
+                    <div class="login_link">
+                        Novo no Dishfy?
+                        <h:link value="Cadastre-se" outcome="#" />
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

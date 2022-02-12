@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+    template="/WEB-INF/templates/template-home.xhtml">
+
+    <ui:define name="title">Home</ui:define>
+    <ui:define name="css">
+        <h:outputStylesheet library="css" name="home.css" />
+    </ui:define>
+    <ui:define name="contents">
+        <div id="content-container">
+            <div class="content-main">
+                <header class="hero home-image">
+                    <div class="hero-container">
+                        <div class="hero-text">
+                            <h3>Bem vindo ao Dishfy</h3>
+                        </div>
+                    </div>
+                </header>
+                <section class="recipes-container">
+                    <div class="tags-container">
+                        <h4>Categorias</h4>
+                        <div class="tags-list">
+                            <!-- TODO: Controlador da categoria recebendo o nome dela e inicializando preechendo a
+                                a lista de Receitas com a consulta de getReceitasByCategoria  -->
+                            <a href="../receita/categoria.xhtml">Doce</a>
+                            <a href="../receita/categoria.xhtml">Carne</a>
+                            <a href="../receita/categoria.xhtml">Bebida</a>
+                            <a href="../receita/categoria.xhtml">Lanche</a>
+                        </div>
+                    </div>
+                    <div class="recipes-list">
+                        <!-- ui repeat -->
+                        <ui:repeat var="receita" value="#{usuarioController.usuarioLogado.getReceitas()}">
+                            <div class="recipe">
+                                <a class="recipe" href="receita.xhtml">
+                                    <h:graphicImage
+                                        value="#{receita.getImagem()}"
+                                        class="img recipe-img" alt="" /> <!-- #{receita.getImagem} -->
+                                </a>
+                                <div class="recipe-content">
+                                    <h5>#{receita.getNome()}</h5>
+                                    <h:commandButton value="Salvar" type="submit" class="button-recipe" />
+                                    <!-- action="#{receita}" -->
+                                </div>
+                                <p>Calorias: <span>#{receita.getCalorias()}</span></p>
+                            </div>
+                        </ui:repeat>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+    template="/WEB-INF/templates/template-home.xhtml">
+
+    <ui:define name="title">Pesquisa</ui:define>
+    <ui:define name="css">
+        <h:outputStylesheet library="css" name="home.css" />
+    </ui:define>
+    <ui:define name="contents">
+        <div id="content-container" style="display:flex;justify-content:center;">
+            <div style="width: 70%">
+                <h:form>
+                    <p:dataTable var="receita" value="#{filterView.receitas}" widgetVar="recipeTable"
+                        emptyMessage="Não foram encontradas receitas com o termo pesquisado."
+                        filteredValue="#{filterView.receitasFiltradas}" >
+
+                        <p:column headerText="Receita" sortBy="#{receita.nome}" filterBy="#{receita.nome}">
+                            <div class="recipe">
+                                <a href="receita.xhtml" class="recipe">
+                                    <h:graphicImage
+                                        value="#{receita.getImagem()}"
+                                        class="img recipe-img" alt="" />
+                                </a>
+                                <div class="recipe-content">
+                                    <h5>#{receita.nome}</h5>
+                                    
+
+                                    <h:commandButton value="Salvar" type="submit" class="button-recipe" />
+                                    <!-- action="#{receita}" -->
+                                </div>
+                            </div>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

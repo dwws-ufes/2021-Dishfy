@@ -1,0 +1,45 @@
+/* https://www.flaticon.com/free-icon/user_149071 */
+@import url("https://fonts.googleapis.com/css?family=Work+Sans:300,500");
+
+p{
+    font-family: 'Work Sans', Helvetica, Arial, Sans-Serif;
+    font-weight: normal;
+    font-size: 1.2rem;
+    color: #464a4e;
+}
+
+.image-container img{
+    width: 250px;
+    height: 250px;
+    padding: 10px;
+    background-color: #eee;
+    border: 3px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background .3s;
+}
+
+.image-container img:hover{
+    background-color: #ceb1b1;
+    border: 3px solid #f5bebe;
+}
+
+input[type='file']{
+    display: none;
+}
+
+.name{
+    margin-top: 8%;
+    text-align: center;
+}
+
+.last{
+    margin: 8px 0 32px;
+}
+
+/* Alterando configuração do style.css */
+@media (min-width: 1280px) {
+    .content-main{
+      width: auto !important;
+    }
+}
