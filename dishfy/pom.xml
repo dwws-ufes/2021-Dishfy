@@ -20,6 +20,32 @@
   </properties>
 
   <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.apache.jena/jena -->
+    <dependency>
+      <groupId>org.apache.jena</groupId>
+      <artifactId>jena</artifactId>
+      <version>4.4.0</version>
+      <type>pom</type>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.jena/jena-arq -->
+    <dependency>
+      <groupId>org.apache.jena</groupId>
+      <artifactId>jena-arq</artifactId>
+      <version>4.4.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.jena/jena-core -->
+    <dependency>
+      <groupId>org.apache.jena</groupId>
+      <artifactId>jena-core</artifactId>
+      <version>4.4.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.jena/jena-tdb -->
+    <dependency>
+      <groupId>org.apache.jena</groupId>
+      <artifactId>jena-tdb</artifactId>
+      <version>4.4.0</version>
+    </dependency>
+
     <dependency>
       <groupId>jakarta.platform</groupId>
       <artifactId>jakarta.jakartaee-web-api</artifactId>
@@ -40,10 +66,16 @@
     <dependency>
       <groupId>org.primefaces</groupId>
       <artifactId>primefaces</artifactId>
-      <version>11.0.0</version>
-  </dependency>
+      <version>10.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.mojo</groupId>
+      <artifactId>sql-maven-plugin</artifactId>
+      <version>1.5</version>
+    </dependency>
+    
   </dependencies>
-
+  
   <build>
     <finalName>dishfy</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -120,6 +152,28 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>sql-maven-plugin</artifactId>
+        <version>1.5</version>
+        <executions>
+          <execution>
+            <id>default-cli</id>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+                <delimiter>/</delimiter>
+                <delimiterType>normal</delimiterType>
+                <autocommit>true</autocommit>
+                <fileset>
+                  <basedir>d:/PRIVAT/Projects/java/bigProject/</basedir>
+                </fileset>
+
+          </configuration>
+          </execution>
+         </executions> 
+        </plugin>
     </plugins>
   </build>
 </project>
