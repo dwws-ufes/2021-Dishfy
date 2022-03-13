@@ -14,6 +14,7 @@ import jakarta.ejb.EJB;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.enterprise.inject.Model;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.security.enterprise.AuthenticationStatus;
 import jakarta.security.enterprise.SecurityContext;
@@ -109,10 +110,11 @@ public class AutenticarUsuarioController implements Serializable {
         }
         usuarioAtual = autenticacaoService.getLoggedUser();
         System.out.println("Usuario Logado: " + usuarioAtual.getNome());
-        return "/core/home-estatica.xhtml";
+        return "/core/home.xhtml";
     }
 
     public String solicitaLogout(){
+        System.out.println("BORAPOHA");
         usuarioAtual = null;
         return "/index.xhtml";
     }

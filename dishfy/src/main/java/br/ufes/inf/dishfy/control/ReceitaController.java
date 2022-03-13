@@ -72,6 +72,7 @@ public class ReceitaController implements Serializable {
   private List<Receita> matchReceitas;
   private List<Item> items;
   private String consulta;
+  private Receita receitaSelecionada;
 
   @PostConstruct
   public void init() {
@@ -180,6 +181,12 @@ public class ReceitaController implements Serializable {
     return ingredientList.stream().filter(c -> c.toLowerCase().startsWith(queryLowerCase)).collect(Collectors.toList());
   }
 
+  public String acessaReceita(int receitaId) {
+    // this.receitaSelecionada = receitaService.getReceitaById(receitaId);
+    // System.out.println("------------------------RECEITA SELECIONADA: " + this.receitaSelecionada.getNome());
+    return "/receita/receita.xhtml?id=" + String.valueOf(receitaId);
+  }
+
   public String getNome() {
     return this.nome;
   }
@@ -267,4 +274,13 @@ public class ReceitaController implements Serializable {
   public void setConsulta(double calorias) {
     this.calorias = calorias;
   }
+
+  public Receita getReceitaSelecionada() {
+    return this.receitaSelecionada;
+  }
+
+  public void setReceitaSelecionada(Receita receitaSelecionada) {
+    this.receitaSelecionada = receitaSelecionada;
+  }
+
 }

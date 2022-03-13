@@ -11,24 +11,24 @@
             <div class="content-main">
                 <div class="banner">
                     <h:graphicImage
-                        value="#{receita.imagem}" />
+                        value="#{receitaController.receitaSelecionada.imagem}" />
                     <!-- <h:graphicImage
                     value="https://img.cybercook.com.br/receitas/324/feijao-tropeiro-gaucho.jpeg" /> -->
                 </div>
                 <div class="heading">
-                    <h2>#{receita.nome}</h2>
+                    <h2>#{receitaController.receitaSelecionada.nome}</h2>
                     <!-- <h2>Feijão Tropeiro</h2> -->
                     <div class="subtitle-recipe">
-                        <sup>Receita por <p>#{receita.autor}</p></sup>
+                        <sup>Receita por <p>#{receitaController.receitaSelecionada.autor}</p></sup>
                         <!-- <sup>Receita por <p>Tico e teco</p></sup> -->
-                        <p class="calories"><span style="color: #ff0000;font-weight: 400;">#{receita.calorias}</span> calorias.</p>
-                        <!-- <p class="calories"><span style="color: #ff0000;font-weight: 400;">#{receita.calorias}</span> calorias.</p> -->
+                        <p class="calories"><span style="color: #ff0000;font-weight: 400;">#{receitaController.receitaSelecionada.calorias}</span> calorias.</p>
+                        <!-- <p class="calories"><span style="color: #ff0000;font-weight: 400;">#{receitaController.receitaSelecionada.calorias}</span> calorias.</p> -->
                     </div>
                 </div>
                 <div class="recipe-content">
                     <div class="intro">
                         <h3>Método</h3>
-                        <p>#{receita.desc}</p>
+                        <p>#{receitaController.receitaSelecionada.descricao}</p>
                         <!-- <p>Coloque o azeite em uma panela e frite o bacon e a linguiça separadamente, depois reserve.
 
                             Na mesma panela, frite a cebola e o alho, junte o feijão escorrido e o caldo de bacon.
@@ -43,7 +43,7 @@
                     <div class="shop">
                         <h3>Ingredientes</h3>
                         <ul>
-                            <ui:repeat var="item" value="#{receita.itens}">
+                            <ui:repeat var="item" value="#{receitaController.receitaSelecionada.itens}">
                                 <li>#{item.getQuantidadeString} #{item.grandeza} #{item.ingrediente.nome}</li>
                             </ui:repeat>
                             <!-- 
