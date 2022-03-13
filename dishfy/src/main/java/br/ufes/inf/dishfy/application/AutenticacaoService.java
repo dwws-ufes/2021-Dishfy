@@ -18,6 +18,4 @@ public interface AutenticacaoService extends Serializable {
     public void login(String email, String password) throws UserNotFoundException, WrongPasswordException;
 
     public Usuario getLoggedUser() throws MultipleObjectException;
-
-    public void logout();
 }

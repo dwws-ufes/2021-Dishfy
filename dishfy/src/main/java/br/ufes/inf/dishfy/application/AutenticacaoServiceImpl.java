@@ -80,8 +80,5 @@ public class AutenticacaoServiceImpl implements AutenticacaoService{
             e.printStackTrace();
             return null;
         }
-    }
-
-    public void logout(){}
-    
+    }    
 }

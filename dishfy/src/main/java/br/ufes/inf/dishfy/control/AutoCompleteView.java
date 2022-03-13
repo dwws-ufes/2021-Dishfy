@@ -44,15 +44,15 @@ public class AutoCompleteView {
     }
 
     
-    public List<String> getFoo() {
-        System.out.println("------ AUTO COMPLETE ");
-        List<String> results = new ArrayList<>();
-        for(int i = 0; i < 10; i++) {
-            results.add(""+i);
-        }
+    // public List<String> getFoo() {
+    //     System.out.println("------ AUTO COMPLETE ");
+    //     List<String> results = new ArrayList<>();
+    //     for(int i = 0; i < 10; i++) {
+    //         results.add(""+i);
+    //     }
          
-        return results;
-    }
+    //     return results;
+    // }
 
     public String getConsulta() {
         return this.consulta;

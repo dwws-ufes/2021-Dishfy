@@ -58,8 +58,6 @@ public class AutenticarUsuarioController implements Serializable {
         usuario.setReceitas(new ArrayList<>());
         usuario.setConsumo(new ArrayList<>());
 
-        
-
         try {
             usuario = autenticacaoService.signUp(usuario);
         } catch (UserAlreadyExistsException e) {
@@ -104,9 +102,8 @@ public class AutenticarUsuarioController implements Serializable {
         } catch (WrongPasswordException e) {
             erroLogin = e.getMessage();
             return "/index.xhtml";
-        } catch (ServletException e) {
-            
-        } finally {
+        } catch (ServletException e) {}
+        finally {
             email = null;
             senha = null;
         }
@@ -115,7 +112,10 @@ public class AutenticarUsuarioController implements Serializable {
         return "/core/home-estatica.xhtml";
     }
 
-    // public String solicitaLogout(){}
+    public String solicitaLogout(){
+        usuarioAtual = null;
+        return "/index.xhtml";
+    }
 
     public boolean usuarioLogado() {
         return usuarioAtual != null;
