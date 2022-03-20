@@ -103,8 +103,6 @@ public class Receita {
         this.calorias = calorias;
     }
 
-    
-
     public boolean getPublico() {
         return publico;
     }
@@ -130,12 +128,10 @@ public class Receita {
     }
 
     public ImageDishfy getImagem() {
-        return imagem;
+        return this.imagem;
     }
 
     public void setImagem(ImageDishfy imagem) {
         this.imagem = imagem;
     }
-
-
 }

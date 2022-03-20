@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import br.ufes.inf.dishfy.Utils;
@@ -73,6 +75,9 @@ public class ReceitaController implements Serializable {
   private List<Item> items;
   private String consulta;
   private Receita receitaSelecionada;
+  private int receitaId;
+  private Receita receitaCriada;
+  private List<Receita> receitasPublicas;
 
   @PostConstruct
   public void init() {
@@ -80,9 +85,10 @@ public class ReceitaController implements Serializable {
     matchReceitas = receitaService.getAllReceita();
     publico = "publico";
     items = new ArrayList<>();
+    receitasPublicas = receitaService.getPublicReceitas();
   }
 
-  public Receita criaReceita(){
+  public String criaReceita(){
 
     Categoria categoriaConsultada = categoriaService.getCategoriaByName(categoria);
     Usuario usuarioLogado;
@@ -94,13 +100,19 @@ public class ReceitaController implements Serializable {
     receita.setCategoria(categoriaConsultada);    
     receita.setPublico(publico.equals("privado") ? false : true);
     receita.setItens(items);
-    receita.setImagem(imagem);
+    // receita.setImagem(imagem);
 
     try {
       usuarioLogado = autenticacaoService.getLoggedUser();
       receita.setAutor(usuarioLogado);
 
-      receita = receitaService.updateReceita(receita);
+      long start = System.currentTimeMillis();
+      long end = start + 5*1000;
+      while (System.currentTimeMillis() < end) {}
+      
+      receita.setImagem(imagem);
+
+      receita = receitaService.createReceita(receita);
 
       List<Receita> receitas = usuarioLogado.getReceitas();
       receitas.add(receita);
@@ -118,9 +130,8 @@ public class ReceitaController implements Serializable {
     }
 
     // Utils.setTimeout((imagem) -> receita.setImagem(imagem), 5000);
-
-    Receita receitaCriada = receitaService.createReceita(receita);
-
+    
+    receitaCriada = receita;
 
     receita = new Receita();
     nome = null;
@@ -129,7 +140,7 @@ public class ReceitaController implements Serializable {
     publico = null;
     usuarioLogado = null;
 
-    return receitaCriada;
+    return "/receita/sucesso.xhtml";
   }
 
   public void salvarItem(){
@@ -182,9 +193,14 @@ public class ReceitaController implements Serializable {
   }
 
   public String acessaReceita(int receitaId) {
-    // this.receitaSelecionada = receitaService.getReceitaById(receitaId);
-    // System.out.println("------------------------RECEITA SELECIONADA: " + this.receitaSelecionada.getNome());
-    return "/receita/receita.xhtml?id=" + String.valueOf(receitaId);
+    System.out.println("-------------------RECITA ID: " + receitaId);
+    this.receitaSelecionada = receitaService.getReceitaById(receitaId);
+    System.out.println("---------- Receita Selecionada: " + receitaSelecionada.getNome());
+    return "/receita/receita.xhtml";
+  }
+  
+  public void acessaReceitasPublicas() {
+    this.receitasPublicas = receitaService.getPublicReceitas();
   }
 
   public String getNome() {
@@ -282,5 +298,30 @@ public class ReceitaController implements Serializable {
   public void setReceitaSelecionada(Receita receitaSelecionada) {
     this.receitaSelecionada = receitaSelecionada;
   }
+
+  public int getReceitaId() {
+    return this.receitaId;
+  }
+
+  public void setReceitaId(int receitaId) {
+    this.receitaId = receitaId;
+  }
+
+  public List<Receita> getReceitasPublicas() {
+    return this.receitasPublicas;
+  }
+
+  public void setReceitasPublicas(List<Receita> receitasPublicas) {
+    this.receitasPublicas = receitasPublicas;
+  }
+
+  public Receita getReceitaCriada() {
+    return this.receitaCriada;
+  }
+
+  public void setReceitaCriada(Receita receitaCriada) {
+    this.receitaCriada = receitaCriada;
+  }
+
 
 }

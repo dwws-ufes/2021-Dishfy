@@ -14,15 +14,14 @@
                 <h:form>
                     <p:dataTable var="receita" value="#{filterView.receitas}" widgetVar="recipeTable"
                         emptyMessage="Não foram encontradas receitas com o termo pesquisado."
-                        filteredValue="#{filterView.receitasFiltradas}" >
+                        filteredValue="#{filterView.receitasFiltradas}">
 
                         <p:column headerText="Receita" filterBy="#{receita.nome}">
                             <div class="recipe">
-                                <h:link value="#{receita.nome}" outcome="#{receitaController.acessaReceita(receita.id)}" >
-                                    <h:graphicImage
-                                        value="#{receita.getImagem()}"
-                                        class="img recipe-img" alt="" />
-                                </h:link>
+                                <h:commandButton value="Selecionar" type="submit" class="button-recipe" action="#{receitaController.acessaReceita(receita.id)}"/>
+                                <h:graphicImage
+                                    value="#{receita.getImagem()}"
+                                    class="img recipe-img" alt="" />
                                 <!-- <a href="../receita/receita.xhtml" class="recipe">
                                     <h:graphicImage
                                         value="#{receita.getImagem()}"
@@ -30,7 +29,7 @@
                                 </a> -->
                                 <div class="recipe-content">
                                     <h5>#{receita.nome}</h5>
-                                    <h:commandButton value="Salvar" type="submit" class="button-recipe" />
+                                    <!-- <h:commandButton value="Salvar" type="submit" class="button-recipe" /> -->
                                     <!-- action="#{receita}" -->
                                 </div>
                             </div>

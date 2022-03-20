@@ -98,4 +98,17 @@ public class ReceitaImpl implements ReceitaDao {
         else return receitas.get(0);
     }
     
+    public List<Receita> getAllPublicReceita(){
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Receita> criteriaQuery = criteriaBuilder.createQuery(Receita.class);
+        Root<Receita> root = criteriaQuery.from(Receita.class);
+        Predicate[] predicates = new Predicate[1];
+        predicates[0] = criteriaBuilder.equal(root.get("publico"), true);
+        criteriaQuery.where(predicates);
+        List<Receita> receitas = em.createQuery(criteriaQuery).getResultList();
+        //List<Receita> receitas = em.createQuery(criteriaQuery).getResultList().stream().filter(r -> r.getPublico() == true).collect(Collectors.toList());
+
+        if(receitas.isEmpty()) return null;
+        else return receitas;
+    }
 }
