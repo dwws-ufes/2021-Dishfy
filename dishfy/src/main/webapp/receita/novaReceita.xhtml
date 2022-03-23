@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-    xmlns:f="http://xmlns.jcp.org/jsf/core" 
-    xmlns:h="http://xmlns.jcp.org/jsf/html" 
-    xmlns:p="http://primefaces.org/ui"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
     template="/WEB-INF/templates/template-home.xhtml">
 
-    <ui:define name="title">Cadastro Produto</ui:define>
+    <ui:define name="title">Cadastro Receita</ui:define>
     <ui:define name="css">
         <h:outputStylesheet library="css" name="produto.css" />
     </ui:define>
@@ -23,7 +20,8 @@
                     <p:growl id="msgs" showDetail="true" />
                     <div class="campo-produto">
                         <h:outputLabel for="nome-produto"><strong>Nome da Receita</strong></h:outputLabel>
-                        <h:inputText name="nome-produto" id="nome-produto" required="true" value="#{receitaController.nome}"/>
+                        <h:inputText name="nome-produto" id="nome-produto" required="true"
+                            value="#{receitaController.nome}" />
                     </div>
                     <div class="conteiner-produto">
                         <!-- 
@@ -33,7 +31,8 @@
                         </div> -->
 
                         <!-- para salvar imagem https://stackoverflow.com/questions/27677397/how-to-upload-file-using-jsf-2-2-hinputfile-where-is-the-saved-file/ -->
-                        <h:inputFile value="#{receitaController.uploadedFile}" id="imagem-produto" name="imagem-produto" accept="image/*">
+                        <h:inputFile value="#{receitaController.uploadedFile}" id="imagem-produto" name="imagem-produto"
+                            accept="image/*">
                             <f:ajax listener="#{receitaController.upload}" />
                         </h:inputFile>
 
@@ -45,59 +44,27 @@
                         </div>
                     </div>
                     <div class="campo-produto">
-                        <h:outputLabel><strong>Escolha os ingredientes da receita:</strong></h:outputLabel>
-                        <h:panelGroup id="item-form" class="formulario-item">
-                            <div style="display:flex;">
-                                <h:inputText id="form-number" value="#{receitaController.qtd}"/>
-                                <!-- TODO: Decidir as grandezes -->
-                                <h:selectOneMenu id="grandeza-produto" value="#{receitaController.grand}" style="margin:5px 20px;">
-                                    <f:selectItem itemValue="Gramas" itemLabel="Gramas" selected="true" />
-                                    <f:selectItem itemValue="Kg" itemLabel="Kg" />
-                                    <f:selectItem itemValue="Colher" itemLabel="Colher" />
-                                    <f:selectItem itemValue="Xicara" itemLabel="Xicara" />
-                                </h:selectOneMenu>
-                                <h:inputText id="form-ingredient" value="#{receitaController.ingrediente}"/>
-                                <h:commandButton value="+" styleClass="add-button" ajax="true" action="#{receitaController.salvarItem}">
-                                    <f:ajax render="item-form" execute="form-number grandeza-produto form-ingredient" />
-                                </h:commandButton>
-                            </div>
-                            <p>
-                                <h:dataTable value="#{receitaController.items}" var="item">
-                                    <h:column>
-                                        <f:facet name="header">Quantidade</f:facet>
-                                        #{item.quantidade}
-                                    </h:column>
-                                    <h:column style="margin: 10px 30px">
-                                        <f:facet name="header">Grandeza</f:facet>
-                                        #{item.grandeza}
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">Ingrediente</f:facet>
-                                        #{item.ingrediente.getNome()}
-                                    </h:column>
-                                </h:dataTable>
-                            </p>
-                        </h:panelGroup>
-                    </div>
-                    <div class="campo-produto">
                         <h:outputLabel><strong>Defina a privacidade da sua receita:</strong></h:outputLabel>
                         <h:selectOneRadio value="#{receitaController.publico}" required="true">
-                            <f:selectItem selected="true" itemValue="publico" itemLabel="publico"
-                                styleClass="priv" />
+                            <f:selectItem selected="true" itemValue="publico" itemLabel="publico" styleClass="priv" />
                             <f:selectItem itemValue="privado" itemLabel="privado" styleClass="priv" />
                         </h:selectOneRadio>
                     </div>
                     <div class="campo-produto">
-                        <h:outputLabel for="descricao" style="width:100%;"><strong>Descreva os passos de preparo para a receita:
+                        <h:outputLabel for="descricao"><strong>Descreva os passos de preparo para a
+                                receita:
                             </strong></h:outputLabel>
-                        <h:inputTextarea styleClass="resize: none" row="6" id="descricao" name="descricao" value="#{receitaController.desc}" />
+                        <h:inputTextarea style="resize: none; width:100%; height: 100px" row="6" id="descricao"
+                            name="descricao" value="#{receitaController.desc}" />
                     </div>
-                    <h:commandButton value="Enviar" styleClass="botao-submit" action="#{receitaController.criaReceita}"/>
+                    <div style="display: flex; justify-content: center;">
+                        <h:commandButton value="Enviar" styleClass="button" action="#{receitaController.criaReceita}" />
+                    </div>
                 </h:form>
             </div>
         </div>
     </ui:define>
-    
+
     <!-- <ui:define name="js">
         <h:outputScript library="js" name="fileImage.js" />
     </ui:define> -->

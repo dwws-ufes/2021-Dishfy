@@ -14,20 +14,21 @@
                 <h3>Login</h3>
                 <h:form method="post">
                     <div class="campo_txt">
-                        <h:inputText required="true" value="#{autenticarUsuarioController.email}"/>
+                        <h:inputText required="true" value="#{autenticarUsuarioController.email}" />
                         <span></span>
                         <label>E-mail</label>
                     </div>
                     <div class="campo_txt">
-                        <h:inputSecret required="true" value="#{autenticarUsuarioController.senha}"/>
+                        <h:inputSecret required="true" value="#{autenticarUsuarioController.senha}" />
                         <span></span>
                         <label>Senha</label>
                     </div>
                     <div class="pass">Esqueceu a senha?</div>
-                        <h:commandButton type="submit" value="Login" action="#{autenticarUsuarioController.solicitaLogin}"/>
+                    <h:commandButton type="submit" value="Login"
+                        action="#{autenticarUsuarioController.solicitaLogin}" />
                     <div class="login_link">
                         Novo no Dishfy?
-                        <h:link value="Cadastre-se" outcome="#" />
+                        <h:link value="Cadastre-se" outcome="cadastro" />
                     </div>
                 </h:form>
             </div>

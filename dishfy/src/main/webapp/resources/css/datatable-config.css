@@ -1,0 +1,9 @@
+.hidden{
+    background-color: white;
+}
+
+table[role=grid], tr, td, th {
+    border: none !important;
+    border-collapse: separate;
+    width: 25px;
+}
