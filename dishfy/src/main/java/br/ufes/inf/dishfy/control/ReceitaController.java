@@ -84,18 +84,23 @@ public class ReceitaController implements Serializable {
   private int receitaId;
   private Receita receitaCriada;
   private List<Receita> receitasPublicas;
+  private Usuario usuarioLogado;
 
   @PostConstruct
   public void init() {
     receita = new Receita();
-    matchReceitas = receitaService.getAllReceita();
+    try {
+      usuarioLogado = autenticacaoService.getLoggedUser();      
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     publico = "publico";
     // items = new ArrayList<>();
+    matchReceitas = receitaService.getAllReceita();
     receitasPublicas = receitaService.getPublicReceitas();
   }
 
   public String criaReceita(){
-    Usuario usuarioLogado;
     Categoria categoriaConsultada = categoriaService.getCategoriaByName(categoria);
     
     System.out.println("------- criando receita: " + nome + " " + desc + " " + categoriaConsultada.getNome() + " " + publico);
@@ -103,35 +108,30 @@ public class ReceitaController implements Serializable {
     receita.setNome(nome);
     receita.setDescricao(desc);
     receita.setCategoria(categoriaConsultada);    
-    receita.setPublico(publico.equals("privado") ? false : true);
+    receita.setPublico(publico.equals("privado") ? false : true);    
     
-    try {
-      usuarioLogado = autenticacaoService.getLoggedUser();
-      receita.setAutor(usuarioLogado);
+    receita.setAutor(usuarioLogado);
 
-      // long start = System.currentTimeMillis();
-      // long end = start + 5*1000;
-      // while (System.currentTimeMillis() < end) {}
-      
-      // receita.setImagem(imagem);
+    // long start = System.currentTimeMillis();
+    // long end = start + 5*1000;
+    // while (System.currentTimeMillis() < end) {}
+    
+    // receita.setImagem(imagem);
 
-      receita.setItens(new ArrayList<>());
+    receita.setItens(new ArrayList<>());
 
-      receita = receitaService.createReceita(receita);
+    receita = receitaService.createReceita(receita);
 
-      List<Receita> receitas = usuarioLogado.getReceitas();
-      receitas.add(receita);
-      usuarioLogado.setReceitas(receitas);
-      
-      System.out.println("------------- USUARIO LOGADO "+usuarioLogado.getId());
-      usuarioLogado = usuarioService.updateUsuario(usuarioLogado);
+    List<Receita> receitas = usuarioLogado.getReceitas();
+    receitas.add(receita);
+    usuarioLogado.setReceitas(receitas);
+    
+    System.out.println("------------- USUARIO LOGADO "+usuarioLogado.getId());
+    usuarioLogado = usuarioService.updateUsuario(usuarioLogado);
 
-      System.out.println("---- Receitas do usuario");
-      for (Receita receita : usuarioLogado.getReceitas()) {
-        System.out.println("---- "+receita.getNome());
-      }
-    } catch (MultipleObjectException e) {
-      e.printStackTrace();
+    System.out.println("---- Receitas do usuario");
+    for (Receita receita : usuarioLogado.getReceitas()) {
+      System.out.println("---- "+receita.getNome());
     }
 
     this.receitaCriada = receita;
@@ -141,6 +141,9 @@ public class ReceitaController implements Serializable {
     desc = null;
     categoria = null;
     publico = null;
+    items = null;
+
+    receitasPublicas = receitaService.getPublicReceitas();
 
     return "/receita/adicionaItem.xhtml";
   }
@@ -150,14 +153,14 @@ public class ReceitaController implements Serializable {
   }
 
   public void salvarItem(){
-    System.out.println("--|_|_|_|_|_|-----_|_|__|__|_---- Receita: " + receitaCriada.getNome());
     Item item = new Item();
 
-    if(grand != null && qtd != null && ingrediente != null){
+    if(grand != null && qtd != null && ingrediente != null && receitaCriada != null){
       System.out.println("-------- item adicionado " + qtd +" "+ grand +" "+ ingredienteService.getIngrediente(ingrediente).getNome() );
       item.setGrandeza(grand);
       item.setQuantidade(Double.parseDouble(qtd));
       item.setIngrediente(ingredienteService.getIngrediente(ingrediente));
+      item.setReceita(receitaCriada);
     }
     
     itemService.salvarItem(item);
@@ -335,5 +338,13 @@ public class ReceitaController implements Serializable {
     this.receitaCriada = receitaCriada;
   }
 
+
+  public Usuario getUsuarioLogado() {
+    return this.usuarioLogado;
+  }
+
+  public void setUsuarioLogado(Usuario usuarioLogado) {
+    this.usuarioLogado = usuarioLogado;
+  }
 
 }

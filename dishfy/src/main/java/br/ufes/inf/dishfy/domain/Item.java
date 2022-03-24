@@ -22,7 +22,7 @@ public class Item {
     @ManyToOne
     private Ingrediente ingrediente;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Receita receita;
     
     // public Item(int id, Ingrediente ingrediente, Receita receita, float quantidade) {

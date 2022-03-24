@@ -26,7 +26,7 @@
                 </a>
                 <section class="recipes-container grid">
                     <div class="recipes-list">
-                        <ui:repeat var="receita" value="#{usuarioController.usuarioLogado.getReceitas()}">
+                        <ui:repeat var="receita" value="#{receitaController.usuarioLogado.getReceitas()}">
                             <h:form>
                                 <div class="recipe">
                                     <h:graphicImage
