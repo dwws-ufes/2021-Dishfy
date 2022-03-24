@@ -19,7 +19,7 @@
                     <h2>#{receitaController.receitaSelecionada.nome}</h2>
                     <!-- <h2>Feijão Tropeiro</h2> -->
                     <div class="subtitle-recipe">
-                        <sup>Receita por <p>#{receitaController.receitaSelecionada.autor}</p></sup>
+                        <sup>Receita por <p>#{receitaController.receitaSelecionada.autor.nome}</p></sup>
                         <!-- <sup>Receita por <p>Tico e teco</p></sup> -->
                         <p class="calories"><span style="color: #ff0000;font-weight: 400;">#{receitaController.receitaSelecionada.calorias}</span> calorias.</p>
                         <!-- <p class="calories"><span style="color: #ff0000;font-weight: 400;">#{receitaController.receitaSelecionada.calorias}</span> calorias.</p> -->
@@ -43,9 +43,9 @@
                     <div class="shop">
                         <h3>Ingredientes</h3>
                         <ul>
-                            <!-- <ui:repeat var="item" value="#{receitaController.receitaSelecionada.itens}">
-                                <li>#{item.getQuantidadeString} #{item.grandeza} #{item.ingrediente.nome}</li>
-                            </ui:repeat> -->
+                            <ui:repeat var="item" value="#{receitaController.receitaSelecionada.itens}">
+                                <li>#{item.getQuantidadeString()} #{item.grandeza} #{item.ingrediente.nome}</li>
+                            </ui:repeat>
                             <!-- 
                             <li>150 g de bacon picadinho</li>
                             <li>250 g de linguiça calabresa picadinha</li>

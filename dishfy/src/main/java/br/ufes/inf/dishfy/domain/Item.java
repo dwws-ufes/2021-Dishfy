@@ -74,6 +74,6 @@ public class Item {
     }
 
     public String getQuantidadeString(){
-        return this.grandeza.toString();
+        return String.valueOf(this.quantidade);
     }
 }

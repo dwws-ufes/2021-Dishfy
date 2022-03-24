@@ -210,7 +210,11 @@ public class ReceitaController implements Serializable {
   public String acessaReceita(int receitaId) {
     System.out.println("-------------------RECITA ID: " + receitaId);
     this.receitaSelecionada = receitaService.getReceitaById(receitaId);
+    receitaSelecionada.setItens(itemService.getItems(receitaId));
     System.out.println("---------- Receita Selecionada: " + receitaSelecionada.getNome());
+    for (Item item : receitaSelecionada.getItens()) {
+      System.out.println("------ item " + item.getIngrediente().getNome());
+    }
     return "/receita/receita.xhtml";
   }
   
