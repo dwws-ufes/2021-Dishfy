@@ -17,6 +17,7 @@ import br.ufes.inf.dishfy.application.CategoriaService;
 import br.ufes.inf.dishfy.application.ImagemPersitService;
 import br.ufes.inf.dishfy.application.ImagemService;
 import br.ufes.inf.dishfy.application.IngredienteService;
+import br.ufes.inf.dishfy.application.ItemService;
 import br.ufes.inf.dishfy.application.ReceitaService;
 import br.ufes.inf.dishfy.application.UsuarioService;
 import br.ufes.inf.dishfy.domain.Categoria;
@@ -30,10 +31,12 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.SessionContext;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.enterprise.inject.Model;
 import jakarta.servlet.http.Part;
 
 @Model
+@SessionScoped
 public class ReceitaController implements Serializable {
   
   @EJB
@@ -56,6 +59,9 @@ public class ReceitaController implements Serializable {
 
   @EJB
   private UsuarioService usuarioService;
+
+  @EJB
+  private ItemService itemService;
 
   private String nome;
   private String desc;
@@ -84,33 +90,32 @@ public class ReceitaController implements Serializable {
     receita = new Receita();
     matchReceitas = receitaService.getAllReceita();
     publico = "publico";
-    items = new ArrayList<>();
+    // items = new ArrayList<>();
     receitasPublicas = receitaService.getPublicReceitas();
   }
 
   public String criaReceita(){
-
-    Categoria categoriaConsultada = categoriaService.getCategoriaByName(categoria);
     Usuario usuarioLogado;
-
-    System.out.println("------- criando receita: " + nome + " " + desc + " " + categoriaConsultada.getNome() + " " + publico + " " + items.toString());
+    Categoria categoriaConsultada = categoriaService.getCategoriaByName(categoria);
+    
+    System.out.println("------- criando receita: " + nome + " " + desc + " " + categoriaConsultada.getNome() + " " + publico);
 
     receita.setNome(nome);
     receita.setDescricao(desc);
     receita.setCategoria(categoriaConsultada);    
     receita.setPublico(publico.equals("privado") ? false : true);
-    receita.setItens(items);
-    // receita.setImagem(imagem);
-
+    
     try {
       usuarioLogado = autenticacaoService.getLoggedUser();
       receita.setAutor(usuarioLogado);
 
-      long start = System.currentTimeMillis();
-      long end = start + 5*1000;
-      while (System.currentTimeMillis() < end) {}
+      // long start = System.currentTimeMillis();
+      // long end = start + 5*1000;
+      // while (System.currentTimeMillis() < end) {}
       
-      receita.setImagem(imagem);
+      // receita.setImagem(imagem);
+
+      receita.setItens(new ArrayList<>());
 
       receita = receitaService.createReceita(receita);
 
@@ -121,7 +126,7 @@ public class ReceitaController implements Serializable {
       System.out.println("------------- USUARIO LOGADO "+usuarioLogado.getId());
       usuarioLogado = usuarioService.updateUsuario(usuarioLogado);
 
-      System.out.println("---- Receitas");
+      System.out.println("---- Receitas do usuario");
       for (Receita receita : usuarioLogado.getReceitas()) {
         System.out.println("---- "+receita.getNome());
       }
@@ -129,21 +134,23 @@ public class ReceitaController implements Serializable {
       e.printStackTrace();
     }
 
-    // Utils.setTimeout((imagem) -> receita.setImagem(imagem), 5000);
-    
-    receitaCriada = receita;
+    this.receitaCriada = receita;
 
     receita = new Receita();
     nome = null;
     desc = null;
     categoria = null;
     publico = null;
-    usuarioLogado = null;
 
+    return "/receita/adicionaItem.xhtml";
+  }
+
+  public String adicionarItens(){
     return "/receita/sucesso.xhtml";
   }
 
   public void salvarItem(){
+    System.out.println("--|_|_|_|_|_|-----_|_|__|__|_---- Receita: " + receitaCriada.getNome());
     Item item = new Item();
 
     if(grand != null && qtd != null && ingrediente != null){
@@ -151,13 +158,18 @@ public class ReceitaController implements Serializable {
       item.setGrandeza(grand);
       item.setQuantidade(Double.parseDouble(qtd));
       item.setIngrediente(ingredienteService.getIngrediente(ingrediente));
-      items.add(item);
     }
+    
+    itemService.salvarItem(item);
+    this.items = receitaCriada.getItens();
+    this.items.add(item);
+    receitaCriada.setItens(items);
+    receitaService.updateReceita(receitaCriada);
 
-    item = null;
     qtd = null;
     grand = null;
     ingrediente = null;
+
   }
 
   public Receita AtualizarReceita(Receita receita){

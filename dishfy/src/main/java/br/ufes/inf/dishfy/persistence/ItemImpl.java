@@ -16,8 +16,9 @@ public class ItemImpl implements ItemDao {
     @PersistenceContext
     private EntityManager em;
 
-    public void saveItem(Item item) {
+    public Item saveItem(Item item) {
         em.persist(item);
+        return item;
     }
 
     public List<Item> getItems(int idReceita) {
