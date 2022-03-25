@@ -12,5 +12,6 @@ public interface ConsumoService extends Serializable{
     public Consumo saveConsumo(Consumo consumo);
     public void deleteConsumo(Consumo consumo);
     public Consumo getById(Integer id);
+    public List<Consumo> getConsumoById(int idUsuario);
     public List<Consumo> getConsumo(ArrayList<Integer> idConsumo);    
 }

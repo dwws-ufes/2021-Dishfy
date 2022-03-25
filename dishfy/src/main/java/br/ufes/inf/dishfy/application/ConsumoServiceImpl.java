@@ -24,6 +24,9 @@ public class ConsumoServiceImpl implements ConsumoService {
         return consumoDao.getConsumoById(id);
 
     }
+    public List<Consumo> getConsumoById(int idUsuario){
+        return consumoDao.getConsumos(idUsuario);
+    }
     public List<Consumo> getConsumo(ArrayList<Integer> idConsumo){
 
         return consumoDao.getConsumo(idConsumo);

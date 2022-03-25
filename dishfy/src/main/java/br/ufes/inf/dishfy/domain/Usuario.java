@@ -38,7 +38,7 @@ public class Usuario {
     @Column(nullable = false)
     private int tamanhoMax;
 
-    @OneToMany //(mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
     private List<Consumo> consumo;
 
     @OneToMany(fetch = FetchType.EAGER)

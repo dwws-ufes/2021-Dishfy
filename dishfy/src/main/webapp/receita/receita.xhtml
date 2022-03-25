@@ -28,7 +28,7 @@
                         <!-- <p class="calories"><span style="color: #ff0000;font-weight: 400;">#{receitaController.receitaSelecionada.calorias}</span> calorias.</p> -->
                         <h:form>
                             <h:commandButton value="Consumir" type="submit" class="button-recipe" 
-                                    action="#{consumoController.consomeReceita()}"/>
+                                    action="#{consumoController.consomeReceita(receitaController.receitaSelecionada.id)}"/>
                                     <!-- Talvez seria melhor passar o receita.id como parâmetro na função -->
                         </h:form>
                     </div>

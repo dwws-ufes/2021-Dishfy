@@ -39,4 +39,12 @@ public class ReceitaServiceImpl implements ReceitaService {
     public List<Receita> getPublicReceitas(){
         return receitaDao.getAllPublicReceita();
     }
+
+    public List<Receita> getCategoriaReceitas(int idCategoria){
+        return receitaDao.getReceitasByCategoria(idCategoria);
+    }
+
+    public List<Receita> getReceitasUsuario(int idUsuario){
+        return receitaDao.getReceitasByUsuario(idUsuario);
+    }
 }

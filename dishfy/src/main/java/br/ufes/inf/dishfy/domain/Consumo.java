@@ -22,15 +22,17 @@ public class Consumo {
     private Date data;
 
     @Column(nullable = false)
-    double calorias; 
+    private double calorias; 
 
     @ManyToOne
     private Receita receita;
+
+    @ManyToOne
+    private Usuario usuario;
     
     public void setCalorias(){
         this.calorias = this.receita.getCalorias();
     }
-    
 
     public int getId() {
         return id;
@@ -57,5 +59,13 @@ public class Consumo {
         this.receita = receita;
     }
     
+
+    public Usuario getUsuario() {
+        return this.usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }    
 
 }

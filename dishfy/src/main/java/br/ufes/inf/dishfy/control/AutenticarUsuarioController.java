@@ -50,6 +50,11 @@ public class AutenticarUsuarioController implements Serializable {
     @PostConstruct
 	public void init() {
 		usuario = new Usuario();
+        try {
+            usuarioAtual = autenticacaoService.getLoggedUser();            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
     
     public String cadastrar(){
@@ -154,5 +159,14 @@ public class AutenticarUsuarioController implements Serializable {
     public String getErroCadastro() {
         return this.erroCadastro;
     }
+
+    public Usuario getUsuarioAtual() {
+        return this.usuarioAtual;
+    }
+
+    public void setUsuarioAtual(Usuario usuarioAtual) {
+        this.usuarioAtual = usuarioAtual;
+    }
+
 
 }

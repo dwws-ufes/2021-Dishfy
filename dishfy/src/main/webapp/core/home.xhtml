@@ -27,15 +27,23 @@
                     </h:form>
                 </div>
                 <section class="recipes-container">
-                    <div class="tags-container">
+                    <div class="tags-container" style="margin-right: 20px">
                         <h4>Categorias</h4>
                         <div class="tags-list">
+                            <ui:repeat var="categoria" value="#{categoriaController.categorias}">
+                                <h:form>
+                                    <h:commandLink value ="#{categoria.nome}" 
+                                        action ="#{categoriaController.selectCategory(categoria.nome)}" /> 
+                                </h:form>
+                            </ui:repeat>
                             <!-- TODO: Controlador da categoria recebendo o nome dela e inicializando preechendo a
                                     a lista de Receitas com a consulta de getReceitasByCategoria  -->
+                            
+                            <!--
                             <a href="../receita/categoria.xhtml">Doce</a>
                             <a href="../receita/categoria.xhtml">Carne</a>
                             <a href="../receita/categoria.xhtml">Bebida</a>
-                            <a href="../receita/categoria.xhtml">Lanche</a>
+                            <a href="../receita/categoria.xhtml">Lanche</a> -->
                         </div>
                     </div>
                     <div class="recipes-list">
@@ -52,7 +60,7 @@
                                         <!-- <h:commandButton value="Salvar" type="submit" class="button-recipe" /> -->
                                         <!-- action="#{receita}" -->
                                     </div>
-                                    <p>Calorias: <span>#{receita.getCalorias()}</span></p>
+                                    <p>Calorias: <span>#{receita.calorias}</span></p>
                                 </div>
                             </h:form>
                         </ui:repeat>

@@ -21,6 +21,7 @@ import java.util.Calendar;
 
 @Model
 public class ConsumoController implements Serializable {
+
   @EJB
   private ConsumoService consumoService;
 
@@ -37,7 +38,6 @@ public class ConsumoController implements Serializable {
   private Date date;
   private Receita receita;
   private Consumo consumo;
-  private int receitaId;
 
   @PostConstruct
   public void init() {
@@ -54,19 +54,29 @@ public class ConsumoController implements Serializable {
   }
 
   public Consumo getOneConsumo(Integer idUsuario) {
-
     return consumoService.getById(idUsuario);
   }
 
-  public List<Consumo> getAllConsumoUsuario(ArrayList<Integer> usuario) {
-    return consumoService.getConsumo(usuario);
+  public List<Consumo> getAllConsumoUsuario() {
+    Usuario usuarioLogado;
+    List<Consumo> consumos = null;
+    try {
+      usuarioLogado = autenticacaoService.getLoggedUser();
+      consumos = consumoService.getConsumoById(usuarioLogado.getId());
+      return consumos;
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return consumos;
   }
 
-  public boolean consomeReceita() {
+  public String consomeReceita(int receitaId) {
     Receita receita = receitaService.getReceitaById(receitaId);
     Usuario usuarioLogado;
     Calendar today = Calendar.getInstance();
     today.set(Calendar.HOUR_OF_DAY, 0);
+
+    System.out.println("++++++++++++++++++++ Consumiu " + receita.getNome());
 
     try {
       usuarioLogado = autenticacaoService.getLoggedUser();
@@ -75,6 +85,7 @@ public class ConsumoController implements Serializable {
       consumo.setData(today.getTime());
       consumo.setReceita(receita);
       consumo.setCalorias();
+      consumo.setUsuario(usuarioLogado);
 
       consumo = consumoService.saveConsumo(consumo);
 
@@ -84,16 +95,49 @@ public class ConsumoController implements Serializable {
       usuarioLogado.setConsumo(consumos);
       usuarioService.updateUsuario(usuarioLogado);
 
-      return true;
     } catch (Exception e) {
       e.printStackTrace();
     }
 
-    return false;
+    return "/receita/consumoSucesso.xhtml";
   }
 
-  public String getDateAsString() {
+  public String getDateAsString(Consumo cons) {
     Format formatter = new SimpleDateFormat("dd/MM/yyyy");
-    return formatter.format(consumo.getData());
+    return formatter.format(cons.getData());
   }
+
+
+  public Integer getIdReceita() {
+    return this.idReceita;
+  }
+
+  public void setIdReceita(Integer idReceita) {
+    this.idReceita = idReceita;
+  }
+
+  public Date getDate() {
+    return this.date;
+  }
+
+  public void setDate(Date date) {
+    this.date = date;
+  }
+
+  public Receita getReceita() {
+    return this.receita;
+  }
+
+  public void setReceita(Receita receita) {
+    this.receita = receita;
+  }
+
+  public Consumo getConsumo() {
+    return this.consumo;
+  }
+
+  public void setConsumo(Consumo consumo) {
+    this.consumo = consumo;
+  }
+
 }

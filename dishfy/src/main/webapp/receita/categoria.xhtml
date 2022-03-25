@@ -14,13 +14,13 @@
                 <header class="hero category-image">
                     <div class="hero-container">
                         <div class="hero-text">
-                            <h3>#{category.name}</h3>
+                            <h3>#{categoriaController.categoria.nome}</h3>
                         </div>
                     </div>
                 </header>
                 <section class="recipes-container grid">
                     <div class="recipes-list">
-                        <ui:repeat var="receita" value="#{receitaController.}">
+                        <ui:repeat var="receita" value="#{categoriaController.receitasCategoria}">
                             <h:form>
                                 <div class="recipe">
                                     <h:graphicImage value="#{receita.imagem}" class="img recipe-img" alt="" />
@@ -28,10 +28,8 @@
                                         <h5>#{receita.getNome()}</h5>
                                         <h:commandButton value="Selecionar" type="submit" class="button-recipe"
                                             action="#{receitaController.acessaReceita(receita.id)}" />
-                                        <!-- <h:commandButton value="Salvar" type="submit" class="button-recipe" /> -->
-                                        <!-- action="#{receita}" -->
                                     </div>
-                                    <p>Calorias: <span>#{receita.getCalorias()}</span></p>
+                                    <p>Calorias: <span>#{receita.calorias}</span></p>
                                 </div>
                             </h:form>
                         </ui:repeat>

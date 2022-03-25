@@ -22,22 +22,22 @@
                     <!-- List<Consumo> getAllConsumoUsuario(ArrayList<Integer> usuario) -->
                     <ui:repeat var="consumo" value="#{consumoController.getAllConsumoUsuario()}">
                         <p>- Dia
-                            <h:outputText value="#{consumoController.getDateAsString()}" />
+                            <h:outputText value="#{consumoController.getDateAsString(consumo)}" />
                             <!-- Dar um jeito de passar o id do consumo como parâmetro -->
                         </p>
                         <div class="recipes-list">
                             <h:form>
                                 <div class="recipe">
-                                    <h:graphicImage value="#{consumoController.receita.imagem}" class="img recipe-img"
+                                    <h:graphicImage value="#{consumo.receita.imagem}" class="img recipe-img"
                                         alt="" />
                                     <div class="recipe-content">
-                                        <h5>#{consumoController.receita.getNome()}</h5>
+                                        <h5>#{consumo.receita.nome}</h5>
                                         <h:commandButton value="Selecionar" type="submit" class="button-recipe"
-                                            action="#{receitaController.acessaReceita(consumoController.receita.id)}" />
+                                            action="#{receitaController.acessaReceita(consumo.receita.id)}" />
                                         <!-- <h:commandButton value="Salvar" type="submit" class="button-recipe" /> -->
                                         <!-- action="#{receita}" -->
                                     </div>
-                                    <p>Calorias: <span>#{consumoController.receita.getCalorias()}</span></p>
+                                    <p>Calorias: <span>#{consumo.receita.calorias}</span></p>
                                 </div>
                             </h:form>
                         </div>

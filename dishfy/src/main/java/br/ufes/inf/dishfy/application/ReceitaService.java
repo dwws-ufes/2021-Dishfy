@@ -14,4 +14,6 @@ public interface ReceitaService extends Serializable {
     public void deleteReceita(Receita receita);
     public List<Receita> getAllReceita();
     public List<Receita> getPublicReceitas();
+    public List<Receita> getCategoriaReceitas(int idCategoria);
+    public List<Receita> getReceitasUsuario(int idUsuario);
 }

@@ -360,4 +360,9 @@ public class ReceitaController implements Serializable {
   public String clienteSPARQL() {
     return "http://localhost:2021/snorql/";
   }
+
+  public int qtdReceitas(int idUsuario){
+    List<Receita> receitas = receitaService.getReceitasUsuario(idUsuario);
+    return receitas.size();
+  }
 }

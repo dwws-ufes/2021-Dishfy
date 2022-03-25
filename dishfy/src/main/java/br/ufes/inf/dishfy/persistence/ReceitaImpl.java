@@ -111,4 +111,22 @@ public class ReceitaImpl implements ReceitaDao {
         if(receitas.isEmpty()) return null;
         else return receitas;
     }
+
+    public List<Receita> getReceitasByCategoria(int idCategoria){
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Receita> criteriaQuery = criteriaBuilder.createQuery(Receita.class);
+        Root<Receita> root = criteriaQuery.from(Receita.class);
+        criteriaQuery.where(criteriaBuilder.equal(root.get("categoria"), idCategoria));
+        List<Receita> items = em.createQuery(criteriaQuery).getResultList();
+        return items;
+    }
+
+    public List<Receita> getReceitasByUsuario(int idUsuario){
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Receita> criteriaQuery = criteriaBuilder.createQuery(Receita.class);
+        Root<Receita> root = criteriaQuery.from(Receita.class);
+        criteriaQuery.where(criteriaBuilder.equal(root.get("autor"), idUsuario));
+        List<Receita> items = em.createQuery(criteriaQuery).getResultList();
+        return items;
+    }
 }
