@@ -34,7 +34,7 @@
                                 <h:inputText id="form-ingredient" value="#{receitaController.ingrediente}" />
                             </div>
                             <h:commandButton value="Adicionar" styleClass="button" ajax="true"
-                                action="#{receitaController.salvarItem}" style="width: 20%;">
+                                action="#{receitaController.salvarItem}" style="width: 20%; color: white">
                                 <f:ajax render="item-form" execute="form-number grandeza-produto form-ingredient" />
                             </h:commandButton>
                             <p>
@@ -59,7 +59,8 @@
                     </div>
                 </h:form>
                 <h:form style="display: flex; justify-content: center;">
-                    <h:commandButton value="Enviar" styleClass="button" action="#{receitaController.adicionarItens}" />
+                    <h:commandButton value="Enviar" styleClass="button" style="color: white"
+                        action="#{receitaController.adicionarItens}" />
                 </h:form>
             </div>
         </div>

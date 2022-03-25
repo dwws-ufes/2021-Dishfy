@@ -18,16 +18,20 @@
                         </div>
                     </div>
                 </header>
-                <section class="recipes-container">
+                <div style="display: flex;">
                     <h:form>
-                        <h:commandButton value="Consulta SPARQL" type="submit" class="button-recipe" 
-                            action="#{receitaController.clienteSPARQL()}"/>
+                        <h:commandButton value="Consulta SPARQL" type="submit" class="button-recipe"
+                            action="#{receitaController.clienteSPARQL()}" style="margin: 0 20px 10px 0" />
+                        <h:commandButton value="Download" type="submit" class="button-recipe"
+                            action="#{receitaController.clienteSPARQL()}" />
                     </h:form>
+                </div>
+                <section class="recipes-container">
                     <div class="tags-container">
                         <h4>Categorias</h4>
                         <div class="tags-list">
                             <!-- TODO: Controlador da categoria recebendo o nome dela e inicializando preechendo a
-                                a lista de Receitas com a consulta de getReceitasByCategoria  -->
+                                    a lista de Receitas com a consulta de getReceitasByCategoria  -->
                             <a href="../receita/categoria.xhtml">Doce</a>
                             <a href="../receita/categoria.xhtml">Carne</a>
                             <a href="../receita/categoria.xhtml">Bebida</a>
@@ -36,16 +40,15 @@
                     </div>
                     <div class="recipes-list">
                         <!-- ui repeat -->
-                        
+
                         <ui:repeat var="receita" value="#{receitaController.receitasPublicas}">
                             <h:form>
                                 <div class="recipe">
-                                    <h:graphicImage
-                                        value="#{receita.imagem}"
-                                        class="img recipe-img" alt="" />                    
+                                    <h:graphicImage value="#{receita.imagem}" class="img recipe-img" alt="" />
                                     <div class="recipe-content">
                                         <h5>#{receita.getNome()}</h5>
-                                        <h:commandButton value="Selecionar" type="submit" class="button-recipe" action="#{receitaController.acessaReceita(receita.id)}"/>
+                                        <h:commandButton value="Selecionar" type="submit" class="button-recipe"
+                                            action="#{receitaController.acessaReceita(receita.id)}" />
                                         <!-- <h:commandButton value="Salvar" type="submit" class="button-recipe" /> -->
                                         <!-- action="#{receita}" -->
                                     </div>
