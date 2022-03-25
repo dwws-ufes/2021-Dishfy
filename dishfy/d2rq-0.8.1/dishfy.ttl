@@ -1,0 +1,486 @@
+@prefix map: <#> .
+@prefix db: <> .
+@prefix vocab: <vocab/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "com.mysql.cj.jdbc.Driver";
+	d2rq:jdbcDSN "jdbc:mysql://localhost/dishfy";
+	d2rq:username "dwws";
+	d2rq:password "Password.123456";
+	jdbc:zeroDateTimeBehavior "convertToNull";
+	jdbc:autoReconnect "true";
+	.
+
+# Table categoria
+map:categoria a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "categoria/@@categoria.id@@";
+	d2rq:class vocab:categoria;
+	d2rq:classDefinitionLabel "categoria";
+	.
+map:categoria__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:categoria;
+	d2rq:property rdfs:label;
+	d2rq:pattern "categoria #@@categoria.id@@";
+	.
+map:categoria_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:categoria;
+	d2rq:property vocab:categoria_id;
+	d2rq:propertyDefinitionLabel "categoria id";
+	d2rq:column "categoria.id";
+	d2rq:datatype xsd:integer;
+	.
+map:categoria_nome a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:categoria;
+	d2rq:property vocab:categoria_nome;
+	d2rq:propertyDefinitionLabel "categoria nome";
+	d2rq:column "categoria.nome";
+	.
+
+# Table consumo
+map:consumo a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "consumo/@@consumo.id@@";
+	d2rq:class vocab:consumo;
+	d2rq:classDefinitionLabel "consumo";
+	.
+map:consumo__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:consumo;
+	d2rq:property rdfs:label;
+	d2rq:pattern "consumo #@@consumo.id@@";
+	.
+map:consumo_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:consumo;
+	d2rq:property vocab:consumo_id;
+	d2rq:propertyDefinitionLabel "consumo id";
+	d2rq:column "consumo.id";
+	d2rq:datatype xsd:integer;
+	.
+map:consumo_data a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:consumo;
+	d2rq:property vocab:consumo_data;
+	d2rq:propertyDefinitionLabel "consumo data";
+	d2rq:column "consumo.data";
+	d2rq:datatype xsd:dateTime;
+	.
+map:consumo_calorias a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:consumo;
+	d2rq:property vocab:consumo_calorias;
+	d2rq:propertyDefinitionLabel "consumo calorias";
+	d2rq:column "consumo.calorias";
+	d2rq:datatype xsd:double;
+	.
+map:consumo_receita_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:consumo;
+	d2rq:property vocab:consumo_receita_id;
+	d2rq:refersToClassMap map:receita;
+	d2rq:join "consumo.receita_id => receita.id";
+	.
+map:consumo_usuario_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:consumo;
+	d2rq:property vocab:consumo_usuario_id;
+	d2rq:refersToClassMap map:usuario;
+	d2rq:join "consumo.usuario_id => usuario.id";
+	.
+
+# Table hibernate_sequence
+map:hibernate_sequence a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	# Sorry, I don't know which columns to put into the uriPattern
+	#     for "hibernate_sequence" because the table doesn't have a primary key.
+	#     Please specify it manually.
+	d2rq:uriPattern "hibernate_sequence";
+	d2rq:class vocab:hibernate_sequence;
+	d2rq:classDefinitionLabel "hibernate_sequence";
+	.
+map:hibernate_sequence_next_val a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hibernate_sequence;
+	d2rq:property vocab:hibernate_sequence_next_val;
+	d2rq:propertyDefinitionLabel "hibernate_sequence next_val";
+	d2rq:column "hibernate_sequence.next_val";
+	d2rq:datatype xsd:integer;
+	.
+map:hibernate_sequence_next_val a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hibernate_sequence;
+	d2rq:property vocab:hibernate_sequence_next_val;
+	d2rq:propertyDefinitionLabel "hibernate_sequence next_val";
+	d2rq:column "hibernate_sequence.next_val";
+	d2rq:datatype xsd:integer;
+	.
+
+# Table imagedishfy
+map:imagedishfy a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "imagedishfy/@@imagedishfy.id@@";
+	d2rq:class vocab:imagedishfy;
+	d2rq:classDefinitionLabel "imagedishfy";
+	.
+map:imagedishfy__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:imagedishfy;
+	d2rq:property rdfs:label;
+	d2rq:pattern "imagedishfy #@@imagedishfy.id@@";
+	.
+map:imagedishfy_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:imagedishfy;
+	d2rq:property vocab:imagedishfy_id;
+	d2rq:propertyDefinitionLabel "imagedishfy id";
+	d2rq:column "imagedishfy.id";
+	d2rq:datatype xsd:integer;
+	.
+map:imagedishfy_image a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:imagedishfy;
+	d2rq:property vocab:imagedishfy_image;
+	d2rq:propertyDefinitionLabel "imagedishfy image";
+	d2rq:column "imagedishfy.image";
+	d2rq:datatype xsd:hexBinary;
+	.
+map:imagedishfy_nome a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:imagedishfy;
+	d2rq:property vocab:imagedishfy_nome;
+	d2rq:propertyDefinitionLabel "imagedishfy nome";
+	d2rq:column "imagedishfy.nome";
+	.
+
+# Table ingrediente
+map:ingrediente a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "ingrediente/@@ingrediente.id@@";
+	d2rq:class vocab:ingrediente;
+	d2rq:classDefinitionLabel "ingrediente";
+	.
+map:ingrediente__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ingrediente;
+	d2rq:property rdfs:label;
+	d2rq:pattern "ingrediente #@@ingrediente.id@@";
+	.
+map:ingrediente_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ingrediente;
+	d2rq:property vocab:ingrediente_id;
+	d2rq:propertyDefinitionLabel "ingrediente id";
+	d2rq:column "ingrediente.id";
+	d2rq:datatype xsd:integer;
+	.
+map:ingrediente_calorias a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ingrediente;
+	d2rq:property vocab:ingrediente_calorias;
+	d2rq:propertyDefinitionLabel "ingrediente calorias";
+	d2rq:column "ingrediente.calorias";
+	d2rq:datatype xsd:double;
+	.
+map:ingrediente_nome a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ingrediente;
+	d2rq:property vocab:ingrediente_nome;
+	d2rq:propertyDefinitionLabel "ingrediente nome";
+	d2rq:column "ingrediente.nome";
+	.
+map:ingrediente_grandeza a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ingrediente;
+	d2rq:property vocab:ingrediente_grandeza;
+	d2rq:propertyDefinitionLabel "ingrediente grandeza";
+	d2rq:column "ingrediente.grandeza";
+	.
+
+# Table item
+map:item a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "item/@@item.id@@";
+	d2rq:class vocab:item;
+	d2rq:classDefinitionLabel "item";
+	.
+map:item__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:item;
+	d2rq:property rdfs:label;
+	d2rq:pattern "item #@@item.id@@";
+	.
+map:item_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:item;
+	d2rq:property vocab:item_id;
+	d2rq:propertyDefinitionLabel "item id";
+	d2rq:column "item.id";
+	d2rq:datatype xsd:integer;
+	.
+map:item_grandeza a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:item;
+	d2rq:property vocab:item_grandeza;
+	d2rq:propertyDefinitionLabel "item grandeza";
+	d2rq:column "item.grandeza";
+	.
+map:item_quantidade a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:item;
+	d2rq:property vocab:item_quantidade;
+	d2rq:propertyDefinitionLabel "item quantidade";
+	d2rq:column "item.quantidade";
+	d2rq:datatype xsd:double;
+	.
+map:item_receita_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:item;
+	d2rq:property vocab:item_receita_id;
+	d2rq:refersToClassMap map:receita;
+	d2rq:join "item.receita_id => receita.id";
+	.
+map:item_ingrediente_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:item;
+	d2rq:property vocab:item_ingrediente_id;
+	d2rq:refersToClassMap map:ingrediente;
+	d2rq:join "item.ingrediente_id => ingrediente.id";
+	.
+
+# Table receita
+map:receita a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "receita/@@receita.id@@";
+	d2rq:class vocab:receita;
+	d2rq:classDefinitionLabel "receita";
+	.
+map:receita__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:receita;
+	d2rq:property rdfs:label;
+	d2rq:pattern "receita #@@receita.id@@";
+	.
+map:receita_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:receita;
+	d2rq:property vocab:receita_id;
+	d2rq:propertyDefinitionLabel "receita id";
+	d2rq:column "receita.id";
+	d2rq:datatype xsd:integer;
+	.
+map:receita_calorias a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:receita;
+	d2rq:property vocab:receita_calorias;
+	d2rq:propertyDefinitionLabel "receita calorias";
+	d2rq:column "receita.calorias";
+	d2rq:datatype xsd:double;
+	.
+map:receita_descricao a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:receita;
+	d2rq:property vocab:receita_descricao;
+	d2rq:propertyDefinitionLabel "receita descricao";
+	d2rq:column "receita.descricao";
+	.
+map:receita_imagem a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:receita;
+	d2rq:property vocab:receita_imagem;
+	d2rq:propertyDefinitionLabel "receita imagem";
+	d2rq:column "receita.imagem";
+	d2rq:datatype xsd:hexBinary;
+	.
+map:receita_nome a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:receita;
+	d2rq:property vocab:receita_nome;
+	d2rq:propertyDefinitionLabel "receita nome";
+	d2rq:column "receita.nome";
+	.
+map:receita_publico a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:receita;
+	d2rq:property vocab:receita_publico;
+	d2rq:propertyDefinitionLabel "receita publico";
+	d2rq:column "receita.publico";
+	d2rq:valueRegex "^[01]*$";
+	.
+map:receita_categoria_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:receita;
+	d2rq:property vocab:receita_categoria_id;
+	d2rq:refersToClassMap map:categoria;
+	d2rq:join "receita.categoria_id => categoria.id";
+	.
+map:receita_imagem_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:receita;
+	d2rq:property vocab:receita_imagem_id;
+	d2rq:refersToClassMap map:imagedishfy;
+	d2rq:join "receita.imagem_id => imagedishfy.id";
+	.
+map:receita_autor_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:receita;
+	d2rq:property vocab:receita_autor_id;
+	d2rq:refersToClassMap map:usuario;
+	d2rq:join "receita.autor_id => usuario.id";
+	.
+
+# Table receita_categoria (n:m)
+map:receita_categoria__link a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:categoria;
+	d2rq:property vocab:receita_categoria;
+	d2rq:refersToClassMap map:receita;
+	d2rq:join "receita_categoria.categoria_id => categoria.id";
+	d2rq:join "receita_categoria.Receita_id => receita.id";
+	.
+
+# Table usuario
+map:usuario a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "usuario/@@usuario.id@@";
+	d2rq:class vocab:usuario;
+	d2rq:classDefinitionLabel "usuario";
+	.
+map:usuario__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:usuario;
+	d2rq:property rdfs:label;
+	d2rq:pattern "usuario #@@usuario.id@@";
+	.
+map:usuario_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:usuario;
+	d2rq:property vocab:usuario_id;
+	d2rq:propertyDefinitionLabel "usuario id";
+	d2rq:column "usuario.id";
+	d2rq:datatype xsd:integer;
+	.
+map:usuario_email a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:usuario;
+	d2rq:property vocab:usuario_email;
+	d2rq:propertyDefinitionLabel "usuario email";
+	d2rq:column "usuario.email";
+	.
+map:usuario_fotoPerfil a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:usuario;
+	d2rq:property vocab:usuario_fotoPerfil;
+	d2rq:propertyDefinitionLabel "usuario fotoPerfil";
+	d2rq:column "usuario.fotoPerfil";
+	d2rq:datatype xsd:hexBinary;
+	.
+map:usuario_nome a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:usuario;
+	d2rq:property vocab:usuario_nome;
+	d2rq:propertyDefinitionLabel "usuario nome";
+	d2rq:column "usuario.nome";
+	.
+map:usuario_senha a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:usuario;
+	d2rq:property vocab:usuario_senha;
+	d2rq:propertyDefinitionLabel "usuario senha";
+	d2rq:column "usuario.senha";
+	.
+map:usuario_tamanhoMax a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:usuario;
+	d2rq:property vocab:usuario_tamanhoMax;
+	d2rq:propertyDefinitionLabel "usuario tamanhoMax";
+	d2rq:column "usuario.tamanhoMax";
+	d2rq:datatype xsd:integer;
+	.
+map:usuario_consumoTotal a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:usuario;
+	d2rq:property vocab:usuario_consumoTotal;
+	d2rq:propertyDefinitionLabel "usuario consumoTotal";
+	d2rq:column "usuario.consumoTotal";
+	d2rq:datatype xsd:double;
+	.
+map:usuario_imagem_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:usuario;
+	d2rq:property vocab:usuario_imagem_id;
+	d2rq:refersToClassMap map:imagedishfy;
+	d2rq:join "usuario.imagem_id => imagedishfy.id";
+	.
+
+# Table usuario_consumo (n:m)
+map:usuario_consumo__link a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:usuario;
+	d2rq:property vocab:usuario_consumo;
+	d2rq:refersToClassMap map:consumo;
+	d2rq:join "usuario_consumo.Usuario_id => usuario.id";
+	d2rq:join "usuario_consumo.consumo_id => consumo.id";
+	.
+
+# Table usuario_receita (n:m)
+map:usuario_receita__link a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:usuario;
+	d2rq:property vocab:usuario_receita;
+	d2rq:refersToClassMap map:receita;
+	d2rq:join "usuario_receita.Usuario_id => usuario.id";
+	d2rq:join "usuario_receita.receitas_id => receita.id";
+	.
+
+# Table hibernate_sequence
+map:hibernate_sequence a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	# Sorry, I don't know which columns to put into the uriPattern
+	#     for "hibernate_sequence" because the table doesn't have a primary key.
+	#     Please specify it manually.
+	d2rq:uriPattern "hibernate_sequence";
+	d2rq:class vocab:hibernate_sequence;
+	d2rq:classDefinitionLabel "hibernate_sequence";
+	.
+map:hibernate_sequence_next_val a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hibernate_sequence;
+	d2rq:property vocab:hibernate_sequence_next_val;
+	d2rq:propertyDefinitionLabel "hibernate_sequence next_val";
+	d2rq:column "hibernate_sequence.next_val";
+	d2rq:datatype xsd:integer;
+	.
+map:hibernate_sequence_next_val a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hibernate_sequence;
+	d2rq:property vocab:hibernate_sequence_next_val;
+	d2rq:propertyDefinitionLabel "hibernate_sequence next_val";
+	d2rq:column "hibernate_sequence.next_val";
+	d2rq:datatype xsd:integer;
+	.
+
+# Table workshop
+map:workshop a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "workshop/@@workshop.id@@";
+	d2rq:class vocab:workshop;
+	d2rq:classDefinitionLabel "workshop";
+	.
+map:workshop__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:workshop;
+	d2rq:property rdfs:label;
+	d2rq:pattern "workshop #@@workshop.id@@";
+	.
+map:workshop_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:workshop;
+	d2rq:property vocab:workshop_id;
+	d2rq:propertyDefinitionLabel "workshop id";
+	d2rq:column "workshop.id";
+	d2rq:datatype xsd:integer;
+	.
+map:workshop_uuid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:workshop;
+	d2rq:property vocab:workshop_uuid;
+	d2rq:propertyDefinitionLabel "workshop uuid";
+	d2rq:column "workshop.uuid";
+	.
+map:workshop_version a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:workshop;
+	d2rq:property vocab:workshop_version;
+	d2rq:propertyDefinitionLabel "workshop version";
+	d2rq:column "workshop.version";
+	d2rq:datatype xsd:integer;
+	.
+map:workshop_acronym a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:workshop;
+	d2rq:property vocab:workshop_acronym;
+	d2rq:propertyDefinitionLabel "workshop acronym";
+	d2rq:column "workshop.acronym";
+	.
+map:workshop_name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:workshop;
+	d2rq:property vocab:workshop_name;
+	d2rq:propertyDefinitionLabel "workshop name";
+	d2rq:column "workshop.name";
+	.
+map:workshop_reviewDeadline a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:workshop;
+	d2rq:property vocab:workshop_reviewDeadline;
+	d2rq:propertyDefinitionLabel "workshop reviewDeadline";
+	d2rq:column "workshop.reviewDeadline";
+	d2rq:datatype xsd:date;
+	.
+map:workshop_submissionDeadline a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:workshop;
+	d2rq:property vocab:workshop_submissionDeadline;
+	d2rq:propertyDefinitionLabel "workshop submissionDeadline";
+	d2rq:column "workshop.submissionDeadline";
+	d2rq:datatype xsd:date;
+	.
+map:workshop_year a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:workshop;
+	d2rq:property vocab:workshop_year;
+	d2rq:propertyDefinitionLabel "workshop year";
+	d2rq:column "workshop.year";
+	d2rq:datatype xsd:integer;
+	.
+

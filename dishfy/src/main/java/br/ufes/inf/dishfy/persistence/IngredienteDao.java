@@ -8,7 +8,7 @@ import jakarta.ejb.Local;
 public interface IngredienteDao{
 
     public List<Ingrediente> getIngredientes();
-    public void saveIngrediente(Ingrediente ingrediente);
+    public Ingrediente saveIngrediente(Ingrediente ingrediente);
     public Ingrediente getIngredientesByName(String nome);
     public Ingrediente getIngredientesById(int ingredienteId);
 }

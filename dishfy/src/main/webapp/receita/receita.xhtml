@@ -5,6 +5,9 @@
     template="/WEB-INF/templates/template-home.xhtml">
 
     <ui:define name="title">Receita</ui:define>
+    <ui:define name="css">
+        <h:outputStylesheet library="css" name="home.css" />
+    </ui:define>
     <ui:define name="contents">
         <div id="content-container">
 
@@ -23,10 +26,15 @@
                         <!-- <sup>Receita por <p>Tico e teco</p></sup> -->
                         <p class="calories"><span style="color: #ff0000;font-weight: 400;">#{receitaController.receitaSelecionada.calorias}</span> calorias.</p>
                         <!-- <p class="calories"><span style="color: #ff0000;font-weight: 400;">#{receitaController.receitaSelecionada.calorias}</span> calorias.</p> -->
+                        <h:form>
+                            <h:commandButton value="Consumir" type="submit" class="button-recipe" 
+                                    action="#{consumoController.consomeReceita()}"/>
+                                    <!-- Talvez seria melhor passar o receita.id como parâmetro na função -->
+                        </h:form>
                     </div>
                 </div>
                 <div class="recipe-content">
-                    <div class="intro">
+                    <div>
                         <h3>Método</h3>
                         <p>#{receitaController.receitaSelecionada.descricao}</p>
                         <!-- <p>Coloque o azeite em uma panela e frite o bacon e a linguiça separadamente, depois reserve.

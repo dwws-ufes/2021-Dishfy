@@ -28,7 +28,7 @@ public class Receita {
     private String descricao;
 
     @Column(nullable = false)
-    private float calorias;
+    private double calorias;
 
     @OneToOne
     private ImageDishfy imagem;
@@ -95,11 +95,11 @@ public class Receita {
         this.descricao = descricao;
     }
 
-    public float getCalorias() {
+    public double getCalorias() {
         return calorias;
     }
 
-    public void setCalorias(float calorias) {
+    public void setCalorias(double calorias) {
         this.calorias = calorias;
     }
 

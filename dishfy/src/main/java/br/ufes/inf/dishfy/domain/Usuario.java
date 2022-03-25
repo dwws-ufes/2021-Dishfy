@@ -27,7 +27,7 @@ public class Usuario {
     private String email;
 
     @Column(nullable = false)
-    private float consumoTotal = 0;
+    private double consumoTotal = 0;
 
     @Column(length = 255, nullable = false)
     private String senha;
@@ -62,7 +62,7 @@ public class Usuario {
         this.receitas = receitas;
     }
 
-    public void setCaloriasTotal(float calorias){
+    public void setCaloriasTotal(double calorias){
 
         this.consumoTotal+=calorias;
     }

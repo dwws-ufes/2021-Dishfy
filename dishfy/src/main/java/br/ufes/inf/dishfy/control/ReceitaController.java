@@ -351,4 +351,7 @@ public class ReceitaController implements Serializable {
     this.usuarioLogado = usuarioLogado;
   }
 
+  public String clienteSPARQL(){
+    return "http://localhost:2021/snorql/";
+  }
 }

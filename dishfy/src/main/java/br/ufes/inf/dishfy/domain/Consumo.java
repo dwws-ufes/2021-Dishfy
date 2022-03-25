@@ -22,7 +22,7 @@ public class Consumo {
     private Date data;
 
     @Column(nullable = false)
-    float calorias; 
+    double calorias; 
 
     @ManyToOne
     private Receita receita;
