@@ -1,6 +1,8 @@
 package br.ufes.inf.dishfy.control;
 
 import java.io.Serializable;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -16,11 +18,12 @@ import jakarta.ejb.EJB;
 import jakarta.enterprise.inject.Model;
 import java.util.ArrayList;
 import java.util.Calendar;
+
 @Model
 public class ConsumoController implements Serializable {
   @EJB
   private ConsumoService consumoService;
-  
+
   @EJB
   private ReceitaService receitaService;
 
@@ -28,47 +31,46 @@ public class ConsumoController implements Serializable {
   private AutenticacaoService autenticacaoService;
 
   @EJB
-  private UsuarioService usuarioService ;
+  private UsuarioService usuarioService;
 
   private Integer idReceita;
   private Date date;
   private Receita receita;
   private Consumo consumo;
   private int receitaId;
-  
+
   @PostConstruct
   public void init() {
-      consumo = new Consumo();
-      receita = new Receita();
-      		
+    consumo = new Consumo();
+    receita = new Receita();
+
   }
-  public void saveConsumo(){
+
+  public void saveConsumo() {
     consumo.setData(date);
     receita.setId(idReceita);
     consumo.setReceita(receitaService.getReceita(receita));
-    
-
 
   }
 
-  public Consumo getOneConsumo(Integer idUsuario){
+  public Consumo getOneConsumo(Integer idUsuario) {
 
     return consumoService.getById(idUsuario);
   }
-  
-  public List<Consumo> getAllConsumoUsuario(ArrayList<Integer> usuario){
+
+  public List<Consumo> getAllConsumoUsuario(ArrayList<Integer> usuario) {
     return consumoService.getConsumo(usuario);
   }
 
-  public boolean consomeReceita(){
+  public boolean consomeReceita() {
     Receita receita = receitaService.getReceitaById(receitaId);
     Usuario usuarioLogado;
     Calendar today = Calendar.getInstance();
     today.set(Calendar.HOUR_OF_DAY, 0);
 
-    try{
+    try {
       usuarioLogado = autenticacaoService.getLoggedUser();
-      
+
       Consumo consumo = new Consumo();
       consumo.setData(today.getTime());
       consumo.setReceita(receita);
@@ -83,10 +85,15 @@ public class ConsumoController implements Serializable {
       usuarioService.updateUsuario(usuarioLogado);
 
       return true;
-    } catch (Exception e){
+    } catch (Exception e) {
       e.printStackTrace();
     }
 
     return false;
+  }
+
+  public String getDateAsString() {
+    Format formatter = new SimpleDateFormat("dd/MM/yyyy");
+    return formatter.format(consumo.getData());
   }
 }
