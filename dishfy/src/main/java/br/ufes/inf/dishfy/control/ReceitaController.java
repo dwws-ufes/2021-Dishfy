@@ -38,7 +38,7 @@ import jakarta.servlet.http.Part;
 @Model
 @SessionScoped
 public class ReceitaController implements Serializable {
-  
+
   @EJB
   private ReceitaService receitaService;
 
@@ -50,7 +50,7 @@ public class ReceitaController implements Serializable {
 
   @EJB
   private AutenticacaoService autenticacaoService;
-  
+
   @EJB
   private ImagemPersitService imagemPersitService;
 
@@ -68,7 +68,7 @@ public class ReceitaController implements Serializable {
   private String categoria;
   private String publico;
   private double calorias;
-  
+
   private Part uploadedFile;
   private String imageName;
   private ImageDishfy imagem;
@@ -90,7 +90,7 @@ public class ReceitaController implements Serializable {
   public void init() {
     receita = new Receita();
     try {
-      usuarioLogado = autenticacaoService.getLoggedUser();      
+      usuarioLogado = autenticacaoService.getLoggedUser();
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -100,22 +100,23 @@ public class ReceitaController implements Serializable {
     receitasPublicas = receitaService.getPublicReceitas();
   }
 
-  public String criaReceita(){
+  public String criaReceita() {
     Categoria categoriaConsultada = categoriaService.getCategoriaByName(categoria);
-    
-    System.out.println("------- criando receita: " + nome + " " + desc + " " + categoriaConsultada.getNome() + " " + publico);
+
+    System.out
+        .println("------- criando receita: " + nome + " " + desc + " " + categoriaConsultada.getNome() + " " + publico);
 
     receita.setNome(nome);
     receita.setDescricao(desc);
-    receita.setCategoria(categoriaConsultada);    
-    receita.setPublico(publico.equals("privado") ? false : true);    
-    
+    receita.setCategoria(categoriaConsultada);
+    receita.setPublico(publico.equals("privado") ? false : true);
+
     receita.setAutor(usuarioLogado);
 
     // long start = System.currentTimeMillis();
     // long end = start + 5*1000;
     // while (System.currentTimeMillis() < end) {}
-    
+
     // receita.setImagem(imagem);
 
     receita.setItens(new ArrayList<>());
@@ -125,13 +126,13 @@ public class ReceitaController implements Serializable {
     List<Receita> receitas = usuarioLogado.getReceitas();
     receitas.add(receita);
     usuarioLogado.setReceitas(receitas);
-    
-    System.out.println("------------- USUARIO LOGADO "+usuarioLogado.getId());
+
+    System.out.println("------------- USUARIO LOGADO " + usuarioLogado.getId());
     usuarioLogado = usuarioService.updateUsuario(usuarioLogado);
 
     System.out.println("---- Receitas do usuario");
     for (Receita receita : usuarioLogado.getReceitas()) {
-      System.out.println("---- "+receita.getNome());
+      System.out.println("---- " + receita.getNome());
     }
 
     this.receitaCriada = receita;
@@ -148,25 +149,31 @@ public class ReceitaController implements Serializable {
     return "/receita/adicionaItem.xhtml";
   }
 
-  public String adicionarItens(){
+  public String adicionarItens() {
     return "/receita/sucesso.xhtml";
   }
 
-  public void salvarItem(){
+  public void salvarItem() {
     Item item = new Item();
 
-    if(grand != null && qtd != null && ingrediente != null && receitaCriada != null){
-      System.out.println("-------- item adicionado " + qtd +" "+ grand +" "+ ingredienteService.getIngrediente(ingrediente).getNome() );
+    double somaCaloria = 0;
+
+    if (grand != null && qtd != null && ingrediente != null && receitaCriada != null) {
+      System.out.println("-------- item adicionado " + qtd + " " + grand + " "
+          + ingredienteService.getIngrediente(ingrediente).getNome());
       item.setGrandeza(grand);
       item.setQuantidade(Double.parseDouble(qtd));
       item.setIngrediente(ingredienteService.getIngrediente(ingrediente));
       item.setReceita(receitaCriada);
+      somaCaloria = somaCaloria
+          + (Double.parseDouble(qtd) * ingredienteService.getIngrediente(ingrediente).getCalorias());
     }
-    
+
     itemService.salvarItem(item);
     this.items = receitaCriada.getItens();
     this.items.add(item);
     receitaCriada.setItens(items);
+    receitaCriada.setCalorias(somaCaloria);
     receitaService.updateReceita(receitaCriada);
 
     qtd = null;
@@ -175,15 +182,15 @@ public class ReceitaController implements Serializable {
 
   }
 
-  public Receita AtualizarReceita(Receita receita){
-      return receitaService.updateReceita(receita);
+  public Receita AtualizarReceita(Receita receita) {
+    return receitaService.updateReceita(receita);
   }
 
-  public List<Receita> consultaReceita(){
+  public List<Receita> consultaReceita() {
     return receitaService.getAllReceita();
   }
 
-  public void deletaReceita(Receita receita){
+  public void deletaReceita(Receita receita) {
     receitaService.deleteReceita(receita);
   }
 
@@ -201,7 +208,7 @@ public class ReceitaController implements Serializable {
     List<Ingrediente> ingredientes = ingredienteService.getIngredientes();
 
     for (Ingrediente ingrediente : ingredientes) {
-        ingredientList.add(ingrediente.getNome());
+      ingredientList.add(ingrediente.getNome());
     }
 
     return ingredientList.stream().filter(c -> c.toLowerCase().startsWith(queryLowerCase)).collect(Collectors.toList());
@@ -217,7 +224,7 @@ public class ReceitaController implements Serializable {
     }
     return "/receita/receita.xhtml";
   }
-  
+
   public void acessaReceitasPublicas() {
     this.receitasPublicas = receitaService.getPublicReceitas();
   }
@@ -342,7 +349,6 @@ public class ReceitaController implements Serializable {
     this.receitaCriada = receitaCriada;
   }
 
-
   public Usuario getUsuarioLogado() {
     return this.usuarioLogado;
   }
@@ -351,7 +357,7 @@ public class ReceitaController implements Serializable {
     this.usuarioLogado = usuarioLogado;
   }
 
-  public String clienteSPARQL(){
+  public String clienteSPARQL() {
     return "http://localhost:2021/snorql/";
   }
 }
