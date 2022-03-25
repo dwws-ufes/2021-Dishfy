@@ -66,17 +66,22 @@ public class OpenFoodFacts {
         
         QueryExecution queryExecution = QueryExecutionFactory.sparqlService(uri, query);
         ResultSet results = queryExecution.execSelect();
-        QuerySolution querySolution;
-        //String resource;
-       // String value;
+        if(results.hasNext()){
+            QuerySolution querySolution;
+            querySolution = results.next();
+            querySolution = results.next();
+            querySolution = results.next();
+            querySolution = results.next();
+            querySolution = results.next();
+            return querySolution.get("hasValue").toString();   
+                     
+        }
+        else {
+            return null;
+
+        }
         
-        querySolution = results.next();
-        querySolution = results.next();
-        querySolution = results.next();
-        querySolution = results.next();
-        querySolution = results.next();        
         
-        return querySolution.get("hasValue").toString();
     }
 
     public static Ingrediente getIngredienteOpenFoodFacts(String nome, String nutriments, String uri){
@@ -102,27 +107,48 @@ public class OpenFoodFacts {
         //String resource;
        // String value;
         
-        querySolution = results.next();
-        querySolution = results.next();
-        
-        String grandeza = querySolution.get("hasValue").toString();
-        querySolution = results.next();
-        
-        String teste = querySolution.get("hasValue").toString();
-        String rcv = teste.substring(0,teste.indexOf("^"));
-        double caloria = Double.parseDouble(rcv);
-        
-        Ingrediente ingrediente = new Ingrediente();
-        ingrediente.setNome(nome);
-        ingrediente.setCalorias(caloria);
-        ingrediente.setGrandeza(grandeza);
+       if(results.hasNext()){
+           
+            querySolution = results.next();
+            querySolution = results.next();
+            
+            String grandeza = querySolution.get("hasValue").toString();
+            querySolution = results.next();
+            
+            String teste = querySolution.get("hasValue").toString();
+            String rcv = teste.substring(0,teste.indexOf("^"));
+            double caloria = Double.parseDouble(rcv);
+            
+            Ingrediente ingrediente = new Ingrediente();
+            ingrediente.setNome(nome);
+            ingrediente.setCalorias(caloria);
+            ingrediente.setGrandeza(grandeza);
 
-        return ingrediente;
+            return ingrediente;
+
+       }else{
+           return null;
+       } 
     }
 
     public static Ingrediente getIngredienteAPI(String nome, String uri){
+
         String param = getResourceOpenFoodFacts(uri,nome);
-        String param2 = getPropertyNutriments(uri, param);
-        return getIngredienteOpenFoodFacts(nome,param2,uri);
+
+        if (param!=null){
+
+            String param2 = getPropertyNutriments(uri, param);
+
+            if(param!=null){
+
+                return getIngredienteOpenFoodFacts(nome,param2,uri);
+
+            }
+
+        }
+        
+        return null;
+        
+        
     }
 }
