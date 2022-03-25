@@ -1,0 +1,2 @@
+#!/bin/bash
+./d2r-server --port 2021 dishfy.ttl
