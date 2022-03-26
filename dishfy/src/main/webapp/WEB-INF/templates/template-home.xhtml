@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-  xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+  xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>
@@ -29,29 +29,31 @@
     <nav>
       <ul class="menu-header">
         <li>
-          <a styleClass="text-header" href="../core/home-estatica.xhtml">Home</a>
+          <a styleClass="text-header" href="../core/home.xhtml">Home</a>
         </li>
         <li>
-          <a styleClass="text-header" href="../receita/minhasReceitas-estatica.xhtml">Receitas</a>
+          <a styleClass="text-header" href="../receita/minhasReceitas.xhtml">Receitas</a>
         </li>
         <li>
           <a styleClass="text-header" href="../pesquisa/pesquisa.xhtml">Pesquisa</a>
         </li>
         <li>
-          <a styleClass="text-header" href="../receita/historico-estatica.xhtml">Consumo</a>
+          <a styleClass="text-header" href="../receita/historico.xhtml">Consumo</a>
         </li>
         <li>
           <a styleClass="text-header" href="../user/perfil.xhtml">Perfil</a>
         </li>
       </ul>
       <ul class="login-button">
-        <li>
-          <h:link value="Sair" styleClass="button" outcome="/index" />
-        </li>
+        <h:form>
+          <!-- <h:link value="Sair" styleClass="button" outcome="/index" /> -->
+          <h:commandButton styleClass="button" type="submit" value="Sair"
+            action="#{autenticarUsuarioController.solicitaLogout}" />
+        </h:form>
       </ul>
     </nav>
   </header>
-  
+
   <!-- Main -->
   <ui:insert name="contents">Pagina em branco.</ui:insert>
   <!-- Main -->
@@ -75,10 +77,6 @@
           <li class="github-contact">
             <h:graphicImage value="https://cdn-icons-png.flaticon.com/512/25/25231.png" styleClass="git-image" />
             <a href="https://github.com/IgorDummer" class=""><span>Igor</span></a>
-          </li>
-          <li class="github-contact">
-            <h:graphicImage value="https://cdn-icons-png.flaticon.com/512/25/25231.png" styleClass="git-image" />
-            <a href="https://github.com/luisarios" class=""><span>Luisa</span></a>
           </li>
           <li class="github-contact">
             <h:graphicImage value="https://cdn-icons-png.flaticon.com/512/25/25231.png" styleClass="git-image" />

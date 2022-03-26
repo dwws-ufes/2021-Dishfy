@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
-    template="/WEB-INF/templates/template-home.xhtml">
+    template="/WEB-INF/templates/template-home.xhtml" xmlns:o="http://omnifaces.org/ui">
 
     <ui:define name="title">Histórico</ui:define>
     <ui:define name="css">
@@ -19,35 +19,25 @@
                     </div>
                 </header>
                 <section class="recipes-container grid">
-                    <!-- ui:repeat -->
-                    <p>- Dia 13/01/2022</p>
-                    <div class="recipes-list">
-                        <!-- outro ui:repeat -->
-                        <a href="receita.xhtml" class="recipe">
-                            <h:graphicImage
-                                value="https://img.itdg.com.br/tdg/images/recipes/000/000/961/327806/327806_original.jpg"
-                                class="img recipe-img" alt="" />
-                            <h5>Feijão Tropeiro</h5> <!-- #{receita.getName() }-->
-                            <p>Calorias: <span>300</span></p>
-                        </a>
-                        <a href="receita.xhtml" class="recipe">
-                            <h:graphicImage
-                                value="https://images.aws.nestle.recipes/resized/40b25559b85b265e885f55ec7c1e4d04_torta-lim%C3%A3o-receitas-nestle_1200_600.jpg"
-                                class="img recipe-img" alt="" />
-                            <h5>Torta de Limão</h5>
-                            <p>Calorias: <span>250</span></p>
-                        </a>
-                    </div>
-                    <p>- Dia 10/01/2022</p>
-                    <div class="recipes-list">
-                        <a href="receita.xhtml" class="recipe">
-                            <h:graphicImage
-                                value="https://espetinhodesucesso.com.br/wp-content/uploads/2017/09/como-grelhar-carne-dicas.jpg"
-                                class="img recipe-img" alt="" />
-                            <h5>Carne Assada</h5>
-                            <p>Calorias: <span>280</span></p>
-                        </a>
-                    </div>
+                    <ui:repeat var="consumo" value="#{consumoController.getAllConsumoUsuario()}">
+                        <p>- Dia
+                            <h:outputText value="#{consumoController.getDateAsString(consumo)}" />
+                        </p>
+                        <div class="recipes-list">
+                            <h:form>
+                                <div class="recipe">
+                                    <o:graphicImage value="#{imageBean.getImagemByReceita(consumo.receita.id)}" class="img recipe-img"
+                                        alt="" />
+                                    <div class="recipe-content">
+                                        <h5>#{consumo.receita.nome}</h5>
+                                        <h:commandButton value="Selecionar" type="submit" class="button-recipe"
+                                            action="#{receitaController.acessaReceita(consumo.receita.id)}" />
+                                    </div>
+                                    <p>Calorias: <span>#{consumo.receita.calorias}</span></p>
+                                </div>
+                            </h:form>
+                        </div>
+                    </ui:repeat>
                 </section>
             </div>
         </div>

@@ -64,6 +64,17 @@ public class ConsumoImpl implements ConsumoDao {
 
     }
 
+    public List<Consumo> getConsumos(int idUsuario) {
+
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Consumo> criteriaQuery = criteriaBuilder.createQuery(Consumo.class);
+        Root<Consumo> root = criteriaQuery.from(Consumo.class);
+        criteriaQuery.where(criteriaBuilder.equal(root.get("usuario"), idUsuario));
+        List<Consumo> consumos = em.createQuery(criteriaQuery).getResultList();
+        return consumos;
+
+    }
+
     public void deleteConsumo(Consumo consumo) {
         em.merge(consumo);
         em.remove(consumo);

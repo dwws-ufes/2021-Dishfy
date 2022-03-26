@@ -7,7 +7,11 @@ import java.io.Serializable;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+
+import org.apache.commons.codec.binary.Base64;
 
 import br.ufes.inf.dishfy.Utils;
 import br.ufes.inf.dishfy.application.AutenticacaoService;
@@ -15,6 +19,7 @@ import br.ufes.inf.dishfy.application.CategoriaService;
 import br.ufes.inf.dishfy.application.ImagemPersitService;
 import br.ufes.inf.dishfy.application.ImagemService;
 import br.ufes.inf.dishfy.application.IngredienteService;
+import br.ufes.inf.dishfy.application.ItemService;
 import br.ufes.inf.dishfy.application.ReceitaService;
 import br.ufes.inf.dishfy.application.UsuarioService;
 import br.ufes.inf.dishfy.domain.Categoria;
@@ -28,12 +33,14 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.SessionContext;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.enterprise.inject.Model;
 import jakarta.servlet.http.Part;
 
 @Model
+@SessionScoped
 public class ReceitaController implements Serializable {
-  
+
   @EJB
   private ReceitaService receitaService;
 
@@ -45,7 +52,7 @@ public class ReceitaController implements Serializable {
 
   @EJB
   private AutenticacaoService autenticacaoService;
-  
+
   @EJB
   private ImagemPersitService imagemPersitService;
 
@@ -55,12 +62,15 @@ public class ReceitaController implements Serializable {
   @EJB
   private UsuarioService usuarioService;
 
+  @EJB
+  private ItemService itemService;
+
   private String nome;
   private String desc;
   private String categoria;
   private String publico;
   private double calorias;
-  
+
   private Part uploadedFile;
   private String imageName;
   private ImageDishfy imagem;
@@ -72,91 +82,120 @@ public class ReceitaController implements Serializable {
   private List<Receita> matchReceitas;
   private List<Item> items;
   private String consulta;
+  private Receita receitaSelecionada;
+  private int receitaId;
+  private Receita receitaCriada;
+  private List<Receita> receitasPublicas;
+  private Usuario usuarioLogado;
 
   @PostConstruct
   public void init() {
     receita = new Receita();
-    matchReceitas = receitaService.getAllReceita();
+    try {
+      usuarioLogado = autenticacaoService.getLoggedUser();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     publico = "publico";
-    items = new ArrayList<>();
+    // items = new ArrayList<>();
+    matchReceitas = receitaService.getAllReceita();
+    receitasPublicas = receitaService.getPublicReceitas();
   }
 
-  public Receita criaReceita(){
-
+  public String criaReceita() {
     Categoria categoriaConsultada = categoriaService.getCategoriaByName(categoria);
-    Usuario usuarioLogado;
 
-    System.out.println("------- criando receita: " + nome + " " + desc + " " + categoriaConsultada.getNome() + " " + publico + " " + items.toString());
+    System.out
+        .println("------- criando receita: " + nome + " " + desc + " " + categoriaConsultada.getNome() + " " + publico);
 
     receita.setNome(nome);
     receita.setDescricao(desc);
-    receita.setCategoria(categoriaConsultada);    
+    receita.setCategoria(categoriaConsultada);
     receita.setPublico(publico.equals("privado") ? false : true);
-    receita.setItens(items);
-    receita.setImagem(imagem);
 
-    try {
-      usuarioLogado = autenticacaoService.getLoggedUser();
-      receita.setAutor(usuarioLogado);
+    receita.setAutor(usuarioLogado);
 
-      receita = receitaService.updateReceita(receita);
+    // long start = System.currentTimeMillis();
+    // long end = start + 5*1000;
+    // while (System.currentTimeMillis() < end) {}
 
-      List<Receita> receitas = usuarioLogado.getReceitas();
-      receitas.add(receita);
-      usuarioLogado.setReceitas(receitas);
-      
-      System.out.println("------------- USUARIO LOGADO "+usuarioLogado.getId());
-      usuarioLogado = usuarioService.updateUsuario(usuarioLogado);
+    // receita.setImagem(imagem);
+    
+    receita.setItens(new ArrayList<>());
+    
+    receita = receitaService.createReceita(receita);
+    
+    // imagem.setReceita(receita);
+    // imagem = imagemService.updateImagem(imagem);
 
-      System.out.println("---- Receitas");
-      for (Receita receita : usuarioLogado.getReceitas()) {
-        System.out.println("---- "+receita.getNome());
-      }
-    } catch (MultipleObjectException e) {
-      e.printStackTrace();
+    List<Receita> receitas = usuarioLogado.getReceitas();
+    receitas.add(receita);
+    usuarioLogado.setReceitas(receitas);
+
+    System.out.println("------------- USUARIO LOGADO " + usuarioLogado.getId());
+    usuarioLogado = usuarioService.updateUsuario(usuarioLogado);
+
+    System.out.println("---- Receitas do usuario");
+    for (Receita receita : usuarioLogado.getReceitas()) {
+      System.out.println("---- " + receita.getNome());
     }
 
-    // Utils.setTimeout((imagem) -> receita.setImagem(imagem), 5000);
-
-    Receita receitaCriada = receitaService.createReceita(receita);
-
+    this.receitaCriada = receita;
 
     receita = new Receita();
     nome = null;
     desc = null;
     categoria = null;
     publico = null;
-    usuarioLogado = null;
+    items = null;
 
-    return receitaCriada;
+    receitasPublicas = receitaService.getPublicReceitas();
+
+    return "/receita/adicionaItem.xhtml";
   }
 
-  public void salvarItem(){
+  public String adicionarItens() {
+    return "/receita/sucesso.xhtml";
+  }
+
+  public void salvarItem() {
     Item item = new Item();
 
-    if(grand != null && qtd != null && ingrediente != null){
-      System.out.println("-------- item adicionado " + qtd +" "+ grand +" "+ ingredienteService.getIngrediente(ingrediente).getNome() );
+    double somaCaloria = 0;
+
+    if (grand != null && qtd != null && ingrediente != null && receitaCriada != null) {
+      System.out.println("-------- item adicionado " + qtd + " " + grand + " "
+          + ingredienteService.getIngrediente(ingrediente).getNome());
       item.setGrandeza(grand);
       item.setQuantidade(Double.parseDouble(qtd));
       item.setIngrediente(ingredienteService.getIngrediente(ingrediente));
-      items.add(item);
+      item.setReceita(receitaCriada);
+      somaCaloria = somaCaloria
+          + (Double.parseDouble(qtd) * ingredienteService.getIngrediente(ingrediente).getCalorias())/100;
     }
 
-    item = null;
+    itemService.salvarItem(item);
+    this.items = receitaCriada.getItens();
+    this.items.add(item);
+    receitaCriada.setItens(items);
+    receitaCriada.setCalorias(somaCaloria);
+    receitaService.updateReceita(receitaCriada);
+
     qtd = null;
     grand = null;
     ingrediente = null;
+
   }
 
-  public Receita AtualizarReceita(Receita receita){
-      return receitaService.updateReceita(receita);
+  public Receita AtualizarReceita(Receita receita) {
+    return receitaService.updateReceita(receita);
   }
 
-  public List<Receita> consultaReceita(){
+  public List<Receita> consultaReceita() {
     return receitaService.getAllReceita();
   }
 
-  public void deletaReceita(Receita receita){
+  public void deletaReceita(Receita receita) {
     receitaService.deleteReceita(receita);
   }
 
@@ -174,10 +213,25 @@ public class ReceitaController implements Serializable {
     List<Ingrediente> ingredientes = ingredienteService.getIngredientes();
 
     for (Ingrediente ingrediente : ingredientes) {
-        ingredientList.add(ingrediente.getNome());
+      ingredientList.add(ingrediente.getNome());
     }
 
     return ingredientList.stream().filter(c -> c.toLowerCase().startsWith(queryLowerCase)).collect(Collectors.toList());
+  }
+
+  public String acessaReceita(int receitaId) {
+    System.out.println("-------------------RECITA ID: " + receitaId);
+    this.receitaSelecionada = receitaService.getReceitaById(receitaId);
+    receitaSelecionada.setItens(itemService.getItems(receitaId));
+    System.out.println("---------- Receita Selecionada: " + receitaSelecionada.getNome());
+    for (Item item : receitaSelecionada.getItens()) {
+      System.out.println("------ item " + item.getIngrediente().getNome());
+    }
+    return "/receita/receita.xhtml";
+  }
+
+  public void acessaReceitasPublicas() {
+    this.receitasPublicas = receitaService.getPublicReceitas();
   }
 
   public String getNome() {
@@ -267,4 +321,71 @@ public class ReceitaController implements Serializable {
   public void setConsulta(double calorias) {
     this.calorias = calorias;
   }
+
+  public Receita getReceitaSelecionada() {
+    return this.receitaSelecionada;
+  }
+
+  public void setReceitaSelecionada(Receita receitaSelecionada) {
+    this.receitaSelecionada = receitaSelecionada;
+  }
+
+  public int getReceitaId() {
+    return this.receitaId;
+  }
+
+  public void setReceitaId(int receitaId) {
+    this.receitaId = receitaId;
+  }
+
+  public List<Receita> getReceitasPublicas() {
+    return this.receitasPublicas;
+  }
+
+  public void setReceitasPublicas(List<Receita> receitasPublicas) {
+    this.receitasPublicas = receitasPublicas;
+  }
+
+  public Receita getReceitaCriada() {
+    return this.receitaCriada;
+  }
+
+  public void setReceitaCriada(Receita receitaCriada) {
+    this.receitaCriada = receitaCriada;
+  }
+
+  public Usuario getUsuarioLogado() {
+    return this.usuarioLogado;
+  }
+
+  public void setUsuarioLogado(Usuario usuarioLogado) {
+    this.usuarioLogado = usuarioLogado;
+  }
+
+  public int qtdReceitas(int idUsuario){
+    List<Receita> receitas = receitaService.getReceitasUsuario(idUsuario);
+    return receitas.size();
+  }
+
+  public byte[] getImagemByReceita(int idReceita){
+    byte[] imageByte = imagemService.getReceitaImagem(idReceita).getImage();
+    // String imageString = new String(Base64.encodeBase64(imageByte));
+    // return imageString;
+    return imageByte;
+  }
+
+  // public String selecionaImagem(String nomeReceita){
+  //   if(nomeReceita.equals("Feijão Tropeiro")){
+  //     return "";
+  //   }
+  //   else if(nomeReceita.equals("Torta de Limão")){
+  //     return "";
+  //   }
+  //   else if(nomeReceita.equals("")){
+  //     return "";
+  //   }
+  //   else if(nomeReceita.equals("")){
+  //     return "";
+  //   }
+  // }
 }

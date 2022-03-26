@@ -17,9 +17,9 @@ public class IngredienteImpl implements IngredienteDao {
     @PersistenceContext
     private EntityManager em;
 
-    public void saveIngrediente(Ingrediente ingrediente) {
+    public Ingrediente saveIngrediente(Ingrediente ingrediente) {
         em.persist(ingrediente);
-
+        return ingrediente;
     }
 
     public List<Ingrediente> getIngredientes() {

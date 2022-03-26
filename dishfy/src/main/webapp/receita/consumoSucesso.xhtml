@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+    template="/WEB-INF/templates/template-home.xhtml">
+
+    <ui:define name="title">Receita</ui:define>
+    <ui:define name="contents">
+        <div id="content-container">
+            <div class="content-main">
+                <h2>A receita <h:outputText value="#{receitaController.receitaSelecionada.nome}" /> foi consumida com sucesso.</h2>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

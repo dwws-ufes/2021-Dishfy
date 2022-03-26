@@ -60,5 +60,13 @@ public class ImagemServiceImpl implements ImagemService {
     public void setImageContents(byte[] imageContents) {
         this.imageContents = imageContents;
     }
+
+    public ImageDishfy updateImagem(ImageDishfy imagem){
+        return imageDishfyDao.updateImage(image);
+    }
+
+    public ImageDishfy getReceitaImagem(int idReceita){
+        return imageDishfyDao.getImagemByReceita(idReceita);
+    }
     
 }

@@ -16,8 +16,9 @@ public class ItemImpl implements ItemDao {
     @PersistenceContext
     private EntityManager em;
 
-    public void saveItem(Item item) {
+    public Item saveItem(Item item) {
         em.persist(item);
+        return item;
     }
 
     public List<Item> getItems(int idReceita) {
@@ -25,7 +26,7 @@ public class ItemImpl implements ItemDao {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Item> criteriaQuery = criteriaBuilder.createQuery(Item.class);
         Root<Item> root = criteriaQuery.from(Item.class);
-        criteriaQuery.where(criteriaBuilder.equal(root.get("receita_id"), idReceita));
+        criteriaQuery.where(criteriaBuilder.equal(root.get("receita"), idReceita));
         List<Item> items = em.createQuery(criteriaQuery).getResultList();
         return items;
 

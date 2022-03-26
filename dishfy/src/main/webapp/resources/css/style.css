@@ -307,3 +307,21 @@ nav{
   margin: 0;
   margin-bottom: 2rem;
 }
+
+.button-index{
+  font-size: 0.8rem;
+  padding: 6px 10px;
+  font-weight: 600;
+  color: black;
+  background-color: #f5bebe;
+  border: 1px #f5bebe;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.5s
+}
+
+.button-index:hover{
+  color: #f5bebe;
+  background-color: black;
+  transition: 0.5s
+}

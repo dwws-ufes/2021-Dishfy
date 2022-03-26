@@ -1,0 +1,9 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX vocab: <http://localhost:2020/resource/vocab/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX map: <http://localhost:2020/resource/#>
+PREFIX db: <http://localhost:2020/resource/>
+
+SELECT DISTINCT ?resource ?value WHERE { ?resource <http://localhost:2020/resource/vocab/products_generic_name> ?value  FILTER regex(?value, "Fruit Juice")} ORDER BY ?resource ?value

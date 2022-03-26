@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class ImageDishfy {
@@ -14,6 +15,9 @@ public class ImageDishfy {
 
     @Column(nullable = false)
     private String nome;
+
+    @OneToOne
+    private Receita receita;
      
     @Column(nullable = false, length=65535)
     private byte[] image;
@@ -44,5 +48,14 @@ public class ImageDishfy {
     public void setImage(byte[] image) {
         this.image = image;
     }
+
+    public Receita getReceita() {
+        return this.receita;
+    }
+
+    public void setReceita(Receita receita) {
+        this.receita = receita;
+    }
+
     
 }

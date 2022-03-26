@@ -14,6 +14,7 @@ import jakarta.ejb.EJB;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.enterprise.inject.Model;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.security.enterprise.AuthenticationStatus;
 import jakarta.security.enterprise.SecurityContext;
@@ -49,6 +50,11 @@ public class AutenticarUsuarioController implements Serializable {
     @PostConstruct
 	public void init() {
 		usuario = new Usuario();
+        try {
+            usuarioAtual = autenticacaoService.getLoggedUser();            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
     
     public String cadastrar(){
@@ -109,7 +115,7 @@ public class AutenticarUsuarioController implements Serializable {
         }
         usuarioAtual = autenticacaoService.getLoggedUser();
         System.out.println("Usuario Logado: " + usuarioAtual.getNome());
-        return "/core/home-estatica.xhtml";
+        return "/core/home.xhtml";
     }
 
     public String solicitaLogout(){
@@ -153,4 +159,19 @@ public class AutenticarUsuarioController implements Serializable {
         return this.erroCadastro;
     }
 
+    public Usuario getUsuarioAtual() {
+        return this.usuarioAtual;
+    }
+
+    public void setUsuarioAtual(Usuario usuarioAtual) {
+        this.usuarioAtual = usuarioAtual;
+    }
+
+    public String downloadRDF(){
+        return "/resources/rdf/dishfy.rdf";
+    }
+
+    public String clienteSPARQL() {
+        return "http://localhost:2021/snorql/";
+      }
 }

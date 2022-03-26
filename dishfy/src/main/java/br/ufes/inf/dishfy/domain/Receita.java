@@ -28,10 +28,10 @@ public class Receita {
     private String descricao;
 
     @Column(nullable = false)
-    private float calorias;
+    private double calorias;
 
-    @OneToOne
-    private ImageDishfy imagem;
+    // @OneToOne
+    // private ImageDishfy imagem;
     
     @Column(nullable = false)
     private boolean publico;
@@ -95,15 +95,13 @@ public class Receita {
         this.descricao = descricao;
     }
 
-    public float getCalorias() {
+    public double getCalorias() {
         return calorias;
     }
 
-    public void setCalorias(float calorias) {
+    public void setCalorias(double calorias) {
         this.calorias = calorias;
     }
-
-    
 
     public boolean getPublico() {
         return publico;
@@ -129,13 +127,11 @@ public class Receita {
         this.autor = autor;
     }
 
-    public ImageDishfy getImagem() {
-        return imagem;
-    }
+    // public ImageDishfy getImagem() {
+    //     return this.imagem;
+    // }
 
-    public void setImagem(ImageDishfy imagem) {
-        this.imagem = imagem;
-    }
-
-
+    // public void setImagem(ImageDishfy imagem) {
+    //     this.imagem = imagem;
+    // }
 }

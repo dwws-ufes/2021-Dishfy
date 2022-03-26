@@ -12,16 +12,15 @@
         <div id="content-container">
             <div class="content-main">
                 <div class="image-container">
-                    <!-- fazer essa imagem só aparecer se nao tiver salvado nenhuma -->
                     <h:graphicImage value="../resources/images/user.png" alt="Selecione uma imagem" id="img-profile" />
                 </div>
 
                 <h:inputFile value="" id="file-profile" name="file-profile" accept="image/*">
                     <f:ajax listener="#{bean.upload}" />
                 </h:inputFile>
-                <h3 class="name">Nome do Usuário</h3>
+                <h3 class="name">#{autenticarUsuarioController.usuarioAtual.nome}</h3>
                 <hr class="last" />
-                <p class="profile-text">Receitas armazenadas: <span style="color: #ff0000;font-weight: 400;">14</span>
+                <p class="profile-text">Receitas armazenadas: <span style="color: #ff0000;font-weight: 400;">#{receitaController.qtdReceitas(autenticarUsuarioController.usuarioAtual.id)}</span>
                 </p>
             </div>
         </div>

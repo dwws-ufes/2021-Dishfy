@@ -1,0 +1,9 @@
+[Unit]
+Description=d2r2
+
+[Service]
+ExecStart=/opt/d2rq-0.8.1/d2r2
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target 

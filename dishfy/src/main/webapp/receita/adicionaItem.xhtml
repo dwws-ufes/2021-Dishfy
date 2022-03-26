@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
+    template="/WEB-INF/templates/template-home.xhtml">
+
+    <ui:define name="title">Cadastro Receita</ui:define>
+    <ui:define name="css">
+        <h:outputStylesheet library="css" name="produto.css" />
+        <h:outputStylesheet library="css" name="datatable-config.css" />
+    </ui:define>
+    <ui:define name="contents">
+        <div id="content-container">
+            <div class="content-main">
+                <div class="header-produto">
+                    <h2 id="titulo">Cadastro de Receita</h2>
+                    <p id="subtitulo">Por favor preencha os campos abaixo.</p>
+                </div>
+                <h:form class="formulario-produto" enctype="multipart/form-data" style="align:center">
+                    <div class="campo-produto">
+                        <h:outputLabel><strong>Escolha os ingredientes da receita:</strong></h:outputLabel>
+                        <h:panelGroup id="item-form" class="formulario-item">
+                            <h:outputLabel>Quantidade | Grandeza | Ingrediente</h:outputLabel>
+                            <div style="display:flex; margin: 10px 0">
+                                <h:inputText id="form-number" value="#{receitaController.qtd}" />
+                                <h:selectOneMenu id="grandeza-produto" value="#{receitaController.grand}"
+                                    style="margin:5px 20px;">
+                                    <f:selectItem itemValue="Gramas" itemLabel="Gramas" selected="true" />
+                                    <f:selectItem itemValue="Kg" itemLabel="Kg" />
+                                    <f:selectItem itemValue="Colher" itemLabel="Colher" />
+                                    <f:selectItem itemValue="Xicara" itemLabel="Xicara" />
+                                </h:selectOneMenu>
+                                <h:inputText id="form-ingredient" value="#{receitaController.ingrediente}" />
+                            </div>
+                            <h:commandButton value="Adicionar" styleClass="button" ajax="true"
+                                action="#{receitaController.salvarItem}" style="width: 20%; color: white">
+                                <f:ajax render="item-form" execute="form-number grandeza-produto form-ingredient" />
+                            </h:commandButton>
+                            <p>
+                                <h:dataTable value="#{receitaController.items}" var="item">
+                                    <h:column style="padding-right: 5px;">
+                                        <f:facet name="header">Quantidade</f:facet>
+                                        #{item.quantidade}
+                                    </h:column>
+                                    <p:column styleClass="hidden" style="width: 20px"></p:column>
+                                    <h:column style="margin: 10px 30px;">
+                                        <f:facet name="header">Grandeza</f:facet>
+                                        #{item.grandeza}
+                                    </h:column>
+                                    <p:column styleClass="hidden" style="width: 20px"></p:column>
+                                    <h:column>
+                                        <f:facet name="header">Ingrediente</f:facet>
+                                        #{item.ingrediente.getNome()}
+                                    </h:column>
+                                </h:dataTable>
+                            </p>
+                        </h:panelGroup>
+                    </div>
+                </h:form>
+                <h:form style="display: flex; justify-content: center;">
+                    <h:commandButton value="Enviar" styleClass="button" style="color: white"
+                        action="#{receitaController.adicionarItens}" />
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

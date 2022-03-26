@@ -6,7 +6,7 @@ import br.ufes.inf.dishfy.domain.Item;
 import jakarta.ejb.Local;
 @Local
 public interface ItemDao {
-    public void saveItem(Item item);
+    public Item saveItem(Item item);
     public List<Item> getItems(int idReceita);
     public void deleteItem(Item item);
 

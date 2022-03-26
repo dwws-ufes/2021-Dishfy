@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
-    template="/WEB-INF/templates/template-home.xhtml">
+    template="/WEB-INF/templates/template-home.xhtml" xmlns:o="http://omnifaces.org/ui">
 
     <ui:define name="title">Receitas</ui:define>
     <ui:define name="css">
@@ -18,34 +18,29 @@
                         </div>
                     </div>
                 </header>
+                <a class="history" href="novaReceita.xhtml">
+                    <p>Criar receita</p>
+                </a>
                 <a class="history" href="historico.xhtml">
                     <p>Historico de Consumo</p>
                 </a>
                 <section class="recipes-container grid">
-
                     <div class="recipes-list">
-                        <div class="recipe">
-                            <a href="single-recipe.html" class="recipe">
-                                <h:graphicImage
-                                    value="https://img.itdg.com.br/tdg/images/recipes/000/000/961/327806/327806_original.jpg"
-                                    class="img recipe-img" alt="" />
-                            </a>
-                            <div class="recipe-content">
-                                <h5>Feijão Tropeiro</h5>
-                                <h:commandButton value="Consumir" type="submit" class="button-recipe" />
-                            </div>
-                        </div>
-                        <div class="recipe">
-                            <a class="recipe">
-                                <h:graphicImage
-                                    value="https://images.aws.nestle.recipes/resized/40b25559b85b265e885f55ec7c1e4d04_torta-lim%C3%A3o-receitas-nestle_1200_600.jpg"
-                                    class="img recipe-img" alt="" />
-                            </a>
-                            <div class="recipe-content">
-                                <h5>Torta de Limão</h5>
-                                <h:commandButton value="Consumir" type="submit" class="button-recipe" />
-                            </div>
-                        </div>
+                        <ui:repeat var="receita" value="#{receitaController.usuarioLogado.getReceitas()}">
+                            <h:form>
+                                <div class="recipe">
+                                    <o:graphicImage
+                                        value="#{imageBean.getImagemByReceita(receita.id)}" 
+                                        class="img recipe-img" alt="" />
+                                    <div class="recipe-content">
+                                        <h5>#{receita.getNome()}</h5>
+                                        <h:commandButton value="Selecionar" type="submit" class="button-recipe" 
+                                            action="#{receitaController.acessaReceita(receita.id)}"/>
+                                    </div>
+                                    <p>Calorias: <span>#{receita.calorias}</span></p>
+                                </div>
+                            </h:form>
+                        </ui:repeat>
                     </div>
                 </section>
             </div>

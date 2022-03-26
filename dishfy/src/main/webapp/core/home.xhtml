@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
-    template="/WEB-INF/templates/template-home.xhtml">
+    template="/WEB-INF/templates/template-home.xhtml" xmlns:o="http://omnifaces.org/ui">
 
     <ui:define name="title">Home</ui:define>
     <ui:define name="css">
@@ -19,33 +19,30 @@
                     </div>
                 </header>
                 <section class="recipes-container">
-                    <div class="tags-container">
+                    <div class="tags-container" style="margin-right: 30px">
                         <h4>Categorias</h4>
                         <div class="tags-list">
-                            <!-- TODO: Controlador da categoria recebendo o nome dela e inicializando preechendo a
-                                a lista de Receitas com a consulta de getReceitasByCategoria  -->
-                            <a href="../receita/categoria.xhtml">Doce</a>
-                            <a href="../receita/categoria.xhtml">Carne</a>
-                            <a href="../receita/categoria.xhtml">Bebida</a>
-                            <a href="../receita/categoria.xhtml">Lanche</a>
+                            <ui:repeat var="categoria" value="#{categoriaController.categorias}">
+                                <h:form>
+                                    <h:commandLink value ="#{categoria.nome}" 
+                                        action ="#{categoriaController.selectCategory(categoria.nome)}" /> 
+                                </h:form>
+                            </ui:repeat>
                         </div>
                     </div>
                     <div class="recipes-list">
-                        <!-- ui repeat -->
-                        <ui:repeat var="receita" value="#{usuarioController.usuarioLogado.getReceitas()}">
-                            <div class="recipe">
-                                <a class="recipe" href="receita.xhtml">
-                                    <h:graphicImage
-                                        value="#{receita.getImagem()}"
-                                        class="img recipe-img" alt="" /> <!-- #{receita.getImagem} -->
-                                </a>
-                                <div class="recipe-content">
-                                    <h5>#{receita.getNome()}</h5>
-                                    <h:commandButton value="Salvar" type="submit" class="button-recipe" />
-                                    <!-- action="#{receita}" -->
+                        <ui:repeat var="receita" value="#{receitaController.receitasPublicas}">
+                            <h:form>
+                                <div class="recipe">
+                                    <o:graphicImage value="#{imageBean.getImagemByReceita(receita.id)}" class="img recipe-img" alt="" />
+                                    <div class="recipe-content">
+                                        <h5>#{receita.getNome()}</h5>
+                                        <h:commandButton value="Selecionar" type="submit" class="button-recipe"
+                                            action="#{receitaController.acessaReceita(receita.id)}" />
+                                    </div>
+                                    <p>Calorias: <span>#{receita.calorias}</span></p>
                                 </div>
-                                <p>Calorias: <span>#{receita.getCalorias()}</span></p>
-                            </div>
+                            </h:form>
                         </ui:repeat>
                     </div>
                 </section>
