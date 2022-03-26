@@ -133,11 +133,17 @@ public class OpenFoodFacts {
 
     public static Ingrediente getIngredienteAPI(String nome, String uri){
 
+        System.out.println("+++++ nome e uri: " + nome + " | " + uri);
+        
         String param = getResourceOpenFoodFacts(uri,nome);
+
+        System.out.println("+++++ param: " + param);
 
         if (param!=null){
 
             String param2 = getPropertyNutriments(uri, param);
+
+            System.out.println("+++++ param2: " + param2);
 
             if(param!=null){
 

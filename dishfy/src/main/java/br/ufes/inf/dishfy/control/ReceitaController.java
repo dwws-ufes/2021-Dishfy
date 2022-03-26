@@ -125,8 +125,8 @@ public class ReceitaController implements Serializable {
     
     receita = receitaService.createReceita(receita);
     
-    imagem.setReceita(receita);
-    imagem = imagemService.updateImagem(imagem);
+    // imagem.setReceita(receita);
+    // imagem = imagemService.updateImagem(imagem);
 
     List<Receita> receitas = usuarioLogado.getReceitas();
     receitas.add(receita);
