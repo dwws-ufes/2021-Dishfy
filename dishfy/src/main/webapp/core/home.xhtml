@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
-    template="/WEB-INF/templates/template-home.xhtml">
+    template="/WEB-INF/templates/template-home.xhtml" xmlns:o="http://omnifaces.org/ui">
 
     <ui:define name="title">Home</ui:define>
     <ui:define name="css">
@@ -19,7 +19,7 @@
                     </div>
                 </header>
                 <section class="recipes-container">
-                    <div class="tags-container" style="margin-right: 20px">
+                    <div class="tags-container" style="margin-right: 30px">
                         <h4>Categorias</h4>
                         <div class="tags-list">
                             <ui:repeat var="categoria" value="#{categoriaController.categorias}">
@@ -34,7 +34,7 @@
                         <ui:repeat var="receita" value="#{receitaController.receitasPublicas}">
                             <h:form>
                                 <div class="recipe">
-                                    <h:graphicImage value="#{receitaController.getImagemByReceita(receita.id)}" class="img recipe-img" alt="" />
+                                    <o:graphicImage value="#{imageBean.getImagemByReceita(receita.id)}" class="img recipe-img" alt="" />
                                     <div class="recipe-content">
                                         <h5>#{receita.getNome()}</h5>
                                         <h:commandButton value="Selecionar" type="submit" class="button-recipe"

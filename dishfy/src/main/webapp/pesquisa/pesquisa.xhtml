@@ -18,8 +18,8 @@
                         <p:column headerText="Receita" filterBy="#{receita.nome}">
                             <div class="recipe">
                                 <h:commandButton value="Selecionar" type="submit" class="button-recipe" action="#{receitaController.acessaReceita(receita.id)}"/>
-                                <h:graphicImage
-                                    value="#{receitaController.getImagemByReceita(receita.id)}"
+                                <o:graphicImage
+                                    value="#{imageBean.getImagemByReceita(receita.id)}"
                                     class="img recipe-img" alt="" />
                                 <div class="recipe-content">
                                     <h5>#{receita.nome}</h5>

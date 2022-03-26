@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
-    template="/WEB-INF/templates/template-home.xhtml">
+    template="/WEB-INF/templates/template-home.xhtml" xmlns:o="http://omnifaces.org/ui>
 
     <ui:define name="title">Receita</ui:define>
     <ui:define name="css">
@@ -13,8 +13,8 @@
 
             <div class="content-main">
                 <div class="banner">
-                    <h:graphicImage
-                        value="#{receitaController.getImagemByReceita(receitaController.receitaSelecionada.id)}" />
+                    <o:graphicImage
+                        value="#{imageBean.getImagemByReceita(receitaController.receitaSelecionada.id)}" />
                     <!-- value="#{receitaController.receitaSelecionada.image}" -->
                 </div>
                 <div class="heading">

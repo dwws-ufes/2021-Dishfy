@@ -11,6 +11,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import org.apache.commons.codec.binary.Base64;
+
 import br.ufes.inf.dishfy.Utils;
 import br.ufes.inf.dishfy.application.AutenticacaoService;
 import br.ufes.inf.dishfy.application.CategoriaService;
@@ -366,7 +368,10 @@ public class ReceitaController implements Serializable {
   }
 
   public byte[] getImagemByReceita(int idReceita){
-    return imagemService.getReceitaImagem(idReceita).getImage();
+    byte[] imageByte = imagemService.getReceitaImagem(idReceita).getImage();
+    // String imageString = new String(Base64.encodeBase64(imageByte));
+    // return imageString;
+    return imageByte;
   }
 
   // public String selecionaImagem(String nomeReceita){

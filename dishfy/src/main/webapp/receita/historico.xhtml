@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
-    template="/WEB-INF/templates/template-home.xhtml">
+    template="/WEB-INF/templates/template-home.xhtml" xmlns:o="http://omnifaces.org/ui>
 
     <ui:define name="title">Histórico</ui:define>
     <ui:define name="css">
@@ -27,7 +27,7 @@
                         <div class="recipes-list">
                             <h:form>
                                 <div class="recipe">
-                                    <h:graphicImage value="#{receitaController.getImagemByReceita(consumo.receita.id)}" class="img recipe-img"
+                                    <o:graphicImage value="#{imageBean.getImagemByReceita(consumo.receita.id)}" class="img recipe-img"
                                         alt="" />
                                     <div class="recipe-content">
                                         <h5>#{consumo.receita.nome}</h5>
