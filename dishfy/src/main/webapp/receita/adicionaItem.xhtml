@@ -23,7 +23,6 @@
                             <h:outputLabel>Quantidade | Grandeza | Ingrediente</h:outputLabel>
                             <div style="display:flex; margin: 10px 0">
                                 <h:inputText id="form-number" value="#{receitaController.qtd}" />
-                                <!-- TODO: Decidir as grandezes -->
                                 <h:selectOneMenu id="grandeza-produto" value="#{receitaController.grand}"
                                     style="margin:5px 20px;">
                                     <f:selectItem itemValue="Gramas" itemLabel="Gramas" selected="true" />
@@ -65,8 +64,4 @@
             </div>
         </div>
     </ui:define>
-
-    <!-- <ui:define name="js">
-        <h:outputScript library="js" name="fileImage.js" />
-    </ui:define> -->
 </ui:composition>

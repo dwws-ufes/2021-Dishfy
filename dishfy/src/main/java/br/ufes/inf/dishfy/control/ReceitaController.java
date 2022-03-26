@@ -118,10 +118,13 @@ public class ReceitaController implements Serializable {
     // while (System.currentTimeMillis() < end) {}
 
     // receita.setImagem(imagem);
-
+    
     receita.setItens(new ArrayList<>());
-
+    
     receita = receitaService.createReceita(receita);
+    
+    imagem.setReceita(receita);
+    imagem = imagemService.updateImagem(imagem);
 
     List<Receita> receitas = usuarioLogado.getReceitas();
     receitas.add(receita);
@@ -166,7 +169,7 @@ public class ReceitaController implements Serializable {
       item.setIngrediente(ingredienteService.getIngrediente(ingrediente));
       item.setReceita(receitaCriada);
       somaCaloria = somaCaloria
-          + (Double.parseDouble(qtd) * ingredienteService.getIngrediente(ingrediente).getCalorias());
+          + (Double.parseDouble(qtd) * ingredienteService.getIngrediente(ingrediente).getCalorias())/100;
     }
 
     itemService.salvarItem(item);
@@ -357,12 +360,27 @@ public class ReceitaController implements Serializable {
     this.usuarioLogado = usuarioLogado;
   }
 
-  public String clienteSPARQL() {
-    return "http://localhost:2021/snorql/";
-  }
-
   public int qtdReceitas(int idUsuario){
     List<Receita> receitas = receitaService.getReceitasUsuario(idUsuario);
     return receitas.size();
   }
+
+  public byte[] getImagemByReceita(int idReceita){
+    return imagemService.getReceitaImagem(idReceita).getImage();
+  }
+
+  // public String selecionaImagem(String nomeReceita){
+  //   if(nomeReceita.equals("Feijão Tropeiro")){
+  //     return "";
+  //   }
+  //   else if(nomeReceita.equals("Torta de Limão")){
+  //     return "";
+  //   }
+  //   else if(nomeReceita.equals("")){
+  //     return "";
+  //   }
+  //   else if(nomeReceita.equals("")){
+  //     return "";
+  //   }
+  // }
 }

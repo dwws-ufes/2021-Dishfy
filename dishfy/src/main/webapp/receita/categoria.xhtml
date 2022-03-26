@@ -23,7 +23,7 @@
                         <ui:repeat var="receita" value="#{categoriaController.receitasCategoria}">
                             <h:form>
                                 <div class="recipe">
-                                    <h:graphicImage value="#{receita.imagem}" class="img recipe-img" alt="" />
+                                    <h:graphicImage value="#{receitaController.getImagemByReceita(receita.id)}" class="img recipe-img" alt="" />
                                     <div class="recipe-content">
                                         <h5>#{receita.getNome()}</h5>
                                         <h:commandButton value="Selecionar" type="submit" class="button-recipe"

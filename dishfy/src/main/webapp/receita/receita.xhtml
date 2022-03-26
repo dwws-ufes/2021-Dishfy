@@ -14,22 +14,17 @@
             <div class="content-main">
                 <div class="banner">
                     <h:graphicImage
-                        value="#{receitaController.receitaSelecionada.imagem}" />
-                    <!-- <h:graphicImage
-                    value="https://img.cybercook.com.br/receitas/324/feijao-tropeiro-gaucho.jpeg" /> -->
+                        value="#{receitaController.getImagemByReceita(receitaController.receitaSelecionada.id)}" />
+                    <!-- value="#{receitaController.receitaSelecionada.image}" -->
                 </div>
                 <div class="heading">
                     <h2>#{receitaController.receitaSelecionada.nome}</h2>
-                    <!-- <h2>Feijão Tropeiro</h2> -->
                     <div class="subtitle-recipe">
                         <sup>Receita por <p>#{receitaController.receitaSelecionada.autor.nome}</p></sup>
-                        <!-- <sup>Receita por <p>Tico e teco</p></sup> -->
                         <p class="calories"><span style="color: #ff0000;font-weight: 400;">#{receitaController.receitaSelecionada.calorias}</span> calorias.</p>
-                        <!-- <p class="calories"><span style="color: #ff0000;font-weight: 400;">#{receitaController.receitaSelecionada.calorias}</span> calorias.</p> -->
                         <h:form>
                             <h:commandButton value="Consumir" type="submit" class="button-recipe" 
                                     action="#{consumoController.consomeReceita(receitaController.receitaSelecionada.id)}"/>
-                                    <!-- Talvez seria melhor passar o receita.id como parâmetro na função -->
                         </h:form>
                     </div>
                 </div>
@@ -37,15 +32,6 @@
                     <div>
                         <h3>Método</h3>
                         <p>#{receitaController.receitaSelecionada.descricao}</p>
-                        <!-- <p>Coloque o azeite em uma panela e frite o bacon e a linguiça separadamente, depois reserve.
-
-                            Na mesma panela, frite a cebola e o alho, junte o feijão escorrido e o caldo de bacon.
-                            
-                            Junte novamente o bacon e a linguiça, acrescente a farinha de mandioca e os ovos fritos picadinhos.
-                            
-                            Acrescente bastante cheiro-verde.
-                            
-                            Acerte o sal e a pimenta e está pronto para servir.</p> -->
                         <hr class="last" />
                     </div>
                     <div class="shop">
@@ -54,11 +40,6 @@
                             <ui:repeat var="item" value="#{receitaController.receitaSelecionada.itens}">
                                 <li>#{item.getQuantidadeString()} #{item.grandeza} #{item.ingrediente.nome}</li>
                             </ui:repeat>
-                            <!-- 
-                            <li>150 g de bacon picadinho</li>
-                            <li>250 g de linguiça calabresa picadinha</li>
-                            <li>1 xícara (café) de azeite</li>
-                            <li>2 cebolas picadinhas</li>-->
                         </ul>
                         <hr class="last" />
                     </div>

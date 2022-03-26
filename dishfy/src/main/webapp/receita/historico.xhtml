@@ -23,19 +23,16 @@
                     <ui:repeat var="consumo" value="#{consumoController.getAllConsumoUsuario()}">
                         <p>- Dia
                             <h:outputText value="#{consumoController.getDateAsString(consumo)}" />
-                            <!-- Dar um jeito de passar o id do consumo como parâmetro -->
                         </p>
                         <div class="recipes-list">
                             <h:form>
                                 <div class="recipe">
-                                    <h:graphicImage value="#{consumo.receita.imagem}" class="img recipe-img"
+                                    <h:graphicImage value="#{receitaController.getImagemByReceita(consumo.receita.id)}" class="img recipe-img"
                                         alt="" />
                                     <div class="recipe-content">
                                         <h5>#{consumo.receita.nome}</h5>
                                         <h:commandButton value="Selecionar" type="submit" class="button-recipe"
                                             action="#{receitaController.acessaReceita(consumo.receita.id)}" />
-                                        <!-- <h:commandButton value="Salvar" type="submit" class="button-recipe" /> -->
-                                        <!-- action="#{receita}" -->
                                     </div>
                                     <p>Calorias: <span>#{consumo.receita.calorias}</span></p>
                                 </div>

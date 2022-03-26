@@ -30,8 +30,8 @@ public class Receita {
     @Column(nullable = false)
     private double calorias;
 
-    @OneToOne
-    private ImageDishfy imagem;
+    // @OneToOne
+    // private ImageDishfy imagem;
     
     @Column(nullable = false)
     private boolean publico;
@@ -127,11 +127,11 @@ public class Receita {
         this.autor = autor;
     }
 
-    public ImageDishfy getImagem() {
-        return this.imagem;
-    }
+    // public ImageDishfy getImagem() {
+    //     return this.imagem;
+    // }
 
-    public void setImagem(ImageDishfy imagem) {
-        this.imagem = imagem;
-    }
+    // public void setImagem(ImageDishfy imagem) {
+    //     this.imagem = imagem;
+    // }
 }

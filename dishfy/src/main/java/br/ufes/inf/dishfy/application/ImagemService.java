@@ -12,4 +12,6 @@ public interface ImagemService extends Serializable {
     public String writeImage(String caminho,ImageDishfy image);
     public byte[] getImageContents();
     public void setImageContents(byte[] imageContents);
+    public ImageDishfy updateImagem(ImageDishfy imagem);
+    public ImageDishfy getReceitaImagem(int idReceita);
 }

@@ -119,7 +119,6 @@ public class AutenticarUsuarioController implements Serializable {
     }
 
     public String solicitaLogout(){
-        System.out.println("BORAPOHA");
         usuarioAtual = null;
         return "/index.xhtml";
     }
@@ -168,5 +167,11 @@ public class AutenticarUsuarioController implements Serializable {
         this.usuarioAtual = usuarioAtual;
     }
 
+    public String downloadRDF(){
+        return "/resources/rdf/dishfy.rdf";
+    }
 
+    public String clienteSPARQL() {
+        return "http://localhost:2021/snorql/";
+      }
 }

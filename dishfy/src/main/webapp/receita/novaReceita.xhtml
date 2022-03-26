@@ -24,18 +24,10 @@
                             value="#{receitaController.nome}" />
                     </div>
                     <div class="conteiner-produto">
-                        <!-- 
-                        <div class="image-container">
-                            <h:graphicImage value="../resources/images/camera-fotografica.png"
-                                alt="Selecione uma imagem" id="imgReceita" />
-                        </div> -->
-
-                        <!-- para salvar imagem https://stackoverflow.com/questions/27677397/how-to-upload-file-using-jsf-2-2-hinputfile-where-is-the-saved-file/ -->
                         <h:inputFile value="#{receitaController.uploadedFile}" id="imagem-produto" name="imagem-produto"
                             accept="image/*">
                             <f:ajax listener="#{receitaController.upload}" />
                         </h:inputFile>
-
                         <div class="campo-produto categoria">
                             <h:outputLabel for="categoria-produto"><strong>Categoria</strong></h:outputLabel>
                             <p:selectOneMenu id="lazy" value="#{receitaController.categoria}">

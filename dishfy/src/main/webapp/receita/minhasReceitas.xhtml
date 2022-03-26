@@ -30,13 +30,13 @@
                             <h:form>
                                 <div class="recipe">
                                     <h:graphicImage
-                                        value="#{receita.imagem}"
+                                        value="#{receitaController.getImagemByReceita(receita.id)}" 
                                         class="img recipe-img" alt="" />
+                                        <!-- value="#{receita.imagem}" -->
                                     <div class="recipe-content">
                                         <h5>#{receita.getNome()}</h5>
-                                        <h:commandButton value="Selecionar" type="submit" class="button-recipe" action="#{receitaController.acessaReceita(receita.id)}"/>
-                                        <!-- <h:commandButton value="Salvar" type="submit" class="button-recipe" /> -->
-                                        <!-- action="#{receita}" -->
+                                        <h:commandButton value="Selecionar" type="submit" class="button-recipe" 
+                                            action="#{receitaController.acessaReceita(receita.id)}"/>
                                     </div>
                                     <p>Calorias: <span>#{receita.calorias}</span></p>
                                 </div>

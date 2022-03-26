@@ -8,5 +8,5 @@ public interface ImageDishfyDao {
     
     public ImageDishfy updateImage(ImageDishfy image);
     public ImageDishfy saveImage(ImageDishfy image);
-
+    public ImageDishfy getImagemByReceita(int idReceita);
 }
